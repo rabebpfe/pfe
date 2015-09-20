@@ -18,7 +18,7 @@ public class Task implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTask;
 	private String nom;
-	private String durée;
+	private String duree;
 	private String status;
 	private String estumation;
 	private Long create_by;
@@ -58,12 +58,12 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Task(Long idTask, String nom, String durée, String status,
+	public Task(Long idTask, String nom, String duree, String status,
 			String estumation, Long create_by, Long attribuer) {
 		super();
 		this.idTask = idTask;
 		this.nom = nom;
-		this.durée = durée;
+		this.duree = duree;
 		this.status = status;
 		this.estumation = estumation;
 		this.create_by = create_by;
@@ -99,12 +99,12 @@ public class Task implements Serializable {
 
 	}
 
-	public Task(Long idTask, String nom, String durée, String status,
+	public Task(Long idTask, String nom, String duree, String status,
 			String estumation) {
 		super();
 		this.idTask = idTask;
 		this.nom = nom;
-		this.durée = durée;
+		this.duree = duree;
 		this.status = status;
 		this.estumation = estumation;
 	}
@@ -125,12 +125,12 @@ public class Task implements Serializable {
 		this.nom = nom;
 	}
 
-	public String getDurée() {
-		return durée;
+	public String getDuree() {
+		return duree;
 	}
 
-	public void setDurée(String durée) {
-		this.durée = durée;
+	public void setDuree(String duree) {
+		this.duree = duree;
 	}
 
 	public String getStatus() {
