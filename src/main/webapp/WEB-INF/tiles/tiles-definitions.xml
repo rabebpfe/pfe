@@ -76,6 +76,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/contacts/contactProfile.jsp"></put-attribute>
 	</definition>
+	<definition name="user.userEdit" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/user/userEdit.jsp"></put-attribute>
+	</definition>
+	<definition name="projet.projetEdit" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/projet/projetEdit.jsp"></put-attribute>
+	</definition>
+	<definition name="task.taskEdit" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/task/taskEdit.jsp"></put-attribute>
+	</definition>
+	
+
 
 
 

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -59,7 +60,14 @@
 <link
 	href="<c:url value="/resources/production/css/datatables/tools/css/dataTables.tableTools.css" />"
 	rel="stylesheet">
+
+<!-- select2 -->
+<link
+	href="<c:url value="/resources/production/css/select/select2.min.css" />"
+	rel="stylesheet">
 <script src="<c:url value="/resources/production/js/jquery.min.js" />"></script>
+
+
 
 </head>
 
@@ -67,7 +75,8 @@
 	<div class="page-title">
 		<div class="title_left">
 			<h3>
-				Invoice <small> Some examples to get you started </small>
+
+				<small> </small>
 			</h3>
 		</div>
 
@@ -75,9 +84,12 @@
 			<div
 				class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search for...">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">Go!</button>
+					<input type="text" class="form-control"
+						placeholder=<spring:message code="label.Search" />> <span
+						class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<spring:message code="label.Go" />
+						</button>
 					</span>
 				</div>
 			</div>
@@ -90,7 +102,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						Create User <small>User</small>
+						<spring:message code="label.Create_Project" />
+						<small></small>
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -101,72 +114,129 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="x_content">
-					<form id="demo-form2" data-parsley-validate
-						class="form-horizontal form-label-left">
+					<form:form id="demo-form2" class="form-horizontal form-label-left"
+						modelAttribute="projet" method="POST" action="saveProjet">
 
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12"
-								for="first-name">First Name <span class="required">*</span>
-							</label>
+							<form:label path="nom"
+								class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="Name_Project">
+								<spring:message code="label.Name_Project" />
+								<span class="required">*</span>
+							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" id="first-name" required="required"
-									class="form-control col-md-7 col-xs-12">
+								<form:input path="nom" type="text" id="Name_Project"
+									name="Name_Project" class="form-control col-md-7 col-xs-12" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="description"
+								class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="Project_Description">
+								<spring:message code="label.Project_Description" />
+								<span class="required">*</span>
+							</form:label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<form:textarea path="description" id="Project_Description" name="Project_Description"
+									
+									class="form-control col-md-7 col-xs-12" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12"
-								for="last-name">Last Name <span class="required">*</span>
-							</label>
+							<form:label path="estimation_dure"
+								class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="Estimated_project_duration">
+								<spring:message code="label.Estimated_project_duration" />
+								<span class="required">*</span>
+							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" id="last-name" name="last-name"
-									required="required" class="form-control col-md-7 col-xs-12">
+								<form:input path="estimation_dure" type="text"
+									id="Estimated_project_duration" name="Estimated_project_duration"
+									class="form-control col-md-7 col-xs-12" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="middle-name"
-								class="control-label col-md-3 col-sm-3 col-xs-12">Middle
-								Name / Initial</label>
+							<form:label path="estimation_budget"
+								class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="Estimated_budget">
+								<spring:message code="label.Estimated_budget" />
+								<span class="required">*</span>
+							</form:label>
+							
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input id="middle-name" class="form-control col-md-7 col-xs-12"
-									type="text" name="middle-name">
+								<form:input path="estimation_budget" type="text"
+									id="Estimated_budget" class="form-control col-md-7 col-xs-12" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+							<form:label path="categorie"
+								class="control-label col-md-3 col-sm-3 col-xs-12">
+								<spring:message code="label.Category" />
+							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<div id="gender" class="btn-group" data-toggle="buttons">
-									<label class="btn btn-default" data-toggle-class="btn-primary"
-										data-toggle-passive-class="btn-default"> <input
-										type="radio" name="gender" value="male"> &nbsp; Male
-										&nbsp;
-									</label> <label class="btn btn-primary active"
-										data-toggle-class="btn-primary"
-										data-toggle-passive-class="btn-default"> <input
-										type="radio" name="gender" value="female" checked="">
-										Female
-									</label>
+								<form:select path="categorie"
+									class="select2_single form-control" tabindex="-1">
+									<form:option path="categorie" value="Website E_commerce" />
+									<form:option path="categorie" value="Customized Website" />
+									<form:option path="categorie" value="Mobile Site" />
+									<form:option path="categorie" value="Graphic Design" />
+								</form:select>
+							</div>
+						</div>
+
+
+
+
+						<div class="form-group">
+							<form:label path="status"
+								class="control-label col-md-3 col-sm-3 col-xs-12">
+								<spring:message code="label.State" />
+							</form:label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<form:select path="status" class="form-control">
+									<form:option path="status" value="Open" />
+									<form:option path="status" value="Closed" />
+
+								</form:select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="date"
+								class="control-label col-md-3 col-sm-3 col-xs-12">
+								<spring:message code="label.Date_Of_end" />
+								<span class="required">*</span>
+							</form:label>
+
+							<div class="control-group">
+								<div class="controls">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<form:input path="date" type="date"
+											class="form-control has-feedback-left" id="date"
+											name="date" placeholder="First Name"
+											aria-describedby="inputSuccess2Status4" />
+										<span class="fa fa-calendar-o form-control-feedback left"
+											aria-hidden="true"></span> <span id="inputSuccess2Status4"
+											class="sr-only">(success)</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Date
-								Of Birth <span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input id="birthday"
-									class="date-picker form-control col-md-7 col-xs-12"
-									required="required" type="date">
-							</div>
+
 						</div>
 						<div class="ln_solid"></div>
 						<div class="form-group">
 							<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-								<button type="button" class="btn btn-info">Cancel</button>
-								<button type="submit" class="btn btn-success">Submit</button>
+								<a type="button" href="projet" class="btn btn-info"><spring:message
+										code="label.Cancel" /> </a>
+								<button type="submit" class="btn btn-success"
+									onclick="return valider(this.form);">
+									<spring:message code="label.Submit" />
+								</button>
 							</div>
 						</div>
 
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
@@ -177,7 +247,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						Users <small>Sessions</small>
+						<spring:message code="label.Projects" />
+						<small></small>
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -192,554 +263,34 @@
 						class="table table-striped responsive-utilities jambo_table">
 						<thead>
 							<tr class="headings">
-								<th><input type="checkbox" class="tableflat"></th>
-								<th>Invoice</th>
-								<th>Invoice</th>
-								<th>Order</th>
-								<th>Bill</th>
-								<th>Status</th>
-								<th>Status</th>
+								<th><spring:message code="label.Project_Name" /></th>
+								<th><spring:message code="label.State" /></th>
+								<th class="hidden-phone"><spring:message
+										code="label.Hours_Spent" /></th>
+								<th><spring:message code="label.Category" /></th>
 								<th width="20%">Action</th>
 
 							</tr>
 						</thead>
 
 						<tbody>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 23, 2014 11:47:56 PM</td>
-								<td class=" ">121000210 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#UserEdit"><i class="fa fa-edit m-right-xs"></i></a>
-									<a class="btn btn-danger" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 23, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
 
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 23, 2014 11:47:56 PM</td>
-								<td class=" ">121000210 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 24, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
+							<c:forEach var="projets" items="${projets}">
+								<tr class="even pointer">
 
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 24, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 26, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="error fa fa-long-arrow-down"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 26, 2014 10:55:33 PM</td>
-								<td class=" ">121000203</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 26, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
 
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 27, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 28, 2014 11:30:12 PM</td>
-								<td class=" ">121000208</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 23, 2014 11:47:56 PM</td>
-								<td class=" ">121000210 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 23, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-
-							</tr>
-							<tr class="even pointer selected">
-								<td class="a-center "><input type="checkbox" checked
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 24, 2014 10:55:33 PM</td>
-								<td class=" ">121000203 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td><a class="btn btn-success" data-toggle="modal"
-									data-target="#ProfileEdit"><i
-										class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
-									data-toggle="modal" data-target="#ProfileEdit"><i
-										class="fa fa-remove m-right-xs"></i></a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 24, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td><i class="fa fa-edit"></i> <i class="fa fa-remove"></i>
-								</td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 24, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td><i class="fa fa-edit"></i> <i class="fa fa-remove"></i>
-								</td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 26, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="error fa fa-long-arrow-down"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td><i class="fa fa-edit"></i> <i class="fa fa-remove"></i>
-								</td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 26, 2014 10:55:33 PM</td>
-								<td class=" ">121000203</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 26, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 27, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 28, 2014 11:30:12 PM</td>
-								<td class=" ">121000208</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 23, 2014 11:47:56 PM</td>
-								<td class=" ">121000210 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 23, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer selected">
-								<td class="a-center "><input type="checkbox" checked
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 24, 2014 10:55:33 PM</td>
-								<td class=" ">121000203 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 24, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 24, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 26, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="error fa fa-long-arrow-down"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 26, 2014 10:55:33 PM</td>
-								<td class=" ">121000203</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 26, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 27, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 28, 2014 11:30:12 PM</td>
-								<td class=" ">121000208</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 23, 2014 11:47:56 PM</td>
-								<td class=" ">121000210 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 23, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer selected">
-								<td class="a-center "><input type="checkbox" checked
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 24, 2014 10:55:33 PM</td>
-								<td class=" ">121000203 <i
-									class="success fa fa-long-arrow-up"></i>
-								</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 24, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 24, 2014 11:47:56 PM</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 26, 2014 11:30:12 PM</td>
-								<td class=" ">121000208 <i
-									class="error fa fa-long-arrow-down"></i>
-								</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000038</td>
-								<td class=" ">May 26, 2014 10:55:33 PM</td>
-								<td class=" ">121000203</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$432.26</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000037</td>
-								<td class=" ">May 26, 2014 10:52:44 PM</td>
-								<td class=" ">121000204</td>
-								<td class=" ">Mike Smith</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$333.21</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-
-							<tr class="even pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000040</td>
-								<td class=" ">May 27, 2014</td>
-								<td class=" ">121000210</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$7.45</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
-							<tr class="odd pointer">
-								<td class="a-center "><input type="checkbox"
-									class="tableflat"></td>
-								<td class=" ">121000039</td>
-								<td class=" ">May 28, 2014 11:30:12 PM</td>
-								<td class=" ">121000208</td>
-								<td class=" ">John Blank L</td>
-								<td class=" ">Paid</td>
-								<td class="a-right a-right ">$741.20</td>
-								<td class=" last"><a href="#">View</a></td>
-							</tr>
+									<td class=" ">${projets.nom}</td>
+									<td class=" ">${projets.status}</td>
+									<td width="18%">${projets.estimation_dure}</td>
+									<td class="a-right a-right ">${projets.categorie}</td>
+									<td><a class="btn btn-success"
+										href="editProject?idProject=${projets.idProject}"> <i
+											class="fa fa-edit m-right-xs"></i></a>
+										<a class="btn btn-danger"
+										href="suppProjet?idProject=${projets.idProject}" onclick="return confirm('Etes vous sûre de vouloir supprimer ce projet ?');">
+											<i class="fa fa-trash-o"></i></a>
+								</tr>
+							</c:forEach>
 						</tbody>
 
 					</table>
@@ -750,152 +301,150 @@
 		<br /> <br /> <br /> <br /> <br /> <br />
 
 	</div>
+
+
+
+<div id="custom_notifications" class="custom-notifications dsp_none">
+	<ul class="list-unstyled notifications clearfix"
+		data-tabbed_notifications="notif-group">
+	</ul>
+	<div class="clearfix"></div>
+	<div id="notif-group" class="tabbed_notifications"></div>
 </div>
+<script
+	src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
 
+<!-- chart js -->
+<script
+	src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
+<!-- bootstrap progress js -->
+<script
+	src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
+<script
+	src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
+<!-- icheck -->
+<script
+	src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
 
+<script src="<c:url value="/resources/production/js/custom.js" />"></script>
+<!-- select2 -->
+<script
+	src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
 
-
-<div id="UserEdit" class="modal fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">×</button>
-				<h4 class="modal-title" id="myModalLabel2">Edit User Entry</h4>
-			</div>
-			<div class="modal-body">
-
-				<div id="testmodal2" style="padding: 5px 20px;">
-					<form id="antoform2" class="form-horizontal calender" role="form">
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Invoice</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="username1"
-									name="username">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Invoice data</label>
-							<div class="col-sm-9">
-								<input type="password" placeHolder="new Password"
-									class="form-control" id="password1" name="password">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Status</label>
-							<div class="col-sm-9">
-								<input type="password" class="form-control" id="password1"
-									name="password">
-							</div>
-						</div>
-
-
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default antoclose2"
-					data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary antosubmit2">Save
-					changes</button>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-	<div id="custom_notifications" class="custom-notifications dsp_none">
-		<ul class="list-unstyled notifications clearfix"
-			data-tabbed_notifications="notif-group">
-		</ul>
-		<div class="clearfix"></div>
-		<div id="notif-group" class="tabbed_notifications"></div>
-	</div>
-	<script
-		src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
-
-	<!-- chart js -->
-	<script
-		src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
-	<!-- bootstrap progress js -->
-	<script
-		src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
-	<!-- icheck -->
-	<script
-		src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
-
-	<script src="<c:url value="/resources/production/js/custom.js" />"></script>
-
-
-	<!-- Datatables -->
-	<script
-		src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
-
-	<script>
-		$(document).ready(function() {
-			$('input.tableflat').iCheck({
-				checkboxClass : 'icheckbox_flat-green',
-				radioClass : 'iradio_flat-green'
-			});
+<!-- Datatables -->
+<script
+	src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
+<script
+	src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
+<!-- select2 -->
+<script>
+	$(document).ready(function() {
+		$(".select2_single").select2({
+			placeholder : "Select a state",
+			allowClear : true
 		});
+		$(".select2_group").select2({});
+		$(".select2_multiple").select2({
+			maximumSelectionLength : 4,
+			placeholder : "With Max Selection limit 4",
+			allowClear : true
+		});
+	});
+</script>
+<!-- /select2 -->
+<script>
+	$(document).ready(function() {
+		$('input.tableflat').iCheck({
+			checkboxClass : 'icheckbox_flat-green',
+			radioClass : 'iradio_flat-green'
+		});
+	});
 
-		var asInitVals = new Array();
-		$(document)
-				.ready(
-						function() {
-							var oTable = $('#example')
-									.dataTable(
-											{
-												"oLanguage" : {
-													"sSearch" : "Search all columns:"
-												},
-												"aoColumnDefs" : [ {
-													'bSortable' : false,
-													'aTargets' : [ 0 ]
-												} //disables sorting for column one
-												],
-												'iDisplayLength' : 12,
-												"sPaginationType" : "full_numbers",
-												"dom" : 'T<"clear">lfrtip',
-												"tableTools" : {
-													"sSwfPath" : "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
-												}
-											});
-							$("tfoot input").keyup(
-									function() {
-										/* Filter on the column based on the index of this element's parent <th> */
-										oTable.fnFilter(this.value, $(
-												"tfoot th").index(
-												$(this).parent()));
-									});
-							$("tfoot input").each(function(i) {
-								asInitVals[i] = this.value;
-							});
-							$("tfoot input").focus(function() {
-								if (this.className == "search_init") {
-									this.className = "";
-									this.value = "";
-								}
-							});
-							$("tfoot input")
-									.blur(
-											function(i) {
-												if (this.value == "") {
-													this.className = "search_init";
-													this.value = asInitVals[$(
-															"tfoot input")
-															.index(this)];
-												}
-											});
+	var asInitVals = new Array();
+	$(document)
+			.ready(
+					function() {
+						var oTable = $('#example')
+								.dataTable(
+										{
+											"oLanguage" : {
+												"sSearch" : "Search all columns:"
+											},
+											"aoColumnDefs" : [ {
+												'bSortable' : false,
+												'aTargets' : [ 0 ]
+											} //disables sorting for column one
+											],
+											'iDisplayLength' : 12,
+											"sPaginationType" : "full_numbers",
+											"dom" : 'T<"clear">lfrtip',
+											"tableTools" : {
+												"sSwfPath" : "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+											}
+										});
+						$("tfoot input").keyup(
+								function() {
+									/* Filter on the column based on the index of this element's parent <th> */
+									oTable.fnFilter(this.value, $("tfoot th")
+											.index($(this).parent()));
+								});
+						$("tfoot input").each(function(i) {
+							asInitVals[i] = this.value;
 						});
-	</script>
+						$("tfoot input").focus(function() {
+							if (this.className == "search_init") {
+								this.className = "";
+								this.value = "";
+							}
+						});
+						$("tfoot input")
+								.blur(
+										function(i) {
+											if (this.value == "") {
+												this.className = "search_init";
+												this.value = asInitVals[$(
+														"tfoot input").index(
+														this)];
+											}
+										});
+					});
+</script>
+<script type="text/javascript">
+	function valider(form) {
+		if (form.Name_Project.value == '') {
+			alert("<spring:message code="label.Thank_you_to_seize_the_name_of_the_project" />");
+			form.Name_Project.focus(); //met le curseur dans le champ demandé
+			return false; //enpèche l'envoi du formulaire
+		}
+		if (form.Project_Description.value == '') {
+			alert("<spring:message code="label.Thank_you_to_seize_project_description" />");
+			form.Project_Description.focus(); //met le curseur dans le champ demandé
+			return false; //enpèche l'envoi du formulaire
+		}
+		if (form.Estimated_project_duration.value == '') {
+			alert("<spring:message code="label.Thank_you_to_seize_the_duration_of_the_project" />");
+			form.Estimated_project_duration.focus(); //met le curseur dans le champ demandé
+			return false; //enpèche l'envoi du formulaire
+
+		}
+		if (form.Estimated_budget.value == '') {
+			alert("<spring:message code="label.Thank_you_seize_the_project_budget" />");
+			form.Estimated_budget.focus(); //met le curseur dans le champ demandé
+			return false; //enpèche l'envoi du formulaire
+
+		}
+		
+		if (form.date.value == '') {
+			alert("<spring:message code="label.Thank_you_to_seize_the_end_of_the_project" />");
+			form.date.focus(); //met le curseur dans le champ demandé
+			return false; //enpèche l'envoi du formulaire
+
+		}
+		
+
+		return true;
+	}
+</script>
+
+
+

@@ -3,6 +3,7 @@ package pfe.com.tunisie.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +19,12 @@ public class Project implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProject;
 	private String nom;
+
 	private String categorie;
 	private String status;
 	private Long estimation_budget;
 	private Long estimation_dure;
-	private String Description;
+	private String description;
 	private Date date;
 
 	@OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
@@ -33,6 +35,25 @@ public class Project implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User user;
+	
+	public Project(Long idProject, String nom, String categorie, String status,
+			Long estimation_budget, Long estimation_dure, String description,
+			Date date, Collection<Task> tasks,
+			Collection<FileProjet> fileProject, User user) {
+		super();
+		this.idProject = idProject;
+		this.nom = nom;
+		this.categorie = categorie;
+		this.status = status;
+		this.estimation_budget = estimation_budget;
+		this.estimation_dure = estimation_dure;
+		this.description = description;
+		this.date = date;
+		this.tasks = tasks;
+		this.fileProject = fileProject;
+		this.user = user;
+	}
+
 
 	public Long getEstimation_budget() {
 		return estimation_budget;
@@ -49,7 +70,7 @@ public class Project implements Serializable {
 		this.estimation_budget = estimation_budget;
 		this.estimation_dure = estimation_dure;
 		this.idProject = idProject;
-		Description = description;
+		this.description = description;
 		this.date = date;
 		this.user = user;
 		this.tasks = tasks;
@@ -65,11 +86,11 @@ public class Project implements Serializable {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public Date getDate() {

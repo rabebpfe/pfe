@@ -53,12 +53,12 @@
 			<form class="lockscreen-credentials" action='j_spring_security_check'
 				method="POST">
 				<input style="display: none;" input-large span10" name='j_username'
-					id="username" type="text" placeholder="type username"
+					id="username" type="text" 
 					value="${sessionScope.username}" />
 
 				<div class="input-group">
 					<input type="password" class="form-control"
-						placeholder=<spring:message code="label.Password" />
+						placeholder="<spring:message code="label.Password" />"
 						name='j_password' />
 					<div class="input-group-btn">
 						<button class="btn">

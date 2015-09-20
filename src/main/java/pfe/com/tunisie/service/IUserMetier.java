@@ -1,6 +1,10 @@
 package pfe.com.tunisie.service;
 
+
 import java.util.List;
+
+
+
 import pfe.com.tunisie.entities.User;
 
 public interface IUserMetier {
@@ -14,7 +18,7 @@ public interface IUserMetier {
 
 	public String getNewPassword(String email);
 
-	public void saveUser(int role, String username, String password,
+	public String  saveUser(String roles, String username, String password,
 			String email, String adresse, String nomphoto, byte[] photo,
 			String[] skills);
 
@@ -24,5 +28,15 @@ public interface IUserMetier {
 			String email);
 
 	public void update(Long idUser, String nomphoto, byte[] photo);
+
+	
+
+	public void update(long idUser, String roles, String username, String password,
+			String email, String adresse, String nomphoto, byte[] photo,
+			String[] parameterValues);
+
+	public List<User>   useredit(Long idUser);
+
+
 
 }

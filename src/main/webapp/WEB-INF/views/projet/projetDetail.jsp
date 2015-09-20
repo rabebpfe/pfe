@@ -85,13 +85,13 @@
 						<ul class="stats-overview">
 							<li><span class="name"> <spring:message
 										code="label.Estimated_budget" /></span> <span
-								class="value text-success"> 2300 </span></li>
-							<li><span class="name"><spring:message
-										code="label.Total_amount_spent" /></span> <span
-								class="value text-success"> 2000 </span></li>
+								class="value text-success"> ${Project.estimation_budget}
+							</span></li>
+							<li><span class="value text-success"> ${Project.nom}
+							</span></li>
 							<li class="hidden-phone"><span class="name"> <spring:message
 										code="label.Estimated_project_duration" /></span> <span
-								class="value text-success"> 20 </span></li>
+								class="value text-success"> ${Project.estimation_dure} </span></li>
 						</ul>
 						<br />
 
@@ -186,27 +186,19 @@
 							</div>
 							<div class="panel-body">
 								<h3 class="green">
-									<i class="fa fa-paint-brush"></i> Gentelella
+									<i class="fa fa-paint-brush"></i>
 								</h3>
 
-								<p>Raw denim you probably haven't heard of them jean shorts
-									Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh
-									dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+								<p>${Project.description}</p>
 								<br /> <br />
 								<h5>
 									<spring:message code="label.Project_files" />
 								</h5>
 								<ul class="list-unstyled project_files">
-									<li><a href=""><i class="fa fa-file-word-o"></i>
-											Functional-requirements.docx</a></li>
-									<li><a href=""><i class="fa fa-file-pdf-o"></i>
-											UAT.pdf</a></li>
-									<li><a href=""><i class="fa fa-mail-forward"></i>
-											Email-from-flatbal.mln</a></li>
-									<li><a href=""><i class="fa fa-picture-o"></i>
-											Logo.png</a></li>
-									<li><a href=""><i class="fa fa-file-word-o"></i>
-											Contract-10_12_2014.docx</a></li>
+									<c:forEach var="files" items="${Files}">
+										<li><a href="download?id=${files.idfileProject}"><i
+												class="fa fa-paperclip"></i> ${files.nom}</a></li>
+									</c:forEach>
 								</ul>
 								<br />
 
@@ -243,25 +235,28 @@
 			</div>
 			<div class="modal-body">
 				<div id="testmodal" style="padding: 5px 20px;">
-					<form id="antoform" role="form">
+					<form:form action="upload" method="POST"
+						enctype="multipart/form-data">
 
-
+						<br />
 						<input type="file" name="file" id="fille">
+						<br />
+						<br />
+						<br />
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default antoclose"
+								data-dismiss="modal">
+								<spring:message code="label.Close" />
+							</button>
+							<input type="submit" name="submit" class="btn btn-primary"
+								value="<spring:message code="label.Save" />" />
 
+						</div>
 
-
-					</form>
+					</form:form>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default antoclose"
-					data-dismiss="modal">
-					<spring:message code="label.Close" />
-				</button>
-				<button type="button" class="btn btn-primary antosubmit">
-					<spring:message code="label.Save_changes" />
-				</button>
-			</div>
+
 		</div>
 	</div>
 

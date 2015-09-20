@@ -1,7 +1,9 @@
 package pfe.com.tunisie.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +20,50 @@ public class Task implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTask;
 	private String nom;
-	private String duree;
+	private Date date;
 	private String status;
-	private String estumation;
 	private Long create_by;
-	private Long attribuer;
+	private Long user;
+	private String description;
+	private String priorite;
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+	private Collection<Commente> commentes;
+	@ManyToOne
+	@JoinColumn(name = "idProjet")
+	private Project projet;
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+	private Collection<FileTask> fileTasks;
+	
+	
+	public Task(Long idTask, String nom, Date date, String status,
+			 Long create_by, Long user,
+			String description, String priorite,
+			Collection<Commente> commentes, Project projet,
+			Collection<FileTask> fileTasks) {
+		super();
+		this.idTask = idTask;
+		this.nom = nom;
+		this.date = date;
+		this.status = status;
+	
+		this.create_by = create_by;
+		this.user = user;
+		this.description = description;
+		this.priorite = priorite;
+		this.commentes = commentes;
+		this.projet = projet;
+		this.fileTasks = fileTasks;
+	}
+
+	
+
+	public String getPriorite() {
+		return priorite;
+	}
+
+	public void setPriorite(String priorite) {
+		this.priorite = priorite;
+	}
 
 	public Collection<Commente> getCommentes() {
 		return commentes;
@@ -48,7 +89,7 @@ public class Task implements Serializable {
 		this.fileTasks = fileTasks;
 	}
 
-	private String description;
+	
 
 	public String getDescription() {
 		return description;
@@ -58,16 +99,16 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Task(Long idTask, String nom, String duree, String status,
-			String estumation, Long create_by, Long attribuer) {
+	public Task(Long idTask, String nom, Date date, String status,
+			 Long create_by, Long user) {
 		super();
 		this.idTask = idTask;
 		this.nom = nom;
-		this.duree = duree;
+		this.date = date;
 		this.status = status;
-		this.estumation = estumation;
+		
 		this.create_by = create_by;
-		this.attribuer = attribuer;
+		this.user = user;
 	}
 
 	public Long getCreate_by() {
@@ -78,35 +119,28 @@ public class Task implements Serializable {
 		this.create_by = create_by;
 	}
 
-	public Long getAttribuer() {
-		return attribuer;
+	public Long getUser() {
+		return user;
 	}
 
-	public void setAttribuer(Long attribuer) {
-		this.attribuer = attribuer;
+	public void setUser(Long user) {
+		this.user = user;
 	}
 
-	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-	private Collection<Commente> commentes;
-	@ManyToOne
-	@JoinColumn(name = "idProjet")
-	private Project projet;
-	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-	private Collection<FileTask> fileTasks;
+	
 
 	public Task() {
 		super();
 
 	}
 
-	public Task(Long idTask, String nom, String duree, String status,
-			String estumation) {
+	public Task(Long idTask, String nom, Date date, String status) {
 		super();
 		this.idTask = idTask;
 		this.nom = nom;
-		this.duree = duree;
+		this.date = date;
 		this.status = status;
-		this.estumation = estumation;
+		
 	}
 
 	public Long getIdTask() {
@@ -125,12 +159,12 @@ public class Task implements Serializable {
 		this.nom = nom;
 	}
 
-	public String getDuree() {
-		return duree;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setDuree(String duree) {
-		this.duree = duree;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getStatus() {
@@ -141,12 +175,6 @@ public class Task implements Serializable {
 		this.status = status;
 	}
 
-	public String getEstumation() {
-		return estumation;
-	}
 
-	public void setEstumation(String estumation) {
-		this.estumation = estumation;
-	}
 
 }

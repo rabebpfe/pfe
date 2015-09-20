@@ -7,6 +7,10 @@ public class ProjetModel {
 	private String nom;
 	private String categorie;
 	private String status;
+	private Long estimation_budget;
+	private Long estimation_dure;
+	private String description;
+	private Date date;
 
 	public Long getIdProject() {
 		return idProject;
@@ -18,7 +22,7 @@ public class ProjetModel {
 
 	public ProjetModel() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public ProjetModel(Long idProject, String nom, String categorie,
@@ -31,7 +35,7 @@ public class ProjetModel {
 		this.status = status;
 		this.estimation_budget = estimation_budget;
 		this.estimation_dure = estimation_dure;
-		Description = description;
+		this.description = description;
 		this.date = date;
 	}
 
@@ -76,11 +80,11 @@ public class ProjetModel {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public Date getDate() {
@@ -91,8 +95,5 @@ public class ProjetModel {
 		this.date = date;
 	}
 
-	private Long estimation_budget;
-	private Long estimation_dure;
-	private String Description;
-	private Date date;
+	
 }

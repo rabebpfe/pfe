@@ -1,4 +1,4 @@
-package pfe.com.tunisie.controller.User;
+package pfe.com.tunisie.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,6 +43,7 @@ public class ProfileController {
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
 		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
+		model.addAttribute("useredit",IUserMetier.useredit(idUser));
 		model.addAttribute("usere", new User());
 		return "user.profile";
 	}
@@ -70,35 +71,23 @@ public class ProfileController {
 		return "redirect:/profile";
 	}
 
-	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-	public String editeUser(@ModelAttribute("SpringWeb") UserModel UserModel,
-			ModelMap model, @RequestParam Long idUser,
-			HttpServletRequest request) {
-
+	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+	public String editeInformationUser(
+			@ModelAttribute("SpringWeb") UserModel UserModel, ModelMap model,
+			@RequestParam Long idUser,HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String username = auth.getName();
 		request.getSession().setAttribute("username", username);
 		Long idUser1 = IUserMetier.findByusername(username);
-		model.addAttribute("user", IUserMetier.findOne(idUser1));
-		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser1));
-		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser1));
-		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser1));
-		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser1));
-		model.addAttribute("usere", new User());
-		return "user.profile";
-	}
-
-	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-	public String editeInformationUser(
-			@ModelAttribute("SpringWeb") UserModel UserModel, ModelMap model,
-			@RequestParam Long idUser) {
-
 		IUserMetier.update(idUser, UserModel.getUsername(),
-				UserModel.getPassword(), UserModel.getEmail());
-
-		return "redirect:/login";
+		UserModel.getPassword(), UserModel.getEmail());
+		model.addAttribute("useredit",IUserMetier.useredit(idUser1));
+        return "redirect:/login";
 
 	}
+	
+	
+	
 
 }

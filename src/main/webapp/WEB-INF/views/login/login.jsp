@@ -63,18 +63,18 @@
 
 
 
-						<div class="input-prepend" title="Username">
+						<div class="input-prepend" title="<spring:message code="label.Username" />">
 							<span class="add-on"><i class="icon-user"></i></span> <input
 								class="input-large span10" name='j_username' id="username"
-								type="text" placeholder=<spring:message code="label.Username" /> />
+								type="text" placeholder="<spring:message code="label.Username" />" />
 						</div>
 						<div class="clearfix"></div>
 
-						<div class="input-prepend" title="Password">
+						<div class="input-prepend" title="<spring:message code="label.Password" />">
 							<span class="add-on"><i class="icon-lock"></i></span> <input
 								class="input-large span10" name='j_password' id="password"
 								type="password"
-								placeholder=<spring:message code="label.Password" /> />
+								placeholder="<spring:message code="label.Password" />" />
 						</div>
 						<div class="clearfix"></div>
 

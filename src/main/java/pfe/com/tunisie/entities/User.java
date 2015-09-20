@@ -1,21 +1,15 @@
 package pfe.com.tunisie.entities;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 public class User implements Serializable {
@@ -23,15 +17,42 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUser;
+	@Column(unique = true)
 	private String username;
 	private String password;
-
-	private String email;
+	@Column(unique = true)
+	String email;
 	private String adresse;
 	@Lob
 	private byte[] photo;
 	private String nomPhoto;
 	boolean actived;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Role> roles;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Commente> commentes;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Activity> activitys;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Project> projets;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Skills> skills;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Notification> notifications;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Event> events;
+
+	public Collection<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Collection<Event> events) {
+		this.events = events;
+	}
 
 	public boolean isActived() {
 		return actived;
@@ -42,7 +63,7 @@ public class User implements Serializable {
 	}
 
 	public User(String username, String password, String email, String adresse,
-			byte[] photo, String nomPhoto, boolean actived, List<Role> roles) {
+		byte[] photo, String nomPhoto, boolean actived, List<Role> roles) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -54,9 +75,8 @@ public class User implements Serializable {
 		this.roles = roles;
 	}
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-   private List<Role> roles;
 	
+
 	public Collection<Project> getProjets() {
 		return projets;
 	}
@@ -65,21 +85,7 @@ public class User implements Serializable {
 		this.projets = projets;
 	}
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Collection<Commente> commentes;
-
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Collection<Activity> activitys;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Collection<Project> projets;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Collection<Skills> skills;
-
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Collection<Notification> notifications;
-
 	public Collection<Notification> getNotifications() {
 		return notifications;
 	}

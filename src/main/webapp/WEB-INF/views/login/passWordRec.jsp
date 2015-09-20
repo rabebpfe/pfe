@@ -64,10 +64,10 @@
 
 
 
-						<div class="input-prepend" title="Username">
+						<div class="input-prepend" title="<spring:message code="label.Email" />">
 							<span class="add-on"><i class="icon-user"></i></span> <input
 								class="input-large span10" name='username' id="username"
-								type="text" placeholder=<spring:message code="label.Type" /> />
+								type="text" placeholder="<spring:message code="label.Type" /> "/>
 						</div>
 						<div class="clearfix"></div>
 

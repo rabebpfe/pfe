@@ -1,4 +1,4 @@
-package pfe.com.tunisie.controller.User;
+package pfe.com.tunisie.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

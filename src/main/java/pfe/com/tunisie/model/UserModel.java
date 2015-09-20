@@ -7,7 +7,7 @@ public class UserModel {
 	private String password;
 	private String email;
 	private String adresse;
-	private int roles;
+	private String roles;
 	private String skills;
 
 	public String getSkills() {
@@ -82,16 +82,16 @@ public class UserModel {
 		this.adresse = adresse;
 	}
 
-	public int getRoles() {
+	public String getRoles() {
 		return roles;
 	}
 
-	public void setRoles(int roles) {
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 
 	public UserModel(Long idUser, String username, String password,
-			String email, String adresse, int roles, String nomPhoto,
+			String email, String adresse, String roles, String nomPhoto,
 			String photo) {
 		super();
 		this.idUser = idUser;

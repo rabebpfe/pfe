@@ -1,8 +1,7 @@
-package pfe.com.tunisie.controller.User;
+package pfe.com.tunisie.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,7 +56,6 @@ public class LoginController {
 				.getAuthentication();
 		String username = auth.getName();
 		request.getSession().setAttribute("username", username);
-		HttpSession session = request.getSession();
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 

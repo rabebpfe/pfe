@@ -4,8 +4,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -73,7 +71,7 @@
 				class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 				<div class="input-group">
 					<input type="text" class="form-control"
-						placeholder=<spring:message code="label.Search" />> <span
+						placeholder="<spring:message code="label.Search" />"> <span
 						class="input-group-btn">
 						<button class="btn btn-default" type="button">
 							<spring:message code="label.Go" />
@@ -108,109 +106,124 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 
-	<!-- Start Calender modal -->
-	<div id="CalenderModalNew" class="modal fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<!-- Start Calender modal -->
+		<div id="CalenderModalNew" class="modal fade" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
 
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">
-						<spring:message code="label.New_Calender_Entry" />
-					</h4>
-				</div>
-				<div class="modal-body">
-					<div id="testmodal" style="padding: 5px 20px;">
-						<form id="antoform" class="form-horizontal calender" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Title" /></label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="title" name="title">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">
+							<spring:message code="label.New_Calender_Entry" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div id="testmodal" style="padding: 5px 20px;">
+							<form:form id="antoform" class="form-horizontal calender"
+								role="form" modelAttribute="event" method="POST"
+								action="saveEvent">
+								<div class="form-group">
+									<form:label path="title" class="col-sm-3 control-label">
+										<spring:message code="label.Title" />
+									</form:label>
+									<div class="col-sm-9">
+										<form:input path="title" type="text" class="form-control"
+											id="title" name="title" />
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Description" /></label>
-								<div class="col-sm-9">
-									<textarea class="form-control" style="height: 55px;" id="descr"
-										name="descr"></textarea>
+								<div class="form-group">
+									<form:label path="description" class="col-sm-3 control-label">
+										<spring:message code="label.Description" />
+									</form:label>
+									<div class="col-sm-9">
+										<form:textarea path="description" class="form-control"
+											style="height: 55px;" id="descr" name="descr" />
+									</div>
 								</div>
-							</div>
-						</form>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default antoclose"
+										data-dismiss="modal">
+										<spring:message code="label.Close" />
+									</button>
+									<button type="submit" class="btn btn-success"
+										onclick="return valider(this.form);">
+										<spring:message code="label.Submit" />
+									</button>
+								</div>
+								
+							</form:form>
+						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default antoclose"
-						data-dismiss="modal">
-						<spring:message code="label.Close" />
-					</button>
-					<button type="button" class="btn btn-primary antosubmit">
-						<spring:message code="label.Save_changes" />
-					</button>
+
+			</div>
+		</div>
+
+
+		<div id="CalenderModalEdit" class="modal fade" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel2">
+							<spring:message code="label.Edit_Calender_Entry" />
+						</h4>
+					</div>
+					<div class="modal-body">
+
+						<div id="testmodal2" style="padding: 5px 20px;">
+							<form:form id="antoform2" class="form-horizontal calender"
+								role="form" modelAttribute="event" method="POST"
+								action="editEvent">
+								<div class="form-group">
+									<form:label path="title" class="col-sm-3 control-label">
+										<spring:message code="label.Title" />
+									</form:label>
+									<div class="col-sm-9">
+										<form:input path="title" type="text" class="form-control"
+											id="title2" name="title2" />
+									</div>
+								</div>
+								<div class="form-group">
+									<form:label path="description" class="col-sm-3 control-label">
+										<spring:message code="label.Description" />
+									</form:label>
+									<div class="col-sm-9">
+										<form:textarea path="description" class="form-control"
+											style="height: 55px;" id="descr2" name="descr" />
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default antoclose"
+										data-dismiss="modal">
+										<spring:message code="label.Close" />
+									</button>
+									<button type="submit" class="btn btn-success"
+										onclick="return valider(this.form);">
+										<spring:message code="label.Submit" />
+									</button>
+								</div>
+							</form:form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="CalenderModalEdit" class="modal fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div id="fc_create" data-toggle="modal"
+			data-target="#CalenderModalNew"></div>
+		<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
 
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel2">
-						<spring:message code="label.Edit_Calender_Entry" />
-					</h4>
-				</div>
-				<div class="modal-body">
-
-					<div id="testmodal2" style="padding: 5px 20px;">
-						<form id="antoform2" class="form-horizontal calender" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Title" /></label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="title2"
-										name="title2">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Description" /></label>
-								<div class="col-sm-9">
-									<textarea class="form-control" style="height: 55px;"
-										id="descr2" name="descr"></textarea>
-								</div>
-							</div>
-
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default antoclose2"
-						data-dismiss="modal">
-						<spring:message code="label.Close" />
-					</button>
-					<button type="button" class="btn btn-primary antosubmit2">
-						<spring:message code="label.Save_changes" />
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-	<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-
-	<!-- End Calender modal -->
-	<!-- /page content -->
+		<!-- End Calender modal -->
+		<!-- /page content -->
 
 
 
@@ -218,66 +231,67 @@
 
 
 
-	<script
-		src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
 
-	<script src="<c:url value="/resources/production/js/nprogress.js" />"></script>
-	<!-- chart js -->
-	<script
-		src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
-	<!-- bootstrap progress js -->
-	<script
-		src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
-	<!-- icheck -->
-	<script
-		src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
+		<script src="<c:url value="/resources/production/js/nprogress.js" />"></script>
+		<!-- chart js -->
+		<script
+			src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
+		<!-- bootstrap progress js -->
+		<script
+			src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
+		<!-- icheck -->
+		<script
+			src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
 
-	<script src="<c:url value="/resources/production/js/custom.js" />"></script>
+		<script src="<c:url value="/resources/production/js/custom.js" />"></script>
 
-	<script src="<c:url value="/resources/production/js/moment.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/calendar/fullcalendar.min.js" />"></script>
-
-
+		<script src="<c:url value="/resources/production/js/moment.min.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/calendar/fullcalendar.min.js" />"></script>
 
 
 
-	<!-- tags -->
-	<script
-		src="<c:url value="/resources/production/js/tags/jquery.tagsinput.min.js" />"></script>
-	<!-- switchery -->
-	<script
-		src="<c:url value="/resources/production/js/switchery/switchery.min.js" />"></script>
-	<!-- daterangepicker -->
-	<script src="<c:url value="/resources/production/js/moment.min2.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/datepicker/daterangepicker.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/editor/bootstrap-wysiwyg.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/editor/external/jquery.hotkeys.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/editor/external/google-code-prettify/prettify.js" />"></script>
-	<!-- select2 -->
-	<script
-		src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
-	<!-- form validation -->
-	<script
-		src="<c:url value="/resources/production/js/parsley/parsley.min.js" />"></script>
-	<!-- textarea resize -->
-	<script
-		src="<c:url value="/resources/production/js/textarea/autosize.min.js" />"></script>
-	<script>
+
+
+		<!-- tags -->
+		<script
+			src="<c:url value="/resources/production/js/tags/jquery.tagsinput.min.js" />"></script>
+		<!-- switchery -->
+		<script
+			src="<c:url value="/resources/production/js/switchery/switchery.min.js" />"></script>
+		<!-- daterangepicker -->
+		<script
+			src="<c:url value="/resources/production/js/moment.min2.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/datepicker/daterangepicker.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/editor/bootstrap-wysiwyg.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/editor/external/jquery.hotkeys.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/editor/external/google-code-prettify/prettify.js" />"></script>
+		<!-- select2 -->
+		<script
+			src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
+		<!-- form validation -->
+		<script
+			src="<c:url value="/resources/production/js/parsley/parsley.min.js" />"></script>
+		<!-- textarea resize -->
+		<script
+			src="<c:url value="/resources/production/js/textarea/autosize.min.js" />"></script>
+		<script>
 		autosize($('.resizable_textarea'));
 	</script>
-	<!-- Autocomplete -->
-	<script
-		src="<c:url value="/resources/production/js/autocomplete/countries.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/autocomplete/jquery.autocomplete.js" />"></script>
-	<script type="text/javascript">
+		<!-- Autocomplete -->
+		<script
+			src="<c:url value="/resources/production/js/autocomplete/countries.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/autocomplete/jquery.autocomplete.js" />"></script>
+		<script type="text/javascript">
 		$(function() {
 			'use strict';
 			var countriesArray = $.map(countries, function(value, key) {
@@ -293,11 +307,11 @@
 			});
 		});
 	</script>
-	<script src="js/custom.js"></script>
+		<script src="js/custom.js"></script>
 
 
-	<!-- select2 -->
-	<script>
+		<!-- select2 -->
+		<script>
 		$(document).ready(function() {
 			$(".select2_single").select2({
 				placeholder : "Select a state",
@@ -311,9 +325,9 @@
 			});
 		});
 	</script>
-	<!-- /select2 -->
-	<!-- input tags -->
-	<script>
+		<!-- /select2 -->
+		<!-- input tags -->
+		<script>
 		function onAddTag(tag) {
 			alert("Added a tag: " + tag);
 		}
@@ -332,9 +346,9 @@
 			});
 		});
 	</script>
-	<!-- /input tags -->
-	<!-- form validation -->
-	<script type="text/javascript">
+		<!-- /input tags -->
+		<!-- form validation -->
+		<script type="text/javascript">
 		$(document).ready(function() {
 			$.listen('parsley:field:validate', function() {
 				validateFront();
@@ -377,9 +391,9 @@
 		} catch (err) {
 		}
 	</script>
-	<!-- /form validation -->
-	<!-- editor -->
-	<script>
+		<!-- /form validation -->
+		<!-- editor -->
+		<script>
 		$(document).ready(function() {
 			$('.xcxc').click(function() {
 				$('#descr').val($('#editor').html());
@@ -463,7 +477,7 @@
 
 
 
-	<script>
+		<script>
 		$(window).load(function() {
 
 			var date = new Date();
@@ -486,6 +500,7 @@
 
 					started = start;
 					ended = end
+				
 
 					$(".antosubmit").on("click", function() {
 						var title = $("#title").val();
@@ -512,48 +527,35 @@
 					});
 				},
 				eventClick : function(calEvent, jsEvent, view) {
-					//alert(calEvent.title, jsEvent, view);
+					
 
 					$('#fc_edit').click();
 					$('#title2').val(calEvent.title);
+				
+					
 					categoryClass = $("#event_type").val();
 
 					$(".antosubmit2").on("click", function() {
 						calEvent.title = $("#title2").val();
-
+						
 						calendar.fullCalendar('updateEvent', calEvent);
 						$('.antoclose2').click();
 					});
 					calendar.fullCalendar('unselect');
 				},
 				editable : true,
-				events : [ {
-					title : 'All Day Event',
-					start : new Date(y, m, 1)
-				}, {
-					title : 'Long Event',
-					start : new Date(y, m, d - 5),
-					end : new Date(y, m, d - 2)
-				}, {
-					title : 'Meeting',
-					start : new Date(y, m, d, 10, 30),
-					allDay : false
-				}, {
-					title : 'Lunch',
-					start : new Date(y, m, d + 14, 12, 0),
-					end : new Date(y, m, d, 14, 0),
-					allDay : false
-				}, {
-					title : 'Birthday Party',
-					start : new Date(y, m, d + 1, 19, 0),
-					end : new Date(y, m, d + 1, 22, 30),
-					allDay : false
-				}, {
-					title : 'Click for Google',
-					start : new Date(y, m, 28),
-					end : new Date(y, m, 29),
-					url : 'http://google.com/'
-				} ]
+				events : [    
+				   <c:forEach items="${events}" var="events" varStatus="loop">
+		           {
+						title : '${events.title}',
+						start : new Date('${events.y}','${events.m-1}', '${events.d}'),
+					
+
+					           </c:forEach>
+				          
+				          
+				  
+				]
 			});
 		});
 	</script>

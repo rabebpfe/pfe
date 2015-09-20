@@ -111,7 +111,10 @@
 					</ul>
 					<div class="clearfix"></div>
 				</div>
+
 				<div class="x_content">
+
+
 					<form:form id="demo-form2" class="form-horizontal form-label-left"
 						modelAttribute="usere" method="POST" action="saveUser"
 						enctype="multipart/form-data">
@@ -121,8 +124,9 @@
 								<spring:message code="label.Username" />
 								<span class="required">*</span>
 							</form:label>
+
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<form:input path="username" id="username" required="required"
+								<form:input path="username" id="username"
 									class="form-control col-md-7 col-xs-12" />
 							</div>
 						</div>
@@ -134,7 +138,7 @@
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<form:input path="password" type="password" id="password"
-									name="password" required="required" placeHolder="new Password"
+									name="password" placeHolder="new Password"
 									class="form-control col-md-7 col-xs-12" />
 							</div>
 						</div>
@@ -146,8 +150,10 @@
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<form:input path="email" type="email" id="email" name="email"
-									required="required" class="form-control col-md-7 col-xs-12" />
+									class="form-control col-md-7 col-xs-12" />
+
 							</div>
+
 						</div>
 						<div class="form-group">
 							<form:label path="photo"
@@ -163,6 +169,7 @@
 							<form:label path="adresse"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
 								<spring:message code="label.Adresse" />
+								<span class="required">*</span>
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<form:input path="adresse" type="text" id="adresse"
@@ -170,23 +177,19 @@
 							</div>
 						</div>
 
-
-
 						<div class="form-group">
 							<form:label path="roles"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
 								<spring:message code="label.Role" />
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<form:radiobutton path="roles" value="1" id="rdio1"
+								<form:radiobutton path="roles" value="Admin" id="rdio1"
+									style="margin-left:5px;" checked="checked" />
+								Admin
+								<form:radiobutton path="roles" value="Dev" id="rdio2"
 									style="margin-left:5px;" />
-								Admin&nbsp;&nbsp;&nbsp;
-								<form:radiobutton path="roles" value="2" id="rdio2"
-									checked="checked" style="margin-left:5px;" />
-								Dev&nbsp;&nbsp;&nbsp;
-								<form:radiobutton path="roles" value="3" id="rdio2"
-									checked="checked" style="margin-left:5px;" />
-								Test&nbsp;&nbsp;&nbsp;
+								Dev
+
 							</div>
 						</div>
 						<div class="form-group">
@@ -203,15 +206,13 @@
 								</form:select>
 							</div>
 						</div>
-
-
 						<div class="ln_solid"></div>
 						<div class="form-group">
 							<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 								<a type="button" href="users" class="btn btn-info"><spring:message
-										code="label.Cancel" />
-									</button></a>
-								<button type="submit" class="btn btn-success">
+										code="label.Cancel" /> </a>
+								<button type="submit" class="btn btn-success"
+									onclick="return valider(this.form);">
 									<spring:message code="label.Submit" />
 								</button>
 							</div>
@@ -223,12 +224,11 @@
 		</div>
 
 
-
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						<spring:message code="label.Users" />
+						<spring:message code="label.User" />
 						<small></small>
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
@@ -262,14 +262,15 @@
 									<td class=" ">${u.username}</td>
 
 									<td width="2%">${u.email}</td>
-									<td><img src="photoUser?idUser=${u.idUser}" 
-										width="10%"></td>
+									<td><img src="photoUser?idUser=${u.idUser}" width="10%"></td>
 
 
-									<td><a class="btn btn-success" data-toggle="modal"
-										data-target="#UserEdit"><i class="fa fa-edit m-right-xs"></i></a>
-										<a class="btn btn-danger" href="suppUser?idUser=${u.idUser}">
-											<i class="fa fa-remove m-right-xs"></i>
+									<td><a class="btn btn-success"
+										href="editUser?idUser=${u.idUser}"> <i
+											class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
+										href="suppUser?idUser=${u.idUser}"
+										onclick="return confirm('Etes vous sûre de vouloir supprimer cette utilisateur ?');">
+											<i class="fa fa-trash-o"></i>
 									</a></td>
 
 								</tr>
@@ -282,167 +283,175 @@
 		</div>
 	</div>
 
+	<script
+		src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
 
+	<!-- chart js -->
+	<script
+		src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
+	<!-- bootstrap progress js -->
+	<script
+		src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
+	<script
+		src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
+	<!-- icheck -->
+	<script
+		src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
 
-	<div id="UserEdit" class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+	<script src="<c:url value="/resources/production/js/custom.js" />"></script>
+	<!-- select2 -->
+	<script
+		src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
 
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel2">
-						<spring:message code="label.Edit_User_Entry" />
-					</h4>
-				</div>
-				<div class="modal-body">
+	<!-- Datatables -->
+	<script
+		src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
+	<script
+		src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
 
-					<div id="testmodal2" style="padding: 5px 20px;">
-						<form id="antoform2" class="form-horizontal calender" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Username" /><span class="required">*</span></label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="username1"
-										name="username">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Password" /><span class="required">*</span></label>
-								<div class="col-sm-9">
-									<input type="password" placeHolder="new Password"
-										class="form-control" id="password1" name="password">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label"><spring:message
-										code="label.Email" /><span class="required">*</span></label>
-								<div class="col-sm-9">
-									<input type="email" class="form-control" id="email1"
-										name="email">
-								</div>
-							</div>
-
-
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default antoclose2"
-						data-dismiss="modal">
-						<spring:message code="label.Close" />
-					</button>
-					<button type="button" class="btn btn-primary antosubmit2">
-						<spring:message code="label.Save_changes" />
-					</button>
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-
-
-		<script
-			src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
-
-		<!-- chart js -->
-		<script
-			src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
-		<!-- bootstrap progress js -->
-		<script
-			src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
-		<script
-			src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
-		<!-- icheck -->
-		<script
-			src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
-
-		<script src="<c:url value="/resources/production/js/custom.js" />"></script>
-		<!-- select2 -->
-		<script
-			src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
-
-		<!-- Datatables -->
-		<script
-			src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
-		<script
-			src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
-
-		<script>
-			$(document).ready(function() {
-				$('input.tableflat').iCheck({
-					checkboxClass : 'icheckbox_flat-green',
-					radioClass : 'iradio_flat-green'
-				});
+	<script>
+		$(document).ready(function() {
+			$('input.tableflat').iCheck({
+				checkboxClass : 'icheckbox_flat-green',
+				radioClass : 'iradio_flat-green'
 			});
+		});
 
-			var asInitVals = new Array();
-			$(document)
-					.ready(
-							function() {
-								var oTable = $('#example')
-										.dataTable(
-												{
-													"oLanguage" : {
-														"sSearch" : "Search all columns:"
-													},
-													"aoColumnDefs" : [ {
-														'bSortable' : false,
-														'aTargets' : [ 0 ]
-													} //disables sorting for column one
-													],
-													'iDisplayLength' : 12,
-													"sPaginationType" : "full_numbers",
-													"dom" : 'T<"clear">lfrtip',
-													"tableTools" : {
-														"sSwfPath" : "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
-													}
-												});
-								$("tfoot input").keyup(
-										function() {
-											/* Filter on the column based on the index of this element's parent <th> */
-											oTable.fnFilter(this.value, $(
-													"tfoot th").index(
-													$(this).parent()));
-										});
-								$("tfoot input").each(function(i) {
-									asInitVals[i] = this.value;
-								});
-								$("tfoot input").focus(function() {
-									if (this.className == "search_init") {
-										this.className = "";
-										this.value = "";
-									}
-								});
-								$("tfoot input").blur(
-										function(i) {
-											if (this.value == "") {
-												this.className = "search_init";
-												this.value = asInitVals[$(
-														"tfoot input").index(
-														this)];
-											}
-										});
+		var asInitVals = new Array();
+		$(document)
+				.ready(
+						function() {
+							var oTable = $('#example')
+									.dataTable(
+											{
+												"oLanguage" : {
+													"sSearch" : "Search all columns:"
+												},
+												"aoColumnDefs" : [ {
+													'bSortable' : false,
+													'aTargets' : [ 0 ]
+												} //disables sorting for column one
+												],
+												'iDisplayLength' : 12,
+												"sPaginationType" : "full_numbers",
+												"dom" : 'T<"clear">lfrtip',
+												"tableTools" : {
+													"sSwfPath" : "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+												}
+											});
+							$("tfoot input").keyup(
+									function() {
+										/* Filter on the column based on the index of this element's parent <th> */
+										oTable.fnFilter(this.value, $(
+												"tfoot th").index(
+												$(this).parent()));
+									});
+							$("tfoot input").each(function(i) {
+								asInitVals[i] = this.value;
 							});
-		</script>
-		<!-- select2 -->
-		<script>
-			$(document).ready(function() {
-				$(".select2_single").select2({
-					placeholder : "Select a state",
-					allowClear : true
-				});
-				$(".select2_group").select2({});
-				$(".select2_multiple").select2({
-					maximumSelectionLength : 4,
-					placeholder : "With Max Selection limit 4",
-					allowClear : true
-				});
+							$("tfoot input").focus(function() {
+								if (this.className == "search_init") {
+									this.className = "";
+									this.value = "";
+								}
+							});
+							$("tfoot input")
+									.blur(
+											function(i) {
+												if (this.value == "") {
+													this.className = "search_init";
+													this.value = asInitVals[$(
+															"tfoot input")
+															.index(this)];
+												}
+											});
+						});
+	</script>
+	<script>
+		function controle(form1) {
+
+			confirm('Ch');
+		}
+	</script>
+	<!-- select2 -->
+
+	<script>
+		$(document).ready(function() {
+			$(".select2_single").select2({
+				placeholder : "Select a state",
+				allowClear : true
 			});
-		</script>
-		<!-- /select2 -->
+			$(".select2_group").select2({});
+			$(".select2_multiple").select2({
+				maximumSelectionLength : 3,
+				placeholder : "With Max Selection limit 3",
+				allowClear : true
+			});
+		});
+	</script>
+	<!-- /select2 -->
+
+
+
+	<script type="text/javascript">
+		function valider(form) {
+			if (form.username.value == '') {
+				alert("<spring:message code="label.Thank_you_to_seize_your_username" />");
+				form.username.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+			if (form.password.value == '') {
+				alert("<spring:message code="label.Thank_you_to_seize_your_password" />");
+				form.password.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+			if (form.email.value == '') {
+				alert("<spring:message code="label.Thank_you_seize_your_email" />");
+				form.email.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+			if (form.email.value.indexOf("@", 0) < 0) {
+				alert("<spring:message code="label.Please_include" />");
+				form.email.focus();
+				return false;
+			}
+			if (form.adresse.value == '') {
+				alert("<spring:message code="label.Thank_you_seize_your_address" />");
+				form.adresse.focus();
+				return false;
+
+			}
+			<c:forEach items="${useredit}" var="user" varStatus="loop">
+			if (form.username.value == '${user.username}') {
+				alert("<spring:message code="label.Thank_you_to_seize_another_username" />");
+				form.username.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+
+			}
+			</c:forEach>
+
+			<c:forEach items="${users}" var="user" varStatus="loop">
+			if (form.username.value == '${user.username}') {
+				alert("<spring:message code="label.Thank_you_to_seize_another_username" />");
+				form.username.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+
+			}
+			</c:forEach>
+
+		
+			
+			
+
+			<c:forEach items="${users}" var="user" varStatus="loop">
+			if (form.email.value == '${user.email}') {
+				alert("<spring:message code="label.Thank_you_to_seize_another_email" />");
+				form.email.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+
+			}
+
+			</c:forEach>
+			return true;
+		}
+	</script>

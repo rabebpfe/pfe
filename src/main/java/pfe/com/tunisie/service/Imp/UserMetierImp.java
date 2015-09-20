@@ -19,7 +19,6 @@ import pfe.com.tunisie.service.IUserMetier;
 public class UserMetierImp implements IUserMetier {
 	@Autowired
 	private IUserDAO IUserDAO;
-
 	@Autowired
 	private IRoleDAO IRoleDAO;
 	@Autowired
@@ -28,35 +27,29 @@ public class UserMetierImp implements IUserMetier {
 	private ApplicationMailer applicationMailer;
 
 	@Override
-	public void saveUser(int role, String username, String password,
+	public String saveUser(String role, String username, String password,
 			String email, String adresse, String nomphoto, byte[] photo,
 			String[] skills) {
 		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
 		sha.setEncodeHashAsBase64(false);
 		String hash = sha.encodePassword(password, null);
-
 		User user = new User();
 		user.setUsername(username);
 		user.setAdresse(adresse);
 		user.setPassword(hash);
 		user.setEmail(email);
+		user.setNomPhoto(nomphoto);
 		user.setPhoto(photo);
 		user.setActived(true);
-
 		IUserDAO.save(user);
 		user = IUserDAO.findOne(user.getIdUser());
-		if (role == 1) {
+		if (role.equals("Admin")) {
 
-			Role role1 = new Role("ROLE_ADMIN",user);
-			IRoleDAO.save(role1);
-			
-
-		} else if (role == 2) {
-			Role role1 = new Role("ROLE_ADMIN",user);
+			Role role1 = new Role("ROLE_ADMIN", user);
 			IRoleDAO.save(role1);
 
-		} else if (role == 3) {
-			Role role1 = new Role("ROLE_ADMIN",user);
+		} else if (role.equals("Dev")) {
+			Role role1 = new Role("ROLE_ADMIN", user);
 			IRoleDAO.save(role1);
 
 		}
@@ -67,7 +60,7 @@ public class UserMetierImp implements IUserMetier {
 			Skills.setUser(user);
 			ISkillsDAO.save(Skills);
 		}
-
+		return "user/user";
 	}
 
 	@Override
@@ -84,7 +77,7 @@ public class UserMetierImp implements IUserMetier {
 
 	@Override
 	public void delete(Long idUser) {
-		
+
 		IUserDAO.delete(idUser);
 	}
 
@@ -122,14 +115,13 @@ public class UserMetierImp implements IUserMetier {
 			applicationMailer.sendMail(email,
 					"Tunisie technologie Watch  : New Password",
 					"user name is : " + user.getUsername()
-							+ " and password is:"+ pwd.toString());
+							+ " and password is:" + pwd.toString());
 
-			
 			ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
 			sha.setEncodeHashAsBase64(false);
 			String hash = sha.encodePassword(pwd.toString(), null);
 			user.setPassword(hash);
-            IUserDAO.save(user);
+			IUserDAO.save(user);
 
 			return "login/passWordRecSucc";
 		} catch (Exception e) {
@@ -158,8 +150,8 @@ public class UserMetierImp implements IUserMetier {
 		sha.setEncodeHashAsBase64(false);
 		String hash = sha.encodePassword(password, null);
 		u.setPassword(hash);
-        IUserDAO.save(u);
-		
+		IUserDAO.save(u);
+
 	}
 
 	@Override
@@ -169,6 +161,65 @@ public class UserMetierImp implements IUserMetier {
 		user.setNomPhoto(nomphoto);
 		user.setPhoto(photo);
 		IUserDAO.save(user);
+
+	}
+
+	@Override
+	public void update(long idUser, String roles, String username,
+			String password, String email, String adresse, String nomphoto,
+			byte[] photo, String[] skills) {
+		User user = IUserDAO.findOne(idUser);
+
+		user.setNomPhoto(nomphoto);
+		user.setPhoto(photo);
+		user.setUsername(username);
+		user.setEmail(email);
+		user.setAdresse(adresse);
+
+		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
+		sha.setEncodeHashAsBase64(false);
+		String hash = sha.encodePassword(password, null);
+		user.setPassword(hash);
+		IUserDAO.save(user);
+		Role role = IRoleDAO.findByuser(user);
+		
+		if (roles.equals("Admin")) {
+
+			role.setNomRole("ROLE_ADMIN");
+			role.setUser(user);
+			IRoleDAO.save(role);
+
+		} else if (roles.equals("Dev")) {
+			role.setNomRole("ROLE_DEV");
+			role.setUser(user);
+			IRoleDAO.save(role);
+
+		}
+		List<Skills> Skill = ISkillsDAO.findByuser(user);
+
+		for (int i = 0; i < Skill.size(); i++) {
+
+			ISkillsDAO.delete(Skill);
+		}
+		for (int i = 0; i < skills.length; i++) {
+			Skills Skills = new Skills();
+			Skills.setNomSkills(skills[i]);
+			Skills.setUser(user);
+			ISkillsDAO.save(Skills);
+		}
+	}
+
+	@Override
+	public List<User> useredit(Long idUser) {
+		List<User> users = IUserDAO.findAll();
+
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getIdUser() == idUser) {
+
+				users.remove(users.get(i));
+			}
+		}
+		return users;
 
 	}
 

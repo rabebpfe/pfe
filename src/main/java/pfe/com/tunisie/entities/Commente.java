@@ -1,7 +1,8 @@
 package pfe.com.tunisie.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,30 +16,64 @@ public class Commente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCommente;
 	private String Description;
-	private Date date;
+	private int day;
+	private String month;
+	
+
+	public Commente(Long idCommente, String description, int day, String month,
+			User user, Task task) {
+		super();
+		this.idCommente = idCommente;
+		Description = description;
+		this.day = day;
+		this.month = month;
+		this.user = user;
+		this.task = task;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User user;
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "idTask")
 	private Task task;
 
-	public Commente(Long idCommente, String description, Date date) {
-		super();
-		this.idCommente = idCommente;
-		Description = description;
-		this.date = date;
-	}
+	
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 
 	public Long getIdCommente() {
 		return idCommente;

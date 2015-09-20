@@ -91,20 +91,20 @@
 									src="resources/production/images/4.jpg" alt="image" />
 								<div class="mask no-caption">
 									<div class="tools tools-bottom">
-										<a href="projetDetail"><i class="fa fa-link"></i></a>
+										<a href="projetDetail?idProject=${projects.idProject}"><i class="fa fa-link"></i></a>
 
 									</div>
 								</div>
 							</div>
-							<div class="caption">
-								<center>
+							<div class="caption center">
+								
 									<p>
 										<strong>${projects.nom}</strong>
-								</center>
+								
 								</p>
-								<center>
+								
 									<p>${projects.categorie}</p>
-								</center>
+								
 							</div>
 						</div>
 					</div>
@@ -114,12 +114,6 @@
 
 		</div>
 	</div>
-
-
-
-
-
-
 
 	<script
 		src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>

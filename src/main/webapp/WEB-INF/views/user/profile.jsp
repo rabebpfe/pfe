@@ -75,7 +75,7 @@
 				class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 				<div class="input-group">
 					<input type="text" class="form-control"
-						placeholder=<spring:message code="label.Search" />> <span
+						placeholder="<spring:message code="label.Search" />"> <span
 						class="input-group-btn">
 						<button class="btn btn-default" type="button">
 							<spring:message code="label.Go" />
@@ -121,11 +121,11 @@
 									aria-labelledby="avatar-modal-label" role="dialog"
 									tabindex="-1">
 									<div class="modal-dialog modal-lg">
-										<div class="modal-content" >
+										<div class="modal-content">
 											<form:form modelAttribute="usere"
 												action="EditPhoto?idUser=${user.idUser}"
-												enctype="multipart/form-data" method="POST" >
-												<div class="modal-header" >
+												enctype="multipart/form-data" method="POST">
+												<div class="modal-header">
 													<button class="close" data-dismiss="modal" type="button">x</button>
 													<h4 class="modal-title" id="avatar-modal-label">
 														<spring:message code="label.Change_Photo" />
@@ -160,32 +160,12 @@
 
 														<div class="row avatar-btns">
 															<div class="col-md-9">
-																<div class="btn-group ">
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="-90" type="button"
-																		title="Rotate -90 degrees">Rotate Left</button>
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="-15" type="button">-15deg</button>
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="-30" type="button">-30deg</button>
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="-45" type="button">-45deg</button>
-																</div>
-																<div class="btn-group">
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="90" type="button"
-																		title="Rotate 90 degrees">Rotate Right</button>
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="15" type="button">15deg</button>
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="30" type="button">30deg</button>
-																	<button class="btn btn-primary" data-method="rotate"
-																		data-option="45" type="button">45deg</button>
-																</div>
+																
+																
 															</div>
 															<div class="col-md-3">
-																<input type="submit" value="Done"  class="btn btn-primary btn-block avatar-save"
-																>
+																<input type="submit" value="Done"
+																	class="btn btn-primary btn-block avatar-save">
 															</div>
 														</div>
 													</div>
@@ -217,9 +197,9 @@
 								href="mailto:${user.email}">${user.email}</a></li>
 						</ul>
 
-						<a  class="btn btn-success" data-toggle="modal"
-							data-target="#ProfileEdit" ><i class="fa fa-edit m-right-xs"></i>
-						<spring:message code="label.Edit_Profile" /></a> <br />
+						<a class="btn btn-success" data-toggle="modal"
+							data-target="#ProfileEdit"><i class="fa fa-edit m-right-xs"></i>
+							<spring:message code="label.Edit_Profile" /></a> <br />
 
 						<!-- start skills -->
 						<h4>
@@ -352,8 +332,8 @@
 	</div>
 </div>
 <!-- Start Calender modal -->
-<div id="ProfileEdit"  class="modal fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true" >
+<div id="ProfileEdit" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 
@@ -376,7 +356,7 @@
 							</form:label>
 							<div class="col-sm-9">
 								<form:input path="username" type="text" class="form-control"
-									id="username1" name="username" />
+									id="username" name="username" value="${user.username}" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -385,7 +365,7 @@
 							</form:label>
 							<div class="col-sm-9">
 								<form:input path="password" type="password"
-									placeHolder="new Password" class="form-control" id="password1"
+									placeHolder="new Password" class="form-control" id="password"
 									name="password" />
 							</div>
 						</div>
@@ -395,7 +375,7 @@
 							</form:label>
 							<div class="col-sm-9">
 								<form:input path="email" type="email" class="form-control"
-									id="email1" name="email" />
+									id="email" name="email" value="${user.email}" />
 							</div>
 						</div>
 
@@ -404,12 +384,16 @@
 								data-dismiss="modal">
 								<spring:message code="label.Close" />
 							</button>
-							<input type="submit"class="btn btn-primary "
-			value="<spring:message code="label.Save_changes" />">
-								
-							
+							<input type="submit" class="btn btn-primary "
+								onclick="return valider(this.form);"
+								value="<spring:message code="label.Save_changes" />">
+
+
 						</div>
+					
 					</form:form>
+
+
 				</div>
 			</div>
 
@@ -612,3 +596,81 @@
 						});
 	</script>
 	<!-- /datepicker -->
+	<!-- PNotify -->
+   <script
+		src="<c:url value="/resources/production/js/notify/pnotify.core.js" />"></script>
+ <script
+		src="<c:url value="/resources/production/js/notify/pnotify.buttons.js" />"></script>
+   <script
+		src="<c:url value="/resources/production/js/notify/pnotify.nonblock.js" />"></script>
+  <script type="text/javascript">
+        var permanotice, tooltip, _alert;
+        $(function () {
+            new PNotify({
+                title: "PNotify",
+                type: "dark",
+                text: "Welcome ${user.username}! in your account",
+                nonblock: {
+                    nonblock: true
+                },
+                before_close: function (PNotify) {
+                    // You can access the notice's options with this. It is read only.
+                    //PNotify.options.text;
+
+                    // You can change the notice's options after the timer like this:
+                    PNotify.update({
+                        title: PNotify.options.title + " - Enjoy your Stay",
+                        before_close: null
+                    });
+                    PNotify.queueRemove();
+                    return false;
+                }
+            });
+
+        });
+    </script>
+
+	<script type="text/javascript">
+			function valider(form) {
+				if (form.username.value == '') {
+					alert("<spring:message code="label.Thank_you_to_seize_your_username" />");
+					form.username.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+				}
+				if (form.password.value == '') {
+					alert("<spring:message code="label.Thank_you_to_seize_your_password" />");
+					form.password.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+				}
+				if (form.email.value == '') {
+					alert("<spring:message code="label.Thank_you_seize_your_email" />");
+					form.email.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+				}
+
+				if (form.email.value.indexOf("@", 0) < 0) {
+					alert("<spring:message code="label.Please_include" />");
+					form.email.focus();
+					return false;
+				}
+				<c:forEach items="${useredit}" var="user" varStatus="loop">
+				if (form.username.value == '${user.username}') {
+					alert("<spring:message code="label.Thank_you_to_seize_another_username" />");
+					form.username.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+
+				}
+				</c:forEach>
+
+				<c:forEach items="${useredit}" var="user" varStatus="loop">
+				if (form.email.value == '${user.email}') {
+					alert("<spring:message code="label.Thank_you_to_seize_another_email" />");
+					form.email.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+
+				}
+
+				</c:forEach>
+				return true;
+			}
+		</script>

@@ -11,9 +11,6 @@
 	<http pattern="/passWordRecFail" security="none" />
 	<http pattern="/passWordRecSucc" security="none" />
 	<http pattern="/PassRec" security="none" />
-
-
-
 	<http use-expressions="true" auto-config="true">
 
 		<intercept-url pattern="/projet" access="hasAnyRole('ROLE_ADMIN')" />
@@ -34,16 +31,13 @@
 		<logout logout-url="/logout" logout-success-url="/login" />
 	</http>
 
-
-
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder hash="sha-256" ref="mdPasswordEncoder">
 			</password-encoder>
-
-			
-			<jdbc-user-service data-source-ref="datasource" users-by-username-query="select username,password, actived from user where username=?" 
-			authorities-by-username-query="select u.username, r.nomRole from user u, role r where u.idUser = r.idUser and u.username =? " /> 
+			<jdbc-user-service data-source-ref="datasource"
+				users-by-username-query="select username,password, actived from user where username=?"
+				authorities-by-username-query="select u.username, r.nomRole from user u, role r where u.idUser = r.idUser and u.username =? " />
 		</authentication-provider>
 	</authentication-manager>
 

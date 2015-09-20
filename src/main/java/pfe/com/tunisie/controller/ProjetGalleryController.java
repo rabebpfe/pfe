@@ -1,4 +1,4 @@
-package pfe.com.tunisie.controller.Task;
+package pfe.com.tunisie.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,22 +10,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pfe.com.tunisie.service.IUserMetier;
+import pfe.com.tunisie.service.IProjetMetier;
 
 @Controller
-public class NotificationController {
+public class ProjetGalleryController {
 	@Autowired
 	private IUserMetier IUserMetier;
+	@Autowired
+	private IProjetMetier IProjetMetier;
 
-	@RequestMapping("/notification")
-	public String notification(Model model, HttpServletRequest request) {
-
+	@RequestMapping("/projetGallery")
+	public String projetGallery(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String username = auth.getName();
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
+		model.addAttribute("projects", IProjetMetier.findAll());
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-
-		return "task.notification";
+		return "projet.projetGallery";
 	}
 }
