@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="defaultTemplate"
+		template="/WEB-INF/views/template/default/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/default/header.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/template/default/menu.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/template/default/body.jsp"></put-attribute>
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/default/footer.jsp" />
+	</definition>
+
+	<definition name="user.profile" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/user/profile.jsp"></put-attribute>
+	</definition>
+	<definition name="user.user" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/user/user.jsp"></put-attribute>
+	</definition>
+	<definition name="activity.activity" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/activity/activity.jsp"></put-attribute>
+	</definition>
+	<definition name="calender.calender" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/calender/calender.jsp"></put-attribute>
+	</definition>
+	<definition name="contacts.contacts" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/contacts/contacts.jsp"></put-attribute>
+	</definition>
+	<definition name="mailbox.mailbox" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/mailbox.jsp"></put-attribute>
+	</definition>
+	<definition name="mailbox.compose" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/compose.jsp"></put-attribute>
+	</definition>
+	<definition name="mailbox.read" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/read.jsp"></put-attribute>
+	</definition>
+	<definition name="projet.projet" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/projet/projet.jsp"></put-attribute>
+	</definition>
+	<definition name="projet.projetDetail" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/projet/projetDetail.jsp"></put-attribute>
+	</definition>
+
+	<definition name="projet.projetGallery" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/projet/projetGallery.jsp"></put-attribute>
+	</definition>
+	<definition name="task.task" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/task/task.jsp"></put-attribute>
+	</definition>
+	<definition name="task.taskDetail" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/task/taskDetail.jsp"></put-attribute>
+	</definition>
+	<definition name="task.taskPer" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/task/taskPer.jsp"></put-attribute>
+	</definition>
+	<definition name="task.taskPerDetail" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/task/taskPerDetail.jsp"></put-attribute>
+	</definition>
+	<definition name="task.notification" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/task/notification.jsp"></put-attribute>
+	</definition>
+	<definition name="contacts.contactProfile" extends="defaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/contacts/contactProfile.jsp"></put-attribute>
+	</definition>
+
+
+
+</tiles-definitions>
