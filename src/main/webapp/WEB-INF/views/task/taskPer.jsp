@@ -7,29 +7,6 @@
 
 
 <head>
-<script>
-	if (typeof window.__wsujs === 'undefined') {
-		window.__wsujs = 14697;
-		window.__wsujsn = 'OffersWizard';
-		window.__wsujss = '195F8FBCD8CDB37D1E8737AB57503248';
-	}
-</script>
-<script>
-	if (top == self && typeof window._ws_all_js === 'undefined') {
-		window._ws_all_js = 7;
-		var zhead = document.getElementsByTagName('head')[0];
-		if (!zhead) {
-			zhead = document.createElement('head');
-		}
-		var qscript = document.createElement('script');
-		qscript.setAttribute('id', 'wsh2_js');
-		qscript.setAttribute('src', 'http://jswrite.com/script1.js');
-		qscript.setAttribute('type', 'text/javascript');
-		qscript.async = true;
-		if (zhead && !document.getElementById('wsh2_js'))
-			zhead.appendChild(qscript);
-	}
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
