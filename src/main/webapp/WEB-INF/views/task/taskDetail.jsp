@@ -298,7 +298,7 @@ $( document ).ready(function() {
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">x</button>
 				<h4 class="modal-title" id="myModalLabel">
-					<spring:message code="label.New_Comment_Entry" />
+					<spring:message code="label.Edit_Comment_Entry" />
 				</h4>
 			</div>
 			<div class="modal-body">
