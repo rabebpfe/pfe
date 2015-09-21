@@ -133,13 +133,15 @@
 
 											</blockquote>
 											<blockquote class="message">
-
-												<button title="edit" type="button"
+												<c:url var="editComment" value="/comment/edit">
+													<c:param name="id" value="${Comments.idCommente}"></c:param>
+												</c:url>
+												<a href="${editComment}"  data-remote="false"  title="edit" type="button"
 													data-original-title="edit" class="btn  btn-sm tooltips"
 													data-toggle="modal" data-target="#CommentEdit"
 													>
 													<i class="fa fa-edit m-right-xs"></i>
-												</button>
+												</a>
 
 
 												<a href="suppComment?idCommente=${Comments.idCommente}">
@@ -260,8 +262,6 @@
 						<br />
 						<br />
 						<br />
-
-
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default antoclose"
 								data-dismiss="modal">
@@ -279,6 +279,16 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+
+//Fill modal with content from link href
+$( document ).ready(function() {
+	$("#CommentEdit").on("show.bs.modal", function(e) {
+	    var link = $(e.relatedTarget);
+	    $(this).find(".modal-body").load(link.attr("href"));
+	});
+});
+</script>
 <div id="CommentEdit" class="modal fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="false">
 	<div class="modal-dialog">
@@ -292,42 +302,7 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				<div id="testmodal" style="padding: 30px 30px;">
-					<form:form modelAttribute="Commente"
-						action="editComment?idCommente=${ref}" method="POST">
-
-						<div class="form-group">
-							<form:label path="description"
-								class="control-label col-md-3 col-sm-3 col-xs-12"
-								for="Comment_Description">
-								<spring:message code="label.Commented" />
-								<span class="required">*</span>
-							</form:label>
-							<div class="col-sm-9">
-								<textarea name="description" id="Task_Description"
-									class="form-control col-md-7 col-xs-12"><c:out
-										value="ffffffff" /></textarea>
-							</div>
-						</div>
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default antoclose"
-								data-dismiss="modal">
-								<spring:message code="label.Close" />
-							</button>
-							<input type="submit" name="submit" class="btn btn-primary"
-								value="<spring:message code="label.Save" />" />
-
-						</div>
-
-					</form:form>
-				</div>
+				
 			</div>
 
 		</div>

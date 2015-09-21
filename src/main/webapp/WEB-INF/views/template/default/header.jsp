@@ -17,53 +17,54 @@
 				<a id="menu_toggle"><i class="fa fa-bars"></i></a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-					<li class=""><a href="javascript:;"
-						class="user-profile dropdown-toggle" data-toggle="dropdown"
-						aria-expanded="false"> <c:if
-								test="${pageContext.response.locale== 'en'}">
-
-
-
-								<img src="<c:url value="/resources/img/flag_uk.png" />" alt="">
-							</c:if> <c:if test="${pageContext.response.locale== 'de'}">
-
-
-
-								<img src="<c:url value="/resources/img/flag_de.png" />" alt="">
-							</c:if> <c:if test="${pageContext.response.locale == 'fr'}">
-
-
-
-								<img src="<c:url value="/resources/img/flag_france.png" />"
-									alt="">
-							</c:if> <span class=" fa fa-angle-down"></span>
-					</a>
-						<ul
-							class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-
-							<li><a href="?language=en">English</a></li>
-							<li><a href="?language=fr"> Français</a></li>
-							<li><a href="?language=de">Allemand</a></li>
-						</ul></li>
-
-			<ul class="nav navbar-nav navbar-right">
 				<li class=""><a href="javascript:;"
 					class="user-profile dropdown-toggle" data-toggle="dropdown"
-					aria-expanded="false"> <img
-						src="photoUser?idUser=${user.idUser} " alt="">${user.username}
-						<span class=" fa fa-angle-down"></span>
+					aria-expanded="false"> <c:if
+							test="${pageContext.response.locale== 'en'}">
+
+
+
+							<img src="<c:url value="/resources/img/flag_uk.png" />" alt="">
+						</c:if> <c:if test="${pageContext.response.locale== 'de'}">
+
+
+
+							<img src="<c:url value="/resources/img/flag_de.png" />" alt="">
+						</c:if> <c:if test="${pageContext.response.locale == 'fr'}">
+
+
+
+							<img src="<c:url value="/resources/img/flag_france.png" />"
+								alt="">
+						</c:if> <span class=" fa fa-angle-down"></span>
 				</a>
 					<ul
 						class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-						<li><a href="profile"><spring:message
-									code="label.Profile" /></a></li>
 
-						<li><a href="lockscreen"> <spring:message
-									code="label.Lockscreen" /></a></li>
-						<li><a href="logout"><i class="fa fa-sign-out pull-right"></i>
-								<spring:message code="label.Out" /></a></li>
+						<li><a href="?language=en">English</a></li>
+						<li><a href="?language=fr"> Français</a></li>
+						<li><a href="?language=de">Allemand</a></li>
 					</ul></li>
-				
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="javascript:;"
+						class="user-profile dropdown-toggle" data-toggle="dropdown"
+						aria-expanded="false"> <img
+							src="photoUser?idUser=${user.idUser} " alt="">${user.username}
+							<span class=" fa fa-angle-down"></span>
+					</a>
+						<ul
+							class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+							<li><a href="profile"><spring:message
+										code="label.Profile" /></a></li>
+
+							<li><a href="lockscreen"> <spring:message
+										code="label.Lockscreen" /></a></li>
+							<li><a href="logout"><i
+									class="fa fa-sign-out pull-right"></i> <spring:message
+										code="label.Out" /></a></li>
+						</ul></li>
+
 
 
 

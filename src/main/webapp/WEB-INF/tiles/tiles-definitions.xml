@@ -90,6 +90,9 @@
 	</definition>
 	
 
+	<definition name="comment.edit" template="/WEB-INF/views/comment/ajax_edit.jsp">
+		
+	</definition>
 
 
 

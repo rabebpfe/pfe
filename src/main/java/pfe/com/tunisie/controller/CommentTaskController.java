@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pfe.com.tunisie.entities.Commente;
 import pfe.com.tunisie.model.CommenteModel;
 import pfe.com.tunisie.model.UserModel;
 import pfe.com.tunisie.service.ICommenteMetier;
@@ -96,6 +98,24 @@ public class CommentTaskController {
 		long idTask = (Long) request.getSession().getAttribute("idTask");
 
 		return "redirect:/taskDetail?idTask=" + idTask;
+	}
+	
+	@RequestMapping(value = "/comment/edit")
+	public String add(Model model, @RequestParam(value="id") Long idCommente) {
+	    Commente comment = ICommenteMetier.findOne(idCommente);
+	    model.addAttribute("comment", comment);
+	    return "comment.edit";
+	}
+	
+	
+	@RequestMapping(value = "/comment/save", method = RequestMethod.POST)
+	public String save(Model model, @RequestParam(value="idCommente") Long idComment, 
+	        @RequestParam(value = "Description") String description) {
+	    Commente comment = ICommenteMetier.findOne(idComment);
+	    comment.setDescription(description);
+	    ICommenteMetier.save(comment);
+	    Long taskId = comment.getTask().getIdTask();
+	    return "redirect:/taskDetail?idTask=" + taskId;
 	}
 
 }
