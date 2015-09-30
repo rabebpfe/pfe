@@ -3,7 +3,6 @@ package pfe.com.tunisie.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

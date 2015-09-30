@@ -6,6 +6,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
@@ -417,6 +418,8 @@
 			return false; //enpèche l'envoi du formulaire
 
 		}
+		
+	 
 		
 
 		return true;

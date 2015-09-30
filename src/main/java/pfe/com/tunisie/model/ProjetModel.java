@@ -7,8 +7,8 @@ public class ProjetModel {
 	private String nom;
 	private String categorie;
 	private String status;
-	private Long estimation_budget;
-	private Long estimation_dure;
+	private String estimation_budget;
+	private String estimation_dure;
 	private String description;
 	private Date date;
 
@@ -26,7 +26,7 @@ public class ProjetModel {
 	}
 
 	public ProjetModel(Long idProject, String nom, String categorie,
-			String status, Long estimation_budget, Long estimation_dure,
+			String status, String estimation_budget, String estimation_dure,
 			String description, Date date) {
 		super();
 		this.idProject = idProject;
@@ -63,19 +63,19 @@ public class ProjetModel {
 		this.status = status;
 	}
 
-	public Long getEstimation_budget() {
+	public String getEstimation_budget() {
 		return estimation_budget;
 	}
 
-	public void setEstimation_budget(Long estimation_budget) {
+	public void setEstimation_budget(String estimation_budget) {
 		this.estimation_budget = estimation_budget;
 	}
 
-	public Long getEstimation_dure() {
+	public String getEstimation_dure() {
 		return estimation_dure;
 	}
 
-	public void setEstimation_dure(Long estimation_dure) {
+	public void setEstimation_dure(String estimation_dure) {
 		this.estimation_dure = estimation_dure;
 	}
 

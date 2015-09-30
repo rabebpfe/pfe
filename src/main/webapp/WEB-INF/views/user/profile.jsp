@@ -4,11 +4,14 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
@@ -136,10 +139,7 @@
 														</div>
 
 														<div class="row avatar-btns">
-															<div class="col-md-9">
-																
-																
-															</div>
+															<div class="col-md-9"></div>
 															<div class="col-md-3">
 																<input type="submit" value="Done"
 																	class="btn btn-primary btn-block avatar-save">
@@ -208,11 +208,7 @@
 								</h2>
 							</div>
 							<div class="col-md-6">
-								<div id="reportrange" class="pull-right"
-									style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-									<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span>December
-										30, 2014 - January 28, 2015</span> <b class="caret"></b>
-								</div>
+								
 							</div>
 						</div>
 						<!-- start of user-activity-graph -->
@@ -225,14 +221,19 @@
 									href="#tab_content1" id="home-tab" role="tab" data-toggle="tab"
 									aria-expanded="true"><spring:message
 											code="label.Recent_Activity" /></a></li>
-								<li role="presentation" class=""><a href="#tab_content2"
-									role="tab" id="profile-tab" data-toggle="tab"
-									aria-expanded="false"><spring:message
-											code="label.Projects_Worked_on" /></a></li>
 
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<li role="presentation" class=""><a href="#tab_content2"
+										role="tab" id="profile-tab" data-toggle="tab"
+										aria-expanded="false"><spring:message
+												code="label.Projects_Worked_on" /></a></li>
+								</sec:authorize>
+								
 
 							</ul>
 							<div id="myTabContent" class="tab-content">
+
+
 								<div role="tabpanel" class="tab-pane fade active in"
 									id="tab_content1" aria-labelledby="home-tab">
 
@@ -262,6 +263,10 @@
 									<!-- end recent activity -->
 
 								</div>
+
+								
+
+
 								<div role="tabpanel" class="tab-pane fade" id="tab_content2"
 									aria-labelledby="profile-tab">
 
@@ -282,7 +287,7 @@
 												<tr>
 
 
-													<td>${Project.nom}</td>
+													<td width="35%">${Project.nom}</td>
 													<td>${Project.status}</td>
 													<td class="hidden-phone">${Project.estimation_dure}</td>
 													<td class="vertical-align-mid">
@@ -347,6 +352,16 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label  class="col-sm-3 control-label">
+								<spring:message code="label.Saisir_nouveau" />
+							</label>
+							<div class="col-sm-9">
+								<input  type="password"
+									placeHolder="Repeat Password" class="form-control" id="password1"
+									name="password1" />
+							</div>
+						</div>
+						<div class="form-group">
 							<form:label path="email" class="col-sm-3 control-label">
 								<spring:message code="label.Email" />
 							</form:label>
@@ -367,7 +382,7 @@
 
 
 						</div>
-					
+
 					</form:form>
 
 
@@ -455,199 +470,94 @@
 			});
 		});
 	</script>
-	<!-- datepicker -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
 
-							var cb = function(start, end, label) {
-								console.log(start.toISOString(), end
-										.toISOString(), label);
-								$('#reportrange span').html(
-										start.format('MMMM D, YYYY') + ' - '
-												+ end.format('MMMM D, YYYY'));
-								//alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-							}
-
-							var optionSet1 = {
-								startDate : moment().subtract(29, 'days'),
-								endDate : moment(),
-								minDate : '01/01/2012',
-								maxDate : '12/31/2015',
-								dateLimit : {
-									days : 60
-								},
-								showDropdowns : true,
-								showWeekNumbers : true,
-								timePicker : false,
-								timePickerIncrement : 1,
-								timePicker12Hour : true,
-								ranges : {
-									'Today' : [ moment(), moment() ],
-									'Yesterday' : [
-											moment().subtract(1, 'days'),
-											moment().subtract(1, 'days') ],
-									'Last 7 Days' : [
-											moment().subtract(6, 'days'),
-											moment() ],
-									'Last 30 Days' : [
-											moment().subtract(29, 'days'),
-											moment() ],
-									'This Month' : [ moment().startOf('month'),
-											moment().endOf('month') ],
-									'Last Month' : [
-											moment().subtract(1, 'month')
-													.startOf('month'),
-											moment().subtract(1, 'month')
-													.endOf('month') ]
-								},
-								opens : 'left',
-								buttonClasses : [ 'btn btn-default' ],
-								applyClass : 'btn-small btn-primary',
-								cancelClass : 'btn-small',
-								format : 'MM/DD/YYYY',
-								separator : ' to ',
-								locale : {
-									applyLabel : 'Submit',
-									cancelLabel : 'Clear',
-									fromLabel : 'From',
-									toLabel : 'To',
-									customRangeLabel : 'Custom',
-									daysOfWeek : [ 'Su', 'Mo', 'Tu', 'We',
-											'Th', 'Fr', 'Sa' ],
-									monthNames : [ 'January', 'February',
-											'March', 'April', 'May', 'June',
-											'July', 'August', 'September',
-											'October', 'November', 'December' ],
-									firstDay : 1
-								}
-							};
-							$('#reportrange span').html(
-									moment().subtract(29, 'days').format(
-											'MMMM D, YYYY')
-											+ ' - '
-											+ moment().format('MMMM D, YYYY'));
-							$('#reportrange').daterangepicker(optionSet1, cb);
-							$('#reportrange').on('show.daterangepicker',
-									function() {
-										console.log("show event fired");
-									});
-							$('#reportrange').on('hide.daterangepicker',
-									function() {
-										console.log("hide event fired");
-									});
-							$('#reportrange')
-									.on(
-											'apply.daterangepicker',
-											function(ev, picker) {
-												console
-														.log("apply event fired, start/end dates are "
-																+ picker.startDate
-																		.format('MMMM D, YYYY')
-																+ " to "
-																+ picker.endDate
-																		.format('MMMM D, YYYY'));
-											});
-							$('#reportrange').on('cancel.daterangepicker',
-									function(ev, picker) {
-										console.log("cancel event fired");
-									});
-							$('#options1').click(
-									function() {
-										$('#reportrange').data(
-												'daterangepicker').setOptions(
-												optionSet1, cb);
-									});
-							$('#options2').click(
-									function() {
-										$('#reportrange').data(
-												'daterangepicker').setOptions(
-												optionSet2, cb);
-									});
-							$('#destroy').click(
-									function() {
-										$('#reportrange').data(
-												'daterangepicker').remove();
-									});
-						});
-	</script>
-	<!-- /datepicker -->
+	
 	<!-- PNotify -->
-   <script
+	<script
 		src="<c:url value="/resources/production/js/notify/pnotify.core.js" />"></script>
- <script
+	<script
 		src="<c:url value="/resources/production/js/notify/pnotify.buttons.js" />"></script>
-   <script
+	<script
 		src="<c:url value="/resources/production/js/notify/pnotify.nonblock.js" />"></script>
-  <script type="text/javascript">
-        var permanotice, tooltip, _alert;
-        $(function () {
-            new PNotify({
-                title: "PNotify",
-                type: "dark",
-                text: "Welcome ${user.username}! in your account",
-                nonblock: {
-                    nonblock: true
-                },
-                before_close: function (PNotify) {
-                    // You can access the notice's options with this. It is read only.
-                    //PNotify.options.text;
-
-                    // You can change the notice's options after the timer like this:
-                    PNotify.update({
-                        title: PNotify.options.title + " - Enjoy your Stay",
-                        before_close: null
-                    });
-                    PNotify.queueRemove();
-                    return false;
-                }
-            });
-
-        });
-    </script>
-
 	<script type="text/javascript">
-			function valider(form) {
-				if (form.username.value == '') {
-					alert("<spring:message code="label.Thank_you_to_seize_your_username" />");
-					form.username.focus(); //met le curseur dans le champ demandé
-					return false; //enpèche l'envoi du formulaire
-				}
-				if (form.password.value == '') {
-					alert("<spring:message code="label.Thank_you_to_seize_your_password" />");
-					form.password.focus(); //met le curseur dans le champ demandé
-					return false; //enpèche l'envoi du formulaire
-				}
-				if (form.email.value == '') {
-					alert("<spring:message code="label.Thank_you_seize_your_email" />");
-					form.email.focus(); //met le curseur dans le champ demandé
-					return false; //enpèche l'envoi du formulaire
-				}
+		var permanotice, tooltip, _alert;
+		$(function() {
+			new PNotify({
+				title : "PNotify",
+				type : "dark",
+				text : "Welcome ${user.username}! in your account",
+				nonblock : {
+					nonblock : true
+				},
+				before_close : function(PNotify) {
+					// You can access the notice's options with this. It is read only.
+					//PNotify.options.text;
 
-				if (form.email.value.indexOf("@", 0) < 0) {
-					alert("<spring:message code="label.Please_include" />");
-					form.email.focus();
+					// You can change the notice's options after the timer like this:
+					PNotify.update({
+						title : PNotify.options.title + " - Enjoy your Stay",
+						before_close : null
+					});
+					PNotify.queueRemove();
 					return false;
 				}
-				<c:forEach items="${useredit}" var="user" varStatus="loop">
-				if (form.username.value == '${user.username}') {
-					alert("<spring:message code="label.Thank_you_to_seize_another_username" />");
-					form.username.focus(); //met le curseur dans le champ demandé
-					return false; //enpèche l'envoi du formulaire
+			});
 
-				}
-				</c:forEach>
+		});
+	</script>
 
-				<c:forEach items="${useredit}" var="user" varStatus="loop">
-				if (form.email.value == '${user.email}') {
-					alert("<spring:message code="label.Thank_you_to_seize_another_email" />");
-					form.email.focus(); //met le curseur dans le champ demandé
-					return false; //enpèche l'envoi du formulaire
-
-				}
-
-				</c:forEach>
-				return true;
+	<script type="text/javascript">
+		function valider(form) {
+			if (form.username.value == '') {
+				alert("<spring:message code="label.Thank_you_to_seize_your_username" />");
+				form.username.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
 			}
-		</script>
+			if (form.password.value == '') {
+				alert("<spring:message code="label.Thank_you_to_seize_your_password" />");
+				form.password.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+			if ( form.password1.value == '') {
+				alert("<spring:message code="label.seize_your_password" />");
+				form.password1.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+			if (form.password.value != form.password1.value) {
+				alert("<spring:message code="label.seize_your_password" />");
+				form.password1.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+		
+			if (form.email.value == '') {
+				alert("<spring:message code="label.Thank_you_seize_your_email" />");
+				form.email.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
+
+			if (form.email.value.indexOf("@", 0) < 0) {
+				alert("<spring:message code="label.Please_include" />");
+				form.email.focus();
+				return false;
+			}
+			<c:forEach items="${useredit}" var="user" varStatus="loop">
+			if (form.username.value == '${user.username}') {
+				alert("<spring:message code="label.Thank_you_to_seize_another_username" />");
+				form.username.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+
+			}
+			</c:forEach>
+
+			<c:forEach items="${useredit}" var="user" varStatus="loop">
+			if (form.email.value == '${user.email}') {
+				alert("<spring:message code="label.Thank_you_to_seize_another_email" />");
+				form.email.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+
+			}
+
+			</c:forEach>
+			return true;
+		}
+	</script>

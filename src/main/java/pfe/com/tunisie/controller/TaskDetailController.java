@@ -14,6 +14,8 @@ import pfe.com.tunisie.entities.Commente;
 import pfe.com.tunisie.entities.Task;
 import pfe.com.tunisie.service.ICommenteMetier;
 import pfe.com.tunisie.service.IFileTaskMetier;
+import pfe.com.tunisie.service.IMessageMetier;
+import pfe.com.tunisie.service.INotificationMetier;
 import pfe.com.tunisie.service.ITaskMetier;
 import pfe.com.tunisie.service.IUserMetier;
 
@@ -27,6 +29,10 @@ public class TaskDetailController {
 	private IFileTaskMetier IFileTaskMetier;
 	@Autowired
 	private ICommenteMetier ICommenteMetier;
+	@Autowired
+	private INotificationMetier INotificationMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/taskDetail")
 	public String taskDetail(Model model, HttpServletRequest request,
@@ -42,7 +48,9 @@ public class TaskDetailController {
 		model.addAttribute("Task", Task);
 		model.addAttribute("Files", IFileTaskMetier.findFileByTask(idTask));
 		model.addAttribute("Comments", ICommenteMetier.findByIdTask(idTask));
+		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("Commente", new Commente());
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "task.taskDetail";
 	}
 

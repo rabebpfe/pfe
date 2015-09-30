@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pfe.com.tunisie.service.IMessageMetier;
 import pfe.com.tunisie.service.IUserMetier;
 import pfe.com.tunisie.service.IProjetMetier;
 
@@ -18,6 +19,8 @@ public class ProjetGalleryController {
 	private IUserMetier IUserMetier;
 	@Autowired
 	private IProjetMetier IProjetMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/projetGallery")
 	public String projetGallery(Model model, HttpServletRequest request) {
@@ -28,6 +31,7 @@ public class ProjetGalleryController {
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("projects", IProjetMetier.findAll());
 		model.addAttribute("user", IUserMetier.findOne(idUser));
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "projet.projetGallery";
 	}
 }

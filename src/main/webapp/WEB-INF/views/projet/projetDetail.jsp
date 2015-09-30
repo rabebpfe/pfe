@@ -95,7 +95,7 @@
 						</ul>
 						<br />
 
-						<div id="mainb" style="height: 350px;"></div>
+						
 
 						<div>
 
@@ -105,65 +105,22 @@
 
 							<!-- end of user messages -->
 							<ul class="messages">
-								<li><img
-									src="<c:url value="/resources/img/user1-128x128.jpg" />"
-									class="avatar" alt="Avatar">
+							<c:forEach var="Activity" items="${Activity}">
+								<li><img src="resources/production/images/4.jpg" 
+												class="avatar" alt="Avatar">
 									<div class="message_date">
-										<h3 class="date text-info">24</h3>
-										<p class="month">May</p>
+										<h3 class="date text-info">${Activity.day}</h3>
+										<p class="month">${Activity.month}</p>
 									</div>
 									<div class="message_wrapper">
-										<h4 class="heading">Desmond Davison</h4>
-										<blockquote class="message">Raw denim you
-											probably haven't heard of them jean shorts Austin. Nesciunt
-											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
-											synth.</blockquote>
+										<h4 class="heading"> ${Project.nom}</h4>
+										<blockquote class="message">${Activity.description}</blockquote>
 										<br />
-										<p class="url">
-											<span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-											<a href="#"><i class="fa fa-paperclip"></i> User
-												Acceptance Test.doc </a>
-										</p>
+										
 									</div></li>
-								<li><img
-									src="<c:url value="/resources/img/user1-128x128.jpg" /> "
-									class="avatar" alt="Avatar">
-									<div class="message_date">
-										<h3 class="date text-error">21</h3>
-										<p class="month">May</p>
-									</div>
-									<div class="message_wrapper">
-										<h4 class="heading">Brian Michaels</h4>
-										<blockquote class="message">Raw denim you
-											probably haven't heard of them jean shorts Austin. Nesciunt
-											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
-											synth.</blockquote>
-										<br />
-										<p class="url">
-											<span class="fs1" aria-hidden="true" data-icon=""></span> <a
-												href="#" data-original-title="">Download</a>
-										</p>
-									</div></li>
-								<li><img
-									src="<c:url value="/resources/img/user1-128x128.jpg" />"
-									class="avatar" alt="Avatar">
-									<div class="message_date">
-										<h3 class="date text-info">24</h3>
-										<p class="month">May</p>
-									</div>
-									<div class="message_wrapper">
-										<h4 class="heading">Desmond Davison</h4>
-										<blockquote class="message">Raw denim you
-											probably haven't heard of them jean shorts Austin. Nesciunt
-											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
-											synth.</blockquote>
-										<br />
-										<p class="url">
-											<span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-											<a href="#"><i class="fa fa-paperclip"></i> User
-												Acceptance Test.doc </a>
-										</p>
-									</div></li>
+									</c:forEach>
+								
+								
 							</ul>
 							<!-- end of user messages -->
 
@@ -285,79 +242,4 @@
 		src="<c:url value="/resources/production/js/echart/green.js" />"></script>
 
 
-	<script>
-		var myChart9 = echarts.init(document.getElementById('mainb'), theme);
-		myChart9.setOption({
-			title : {
-				x : 'center',
-				y : 'top',
-				padding : [ 0, 0, 20, 0 ],
-				text : 'Project Perfomance::Revenue vs Input vs Time Spent',
-				textStyle : {
-					fontSize : 15,
-					fontWeight : 'normal'
-				}
-			},
-			tooltip : {
-				trigger : 'axis'
-			},
-			toolbox : {
-				show : true,
-				feature : {
-					dataView : {
-						show : true,
-						readOnly : false
-					},
-					restore : {
-						show : true
-					},
-					saveAsImage : {
-						show : true
-					}
-				}
-			},
-			calculable : true,
-			legend : {
-				data : [ 'Revenue', 'Cash Input', 'Time Spent' ],
-				y : 'bottom'
-			},
-			xAxis : [ {
-				type : 'category',
-				data : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
-						'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
-			} ],
-			yAxis : [ {
-				type : 'value',
-				name : 'Amount',
-				axisLabel : {
-					formatter : '{value} ml'
-				}
-			}, {
-				type : 'value',
-				name : 'Hours',
-				axisLabel : {
-					formatter : '{value} °C'
-				}
-			} ],
-			series : [
-					{
-						name : 'Revenue',
-						type : 'bar',
-						data : [ 2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2,
-								32.6, 20.0, 6.4, 3.3 ]
-					},
-					{
-						name : 'Cash Input',
-						type : 'bar',
-						data : [ 2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2,
-								48.7, 18.8, 6.0, 2.3 ]
-					},
-					{
-						name : 'Time Spent',
-						type : 'line',
-						yAxisIndex : 1,
-						data : [ 2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4,
-								23.0, 16.5, 12.0, 6.2 ]
-					} ]
-		});
-	</script>
+	

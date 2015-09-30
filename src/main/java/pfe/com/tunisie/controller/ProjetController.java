@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import pfe.com.tunisie.entities.Project;
 import pfe.com.tunisie.model.ProjetModel;
 import pfe.com.tunisie.model.UserModel;
+import pfe.com.tunisie.service.IMessageMetier;
 import pfe.com.tunisie.service.IProjetMetier;
 import pfe.com.tunisie.service.IUserMetier;
 
@@ -24,6 +26,8 @@ public class ProjetController {
 	private IProjetMetier IProjetMetier;
 	@Autowired
 	private IUserMetier IUserMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/projet")
 	public String projet(Model model, HttpServletRequest request) {
@@ -35,6 +39,7 @@ public class ProjetController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "projet.projet";
 
 	}
@@ -121,7 +126,7 @@ public class ProjetController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
-
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "redirect:/projet";
 
 	}

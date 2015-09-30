@@ -155,7 +155,7 @@
 										<spring:message code="label.Submit" />
 									</button>
 								</div>
-								
+
 							</form:form>
 						</div>
 					</div>
@@ -548,11 +548,11 @@
 				   <c:forEach items="${events}" var="events" varStatus="loop">
 		           {
 						title : '${events.title}',
-						start : new Date('${events.y}','${events.m-1}', '${events.d}'),
+						start : new Date('${events.y}','${events.m-1}', '${events.d}')
 					
-
+		           }, 
 					           </c:forEach>
-				          
+		          
 				          
 				  
 				]

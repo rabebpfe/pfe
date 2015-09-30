@@ -16,11 +16,11 @@ public interface IProjetMetier {
 
 	public List<Project> findByIdUser(Long idUser);
 	public void saveProjet(String description, String nom, String categorie,
-			Date date, String status, Long estimation_dure,
-			Long estimation_budget, Long idUser);
+			Date date, String status, String string,
+			String string2, Long idUser);
 
 	public void update(long idProject, String nom, String description,
-			String categorie, Long estimation_budget, Long estimation_dure,
+			String categorie, String string, String string2,
 			String status, Date date);
 
 

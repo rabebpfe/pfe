@@ -7,6 +7,7 @@
 
 
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
@@ -74,8 +75,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						<spring:message code="label.Task_Report" />
-						<small><spring:message code="label.Task_Report" /></small>
+						Task Report <small><spring:message
+								code="label.Task_Report" /></small>
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -120,67 +121,29 @@
 								<!-- start recent activity -->
 								<table class="data table table-striped no-margin">
 									<thead>
+
 										<tr>
-											<th>#</th>
-											<th>Task Name</th>
-											<th>Client Company</th>
-											<th class="hidden-phone">Hours Spent</th>
-											<th>Contribution</th>
+											<th>Nom</th>
+											<th>Priorité</th>
+											<th>Projet</th>
+											<th>Date</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">18</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="35"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">13</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-danger"
-														data-transitiongoal="15"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">30</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="45"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">28</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="75"></div>
-												</div>
-											</td>
-										</tr>
+
+										<c:forEach var="Task_Open" items="${Task_Open}">
+											<tr>
+
+												<td><a href="taskPerDetail">${Task_Open.nom}</a></td>
+												<td>${Task_Open.priorite}</td>
+												<td>${Task_Open.projet.nom}</td>
+												<td>${Task_Open.date}</td>
+											</tr>
+										</c:forEach>
+
+
+
+
 									</tbody>
 								</table>
 								<!-- end recent activity -->
@@ -192,67 +155,29 @@
 								<!-- start user projects -->
 								<table class="data table table-striped no-margin">
 									<thead>
+
 										<tr>
-											<th>#</th>
-											<th>Task Name</th>
-											<th>Client Company</th>
-											<th class="hidden-phone">Hours Spent</th>
-											<th>Contribution</th>
+											<th>Nom</th>
+											<th>Priorité</th>
+											<th>Projet</th>
+											<th>Date</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">18</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="35"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">13</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-danger"
-														data-transitiongoal="15"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">30</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="45"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td><a href="taskPerDetail">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">28</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="75"></div>
-												</div>
-											</td>
-										</tr>
+
+										<c:forEach var="Task_Result" items="${Task_Result}">
+											<tr>
+												<td><a href="taskPerDetail">${Task_Result.nom}</a></td>
+
+												<td>${Task_Result.priorite}</td>
+												<td>${Task_Result.projet.nom}</td>
+												<td>${Task_Result.date}</td>
+											</tr>
+										</c:forEach>
+
+
+
+
 									</tbody>
 								</table>
 								<!-- end user projects -->
@@ -262,63 +187,29 @@
 								aria-labelledby="profile-tab">
 								<table class="data table table-striped no-margin">
 									<thead>
+
 										<tr>
-											<th>#</th>
-											<th>Task Name</th>
-											<th>Client Company</th>
-											<th class="hidden-phone">Hours Spent</th>
-											<th>Contribution</th>
+											<th>Nom</th>
+											<th>Priorité</th>
+											<th>Projet</th>
+											<th>Date</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>New Company Takeover Review</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">18</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="35"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>New Partner Contracts Consultanci</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">13</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-danger"
-														data-transitiongoal="15"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Partners and Inverstors report</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">30</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="45"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>New Company Takeover Review</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">28</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="75"></div>
-												</div>
-											</td>
-										</tr>
+
+										<c:forEach var="Task_Review" items="${Task_Review}">
+											<tr>
+												<td><a href="taskPerDetail">${Task_Review.nom}</a></td>
+
+												<td>${Task_Review.priorite}</td>
+												<td>${Task_Review.projet.nom}</td>
+												<td>${Task_Review.date}</td>
+											</tr>
+										</c:forEach>
+
+
+
+
 									</tbody>
 								</table>
 							</div>
@@ -326,64 +217,29 @@
 								aria-labelledby="profile-tab">
 								<table class="data table table-striped no-margin">
 									<thead>
+
 										<tr>
-											<th>#</th>
-											<th>Task Name</th>
-											<th>Client Company</th>
-											<th class="hidden-phone">Hours Spent</th>
-											<th>Contribution</th>
+											<th>Nom</th>
+											<th>Priorité</th>
+											<th>Projet</th>
+											<th>Date</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>New Company Takeover Review</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">18</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="35"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>New Partner Contracts Consultanci</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">13</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-danger"
-														data-transitiongoal="15"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Partners and Inverstors report</td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">30</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="45"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td><a href="login.html">New Partner Contracts
-													Consultanci</a></td>
-											<td>Deveint Inc</td>
-											<td class="hidden-phone">28</td>
-											<td class="vertical-align-mid">
-												<div class="progress">
-													<div class="progress-bar progress-bar-success"
-														data-transitiongoal="75"></div>
-												</div>
-											</td>
-										</tr>
+
+										<c:forEach var="Task_Test" items="${Task_Test}">
+											<tr>
+												<td><a href="taskPerDetail">$Task_Test.nom}</a></td>
+
+												<td>${Task_Test.priorite}</td>
+												<td>${Task_Test.projet.nom}</td>
+												<td>${Task_Test.date}</td>
+											</tr>
+										</c:forEach>
+
+
+
+
 									</tbody>
 								</table>
 							</div>
@@ -438,182 +294,3 @@
 			src="<c:url value="/resources/production/js/moris/raphael-min.js" />"></script>
 		<script
 			src="<c:url value="/resources/production/js/moris/morris.js" />"></script>
-		<script>
-			$(function() {
-				var day_data = [ {
-					"period" : "Jan",
-					"Hours worked" : 80
-				}, {
-					"period" : "Feb",
-					"Hours worked" : 125
-				}, {
-					"period" : "Mar",
-					"Hours worked" : 176
-				}, {
-					"period" : "Apr",
-					"Hours worked" : 224
-				}, {
-					"period" : "May",
-					"Hours worked" : 265
-				}, {
-					"period" : "Jun",
-					"Hours worked" : 314
-				}, {
-					"period" : "Jul",
-					"Hours worked" : 347
-				}, {
-					"period" : "Aug",
-					"Hours worked" : 287
-				}, {
-					"period" : "Sep",
-					"Hours worked" : 240
-				}, {
-					"period" : "Oct",
-					"Hours worked" : 211
-				} ];
-				Morris.Bar({
-					element : 'graph_bar',
-					data : day_data,
-					xkey : 'period',
-					hideHover : 'auto',
-					barColors : [ '#007aff', '#007aff', '#ACADAC', '#3498DB' ],
-					ykeys : [ 'Hours worked', 'sorned' ],
-					labels : [ 'Hours worked', 'SORN' ],
-					xLabelAngle : 60
-				});
-			});
-		</script>
-		<!-- datepicker -->
-		<script type="text/javascript">
-			$(document)
-					.ready(
-							function() {
-
-								var cb = function(start, end, label) {
-									console.log(start.toISOString(), end
-											.toISOString(), label);
-									$('#reportrange span')
-											.html(
-													start
-															.format('MMMM D, YYYY')
-															+ ' - '
-															+ end
-																	.format('MMMM D, YYYY'));
-									//alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-								}
-
-								var optionSet1 = {
-									startDate : moment().subtract(29, 'days'),
-									endDate : moment(),
-									minDate : '01/01/2012',
-									maxDate : '12/31/2015',
-									dateLimit : {
-										days : 60
-									},
-									showDropdowns : true,
-									showWeekNumbers : true,
-									timePicker : false,
-									timePickerIncrement : 1,
-									timePicker12Hour : true,
-									ranges : {
-										'Today' : [ moment(), moment() ],
-										'Yesterday' : [
-												moment().subtract(1, 'days'),
-												moment().subtract(1, 'days') ],
-										'Last 7 Days' : [
-												moment().subtract(6, 'days'),
-												moment() ],
-										'Last 30 Days' : [
-												moment().subtract(29, 'days'),
-												moment() ],
-										'This Month' : [
-												moment().startOf('month'),
-												moment().endOf('month') ],
-										'Last Month' : [
-												moment().subtract(1, 'month')
-														.startOf('month'),
-												moment().subtract(1, 'month')
-														.endOf('month') ]
-									},
-									opens : 'left',
-									buttonClasses : [ 'btn btn-default' ],
-									applyClass : 'btn-small btn-primary',
-									cancelClass : 'btn-small',
-									format : 'MM/DD/YYYY',
-									separator : ' to ',
-									locale : {
-										applyLabel : 'Submit',
-										cancelLabel : 'Clear',
-										fromLabel : 'From',
-										toLabel : 'To',
-										customRangeLabel : 'Custom',
-										daysOfWeek : [ 'Su', 'Mo', 'Tu', 'We',
-												'Th', 'Fr', 'Sa' ],
-										monthNames : [ 'January', 'February',
-												'March', 'April', 'May',
-												'June', 'July', 'August',
-												'September', 'October',
-												'November', 'December' ],
-										firstDay : 1
-									}
-								};
-								$('#reportrange span').html(
-										moment().subtract(29, 'days').format(
-												'MMMM D, YYYY')
-												+ ' - '
-												+ moment().format(
-														'MMMM D, YYYY'));
-								$('#reportrange').daterangepicker(optionSet1,
-										cb);
-								$('#reportrange').on('show.daterangepicker',
-										function() {
-											console.log("show event fired");
-										});
-								$('#reportrange').on('hide.daterangepicker',
-										function() {
-											console.log("hide event fired");
-										});
-								$('#reportrange')
-										.on(
-												'apply.daterangepicker',
-												function(ev, picker) {
-													console
-															.log("apply event fired, start/end dates are "
-																	+ picker.startDate
-																			.format('MMMM D, YYYY')
-																	+ " to "
-																	+ picker.endDate
-																			.format('MMMM D, YYYY'));
-												});
-								$('#reportrange').on('cancel.daterangepicker',
-										function(ev, picker) {
-											console.log("cancel event fired");
-										});
-								$('#options1')
-										.click(
-												function() {
-													$('#reportrange').data(
-															'daterangepicker')
-															.setOptions(
-																	optionSet1,
-																	cb);
-												});
-								$('#options2')
-										.click(
-												function() {
-													$('#reportrange').data(
-															'daterangepicker')
-															.setOptions(
-																	optionSet2,
-																	cb);
-												});
-								$('#destroy')
-										.click(
-												function() {
-													$('#reportrange').data(
-															'daterangepicker')
-															.remove();
-												});
-							});
-		</script>
-		<!-- /datepicker -->

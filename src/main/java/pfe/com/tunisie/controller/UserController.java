@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -17,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +30,8 @@ import pfe.com.tunisie.service.*;
 public class UserController {
 	@Autowired
 	private IUserMetier IUserMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/users")
 	public String users(Model model, HttpServletRequest request) {
@@ -43,6 +43,8 @@ public class UserController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		
 		return "user.user";
 	}
 
@@ -77,6 +79,7 @@ public class UserController {
 				request.getParameterValues("skills"));
 		model.addAttribute("user", new User());
 		model.addAttribute("users", IUserMetier.findAll());
+		
 		return "redirect:/users";
 	}
 
@@ -133,6 +136,7 @@ public class UserController {
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
 		model.addAttribute("useredit", IUserMetier.useredit(idUser));
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "redirect:/users";
 
 	}

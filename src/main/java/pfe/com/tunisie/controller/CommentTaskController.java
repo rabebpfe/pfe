@@ -5,10 +5,6 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +20,7 @@ import pfe.com.tunisie.entities.Commente;
 import pfe.com.tunisie.model.CommenteModel;
 import pfe.com.tunisie.model.UserModel;
 import pfe.com.tunisie.service.ICommenteMetier;
+import pfe.com.tunisie.service.IMessageMetier;
 import pfe.com.tunisie.service.IUserMetier;
 
 @Controller
@@ -32,6 +29,8 @@ public class CommentTaskController {
 	private IUserMetier IUserMetier;
 	@Autowired
 	private ICommenteMetier ICommenteMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping(value = "/saveComment", method = RequestMethod.POST)
 	public String saveCommentProjet(
@@ -55,32 +54,7 @@ public class CommentTaskController {
 
 	}
 
-	@RequestMapping(value = "/editComment")
-	public String editCommentProjet(
-			@ModelAttribute("SpringWeb") CommenteModel CommenteModel,
-			Model model, HttpServletRequest request, @RequestParam Long idCommente) {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String username = auth.getName();
-		request.getSession().setAttribute("username", username);
-		long idUser = IUserMetier.findByusername(username);
-		model.addAttribute("user", IUserMetier.findOne(idUser));
-
-		long idTask = (Long) request.getSession().getAttribute("idTask");
-		
-		   
-		
-
-		Calendar calendar = Calendar.getInstance();
-		Date date = calendar.getTime();
-
-		ICommenteMetier
-				.update(idCommente, CommenteModel.getDescription(), date);
-
-		return "redirect:/taskDetail?idTask=" + idTask;
-
-	}
-
+	
 	@RequestMapping(value = "/suppComment", method = RequestMethod.GET)
 	public String deleteCommente(
 			@ModelAttribute("SpringWeb") UserModel UserModel, ModelMap model,
@@ -112,8 +86,9 @@ public class CommentTaskController {
 	public String save(Model model, @RequestParam(value="idCommente") Long idComment, 
 	        @RequestParam(value = "Description") String description) {
 	    Commente comment = ICommenteMetier.findOne(idComment);
-	    comment.setDescription(description);
-	    ICommenteMetier.save(comment);
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+	    ICommenteMetier.update(idComment, description, date);
 	    Long taskId = comment.getTask().getIdTask();
 	    return "redirect:/taskDetail?idTask=" + taskId;
 	}

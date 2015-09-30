@@ -10,10 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import pfe.com.tunisie.entities.Event;
-
 import pfe.com.tunisie.model.EventModel;
+import pfe.com.tunisie.service.IMessageMetier;
+import pfe.com.tunisie.service.INotificationMetier;
 import pfe.com.tunisie.service.IUserMetier;
 import pfe.com.tunisie.service.IEventMetier;
 
@@ -23,6 +23,10 @@ public class CalenderController {
 	private IUserMetier IUserMetier;
 	@Autowired
 	private IEventMetier IEventMetier;
+	@Autowired
+	private INotificationMetier INotificationMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/calender")
 	public String calender(Model model, HttpServletRequest request) {
@@ -32,6 +36,8 @@ public class CalenderController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
+		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
 		return "calender.calender";

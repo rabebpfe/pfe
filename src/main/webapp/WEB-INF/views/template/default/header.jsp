@@ -42,7 +42,7 @@
 						class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
 
 						<li><a href="?language=en">English</a></li>
-						<li><a href="?language=fr"> Français</a></li>
+						<li><a href="?language=fr"> FranÃ§ais</a></li>
 						<li><a href="?language=de">Allemand</a></li>
 					</ul></li>
 
@@ -71,46 +71,26 @@
 					<li role="presentation" class="dropdown"><a
 						href="javascript:;" class="dropdown-toggle info-number"
 						data-toggle="dropdown" aria-expanded="false"> <i
-							class="fa fa-envelope-o"></i> <span class="badge bg-green">5</span>
+							class="fa fa-envelope-o"></i> <span class="badge bg-green">4</span>
 					</a>
 						<ul id="menu1"
 							class="dropdown-menu list-unstyled msg_list animated fadeInDown"
 							role="menu">
-							<li><a> <span class="image"> <img
-										src="<c:url value="/resources/img/user1-128x128.jpg" />"
-										alt="Profile Image" />
-								</span> <span> <span>John Smith</span> <span class="time">3
-											mins ago</span>
-								</span> <span class="message"> Film festivals used to be
-										do-or-die moments for movie makers. They were where... </span>
+							<c:forEach var="message" items="${message}" >
+						<li><a> <span class="image"> <img src="photoUser?idUser=${message.users.idUser} "/>
+										
+									</span> <span> <span>${message.users.username} </span> <span class="time">
+								${message.day} ${message.month} ${message.hours} :
+									${message.munite}</span>
+								</span> <span class="message"> ${message.message} </span>
 							</a></li>
-							<li><a> <span class="image"> <img
-										src="<c:url value="/resources/img/user1-128x128.jpg" />"
-										alt="Profile Image" />
-								</span> <span> <span>John Smith</span> <span class="time">3
-											mins ago</span>
-								</span> <span class="message"> Film festivals used to be
-										do-or-die moments for movie makers. They were where... </span>
-							</a></li>
-							<li><a> <span class="image"> <img
-										src="<c:url value="/resources/img/user1-128x128.jpg" />"
-										alt="Profile Image" />
-								</span> <span> <span>John Smith</span> <span class="time">3
-											mins ago</span>
-								</span> <span class="message"> Film festivals used to be
-										do-or-die moments for movie makers. They were where... </span>
-							</a></li>
-							<li><a> <span class="image"> <img
-										src="<c:url value="/resources/img/user1-128x128.jpg" />"
-										alt="Profile Image" />
-								</span> <span> <span>John Smith</span> <span class="time">3
-											mins ago</span>
-								</span> <span class="message"> Film festivals used to be
-										do-or-die moments for movie makers. They were where... </span>
-							</a></li>
+							</c:forEach>
+						
+						
+							
 							<li>
 								<div class="text-center">
-									<a href="mailbox"> <strong><spring:message
+									<a href="reception"> <strong><spring:message
 												code="label.Alerts" /></strong> <i class="fa fa-angle-right"></i>
 									</a>
 								</div>
@@ -127,38 +107,21 @@
 							<ul id="menu1"
 								class="dropdown-menu list-unstyled msg_list animated fadeInDown"
 								role="menu">
-								<li><a> <span class="image"> <img
-											src="<c:url value="/resources/img/user1-128x128.jpg" />"
-											alt="Profile Image" />
-									</span> <span> <span>John Smith</span> <span class="time">3
-												mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
+								<c:forEach var="notification" items="${notification}">
+										<li><a> <span class="image"> <img src="photoUser?idUser=${notification.users.idUser} "/>
+										
+									</span> <span> <span>${notification.users.username} </span> <span class="time">
+									${notification.day} ${notification.month} ${notification.hours} :
+									${notification.munite}
+											</span>
+									</span> <span class="message"> ${notification.description} </span>
 								</a></li>
-								<li><a> <span class="image"> <img
-											src="<c:url value="/resources/img/user1-128x128.jpg" />"
-											alt="Profile Image" />
-									</span> <span> <span>John Smith</span> <span class="time">3
-												mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
-								<li><a> <span class="image"> <img
-											src="<c:url value="/resources/img/user1-128x128.jpg" />"
-											alt="Profile Image" />
-									</span> <span> <span>John Smith</span> <span class="time">3
-												mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
-								<li><a> <span class="image"> <img
-											src="<c:url value="/resources/img/user1-128x128.jpg" />"
-											alt="Profile Image" />
-									</span> <span> <span>John Smith</span> <span class="time">3
-												mins ago</span>
-									</span> <span class="message"> Film festivals used to be
-											do-or-die moments for movie makers. They were where... </span>
-								</a></li>
+							  </c:forEach>
+								
+								
+								
+								
+								
 								<li>
 									<div class="text-center">
 										<a href="notification"> <strong><spring:message

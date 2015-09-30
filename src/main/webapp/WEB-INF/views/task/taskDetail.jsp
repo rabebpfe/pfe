@@ -1,5 +1,5 @@
-<%@ page language="java" session="true" contentType="text/html; charset=ISO-8859-1 "
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" session="true"
+	contentType="text/html; charset=ISO-8859-1 " pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -109,12 +109,7 @@
 
 
 
-									<%
-										   String ref = "${Comments.idCommente}";
-
-											session.setAttribute("idComent", ref);
-									%>
-
+				
 
 
 									<li><img src="photoUser?idUser=${Comments.user.idUser} "
@@ -136,20 +131,17 @@
 												<c:url var="editComment" value="/comment/edit">
 													<c:param name="id" value="${Comments.idCommente}"></c:param>
 												</c:url>
-												<a href="${editComment}"  data-remote="false"  title="edit" type="button"
-													data-original-title="edit" class="btn  btn-sm tooltips"
-													data-toggle="modal" data-target="#CommentEdit"
-													>
-													<i class="fa fa-edit m-right-xs"></i>
-												</a>
-
-
-												<a href="suppComment?idCommente=${Comments.idCommente}">
-													<button title="delete" data-original-title="delete"
+												<a href="${editComment}" data-remote="false" title="edit"
+													type="button" data-original-title="edit"
+													class="btn  btn-sm tooltips" data-toggle="modal"
+													data-target="#CommentEdit"> <i
+													class="fa fa-edit m-right-xs"></i>
+												</a> <a href="suppComment?idCommente=${Comments.idCommente}"
+												 title="delete" data-original-title="delete"
 														class="btn  btn-sm tooltips"
 														onclick="return confirm('Etes vous sûre de vouloir supprimer ce commentaire ?');">
 														<i class="fa fa-trash-o"></i>
-													</button>
+													
 												</a>
 											</blockquote>
 
@@ -280,14 +272,13 @@
 	</div>
 </div>
 <script type="text/javascript">
-
-//Fill modal with content from link href
-$( document ).ready(function() {
-	$("#CommentEdit").on("show.bs.modal", function(e) {
-	    var link = $(e.relatedTarget);
-	    $(this).find(".modal-body").load(link.attr("href"));
+	//Fill modal with content from link href
+	$(document).ready(function() {
+		$("#CommentEdit").on("show.bs.modal", function(e) {
+			var link = $(e.relatedTarget);
+			$(this).find(".modal-body").load(link.attr("href"));
+		});
 	});
-});
 </script>
 <div id="CommentEdit" class="modal fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="false">
@@ -298,12 +289,9 @@ $( document ).ready(function() {
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">x</button>
 				<h4 class="modal-title" id="myModalLabel">
-					<spring:message code="label.Edit_Comment_Entry" />
-				</h4>
+					<spring:message code="label.Edit_Comment_Entry" /></h4>
 			</div>
-			<div class="modal-body">
-				
-			</div>
+			<div class="modal-body"></div>
 
 		</div>
 	</div>
@@ -370,6 +358,3 @@ $( document ).ready(function() {
 		src="<c:url value="/resources/production/js/echart/echarts-all.js" />"></script>
 	<script
 		src="<c:url value="/resources/production/js/echart/green.js" />"></script>
-
-
-	

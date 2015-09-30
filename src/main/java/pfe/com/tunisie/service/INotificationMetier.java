@@ -12,4 +12,6 @@ public interface INotificationMetier {
 
 	public List<Notification> findAll();
 
+	public List<Notification>  findByIdUser(Long idUser);
+
 }

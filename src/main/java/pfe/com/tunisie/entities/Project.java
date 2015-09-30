@@ -3,7 +3,6 @@ package pfe.com.tunisie.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,8 +21,8 @@ public class Project implements Serializable {
 
 	private String categorie;
 	private String status;
-	private Long estimation_budget;
-	private Long estimation_dure;
+	private String estimation_budget;
+	private String estimation_dure;
 	private String description;
 	private Date date;
 
@@ -32,12 +31,25 @@ public class Project implements Serializable {
 
 	@OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
 	private Collection<FileProjet> fileProject;
+	@OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
+	private Collection<ActivityProject> ActivityProject;
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User user;
 	
+	
+	public Collection<ActivityProject> getActivityProject() {
+		return ActivityProject;
+	}
+
+
+	public void setActivityProject(Collection<ActivityProject> activityProject) {
+		ActivityProject = activityProject;
+	}
+
+
 	public Project(Long idProject, String nom, String categorie, String status,
-			Long estimation_budget, Long estimation_dure, String description,
+			String estimation_budget, String estimation_dure, String description,
 			Date date, Collection<Task> tasks,
 			Collection<FileProjet> fileProject, User user) {
 		super();
@@ -55,12 +67,12 @@ public class Project implements Serializable {
 	}
 
 
-	public Long getEstimation_budget() {
+	public String getEstimation_budget() {
 		return estimation_budget;
 	}
 
 	public Project(String nom, String categorie, String status,
-			Long estimation_budget, Long estimation_dure, Long idProject,
+			String estimation_budget, String estimation_dure, Long idProject,
 			String description, Date date, User user, Collection<Task> tasks,
 			Collection<FileProjet> fileProject) {
 		super();
@@ -117,15 +129,15 @@ public class Project implements Serializable {
 		this.fileProject = fileProject;
 	}
 
-	public void setEstimation_budget(Long estimation_budget) {
+	public void setEstimation_budget(String estimation_budget) {
 		this.estimation_budget = estimation_budget;
 	}
 
-	public Long getEstimation_dure() {
+	public String getEstimation_dure() {
 		return estimation_dure;
 	}
 
-	public void setEstimation_dure(Long estimation_dure) {
+	public void setEstimation_dure(String estimation_dure) {
 		this.estimation_dure = estimation_dure;
 	}
 

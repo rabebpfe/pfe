@@ -1,5 +1,8 @@
 package pfe.com.tunisie.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import pfe.com.tunisie.entities.User;
 import pfe.com.tunisie.model.UserModel;
 import pfe.com.tunisie.service.IActivityMetier;
+import pfe.com.tunisie.service.IMessageMetier;
+import pfe.com.tunisie.service.INotificationMetier;
 import pfe.com.tunisie.service.IProjetMetier;
 import pfe.com.tunisie.service.ISkillsMetier;
+import pfe.com.tunisie.service.ITaskMetier;
 import pfe.com.tunisie.service.IUserMetier;
 
 @Controller
@@ -30,6 +37,12 @@ public class ProfileController {
 	private IActivityMetier IActivityMetier;
 	@Autowired
 	private IProjetMetier IProjetMetier;
+	@Autowired
+	private ITaskMetier ITaskMetier;
+	@Autowired
+	private INotificationMetier INotificationMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(Model model, HttpServletRequest request) {
@@ -43,8 +56,10 @@ public class ProfileController {
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
 		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
+		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("useredit",IUserMetier.useredit(idUser));
 		model.addAttribute("usere", new User());
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "user.profile";
 	}
 
@@ -61,11 +76,14 @@ public class ProfileController {
 			photo = file.getBytes();
 			nomphoto = file.getOriginalFilename();
 		}
-		IUserMetier.update(idUser, nomphoto, photo);
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+		IUserMetier.update(idUser, nomphoto, photo,date);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
+		model.addAttribute("tache", ITaskMetier.findByIdUser(idUser));
 		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
 		model.addAttribute("usere", new User());
 		return "redirect:/profile";
@@ -80,8 +98,11 @@ public class ProfileController {
 		String username = auth.getName();
 		request.getSession().setAttribute("username", username);
 		Long idUser1 = IUserMetier.findByusername(username);
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
 		IUserMetier.update(idUser, UserModel.getUsername(),
-		UserModel.getPassword(), UserModel.getEmail());
+		UserModel.getPassword(), UserModel.getEmail(),date);
+		model.addAttribute("tache", ITaskMetier.findByIdUser(idUser));
 		model.addAttribute("useredit",IUserMetier.useredit(idUser1));
         return "redirect:/login";
 

@@ -1,9 +1,8 @@
 package pfe.com.tunisie.service;
 
 
+import java.util.Date;
 import java.util.List;
-
-
 
 import pfe.com.tunisie.entities.User;
 
@@ -25,9 +24,9 @@ public interface IUserMetier {
 	public Long findByusername(String username);
 
 	public void update(Long idUser, String username, String password,
-			String email);
+			String email, Date date);
 
-	public void update(Long idUser, String nomphoto, byte[] photo);
+	public void update(Long idUser, String nomphoto, byte[] photo,Date date);
 
 	
 

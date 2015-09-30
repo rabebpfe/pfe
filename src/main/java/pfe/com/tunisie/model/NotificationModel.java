@@ -4,7 +4,32 @@ public class NotificationModel {
 
 	private Long idNotification;
 	private String Description;
-	private Long idUser;
+	private String create_By;
+	private String user;
+	public NotificationModel(Long idNotification, String description,
+			String create_By, String user) {
+		super();
+		this.idNotification = idNotification;
+		Description = description;
+		this.create_By = create_By;
+		this.user = user;
+	}
+
+	public String getCreate_By() {
+		return create_By;
+	}
+
+	public void setCreate_By(String create_By) {
+		this.create_By = create_By;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
 
 	public Long getIdNotification() {
 		return idNotification;
@@ -22,20 +47,14 @@ public class NotificationModel {
 		Description = description;
 	}
 
-	public Long getIdUser() {
-		return idUser;
-	}
+	
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
-	}
-
-	public NotificationModel(Long idNotification, String description,
-			Long idUser) {
+	public NotificationModel(Long idNotification, String description
+			) {
 		super();
 		this.idNotification = idNotification;
 		Description = description;
-		this.idUser = idUser;
+
 	}
 
 	public NotificationModel() {

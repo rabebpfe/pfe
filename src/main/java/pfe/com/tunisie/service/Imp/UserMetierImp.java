@@ -1,13 +1,18 @@
 package pfe.com.tunisie.service.Imp;
 
+import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import pfe.com.tunisie.dao.IActivityDAO;
 import pfe.com.tunisie.dao.ISkillsDAO;
 import pfe.com.tunisie.dao.IUserDAO;
 import pfe.com.tunisie.dao.IRoleDAO;
+import pfe.com.tunisie.entities.Activity;
 import pfe.com.tunisie.entities.Role;
 import pfe.com.tunisie.entities.Skills;
 import pfe.com.tunisie.entities.User;
@@ -25,7 +30,8 @@ public class UserMetierImp implements IUserMetier {
 	private ISkillsDAO ISkillsDAO;
 	@Autowired
 	private ApplicationMailer applicationMailer;
-
+	@Autowired
+	private IActivityDAO IActivityDAO;
 	@Override
 	public String saveUser(String role, String username, String password,
 			String email, String adresse, String nomphoto, byte[] photo,
@@ -138,31 +144,7 @@ public class UserMetierImp implements IUserMetier {
 		return IdUser;
 	}
 
-	@Override
-	public void update(Long idUser, String username, String password,
-			String email) {
-
-		User u = IUserDAO.findOne(idUser);
-		u.setUsername(username);
-		u.setEmail(email);
-
-		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
-		sha.setEncodeHashAsBase64(false);
-		String hash = sha.encodePassword(password, null);
-		u.setPassword(hash);
-		IUserDAO.save(u);
-
-	}
-
-	@Override
-	public void update(Long idUser, String nomphoto, byte[] photo) {
-		User user = IUserDAO.findOne(idUser);
-		user.setIdUser(idUser);
-		user.setNomPhoto(nomphoto);
-		user.setPhoto(photo);
-		IUserDAO.save(user);
-
-	}
+	
 
 	@Override
 	public void update(long idUser, String roles, String username,
@@ -221,6 +203,143 @@ public class UserMetierImp implements IUserMetier {
 		}
 		return users;
 
+	}
+
+	@Override
+	public void update(Long idUser, String nomphoto, byte[] photo, Date date) {
+		User user = IUserDAO.findOne(idUser);
+		user.setIdUser(idUser);
+		user.setNomPhoto(nomphoto);
+		user.setPhoto(photo);
+		IUserDAO.save(user);
+		Activity Activity=new Activity();
+		int day = date.getDate();
+		int month = date.getMonth() + 1;
+		Activity.setDay(day);
+		Activity.setDescription("Votre photo a été changée avec succès" );
+		if (month == 1) {
+		
+			Activity.setMonth("Janvier");
+		}
+		if (month == 2) {
+		
+			Activity.setMonth("F�vrier");
+		}
+		if (month == 3) {
+			
+			Activity.setMonth("Mars");
+		}
+		if (month == 4) {
+			
+			Activity.setMonth("Avril");
+		}
+		if (month == 5) {
+			
+			Activity.setMonth("Mai");
+		}
+		if (month == 6) {
+			
+			Activity.setMonth("Juin");
+		}
+		if (month == 7) {
+			
+			Activity.setMonth("Juillet");
+		}
+		if (month == 8) {
+			
+			Activity.setMonth("Aout");
+		}
+		if (month == 9) {
+		
+			Activity.setMonth("Septembre");
+		}
+		if (month == 10) {
+			
+			Activity.setMonth("Octobre");
+		}
+		if (month == 11) {
+		
+			Activity.setMonth("Novembre");
+		}
+		if (month == 12) {
+			
+			Activity.setMonth("D�cembre");
+		}
+		Activity.setUser(user);
+		IActivityDAO.save(Activity);
+		
+	}
+
+	@Override
+	public void update(Long idUser, String username, String password,
+			String email, Date date) {
+		User u = IUserDAO.findOne(idUser);
+		u.setUsername(username);
+		u.setEmail(email);
+
+		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
+		sha.setEncodeHashAsBase64(false);
+		String hash = sha.encodePassword(password, null);
+		u.setPassword(hash);
+		IUserDAO.save(u);
+		Activity Activity=new Activity();
+		int day = date.getDate();
+		int month = date.getMonth() + 1;
+		Activity.setDay(day);
+		Activity.setDescription("Votre profile a été changée avec succès ");
+		if (month == 1) {
+		
+			Activity.setMonth("Janvier");
+		}
+		if (month == 2) {
+		
+			Activity.setMonth("F�vrier");
+		}
+		if (month == 3) {
+			
+			Activity.setMonth("Mars");
+		}
+		if (month == 4) {
+			
+			Activity.setMonth("Avril");
+		}
+		if (month == 5) {
+			
+			Activity.setMonth("Mai");
+		}
+		if (month == 6) {
+			
+			Activity.setMonth("Juin");
+		}
+		if (month == 7) {
+			
+			Activity.setMonth("Juillet");
+		}
+		if (month == 8) {
+			
+			Activity.setMonth("Aout");
+		}
+		if (month == 9) {
+		
+			Activity.setMonth("Septembre");
+		}
+		if (month == 10) {
+			
+			Activity.setMonth("Octobre");
+		}
+		if (month == 11) {
+		
+			Activity.setMonth("Novembre");
+		}
+		if (month == 12) {
+			
+			Activity.setMonth("D�cembre");
+		}
+		Activity.setUser(u);
+		IActivityDAO.save(Activity);
+		
+
+		
 	}
 
 }

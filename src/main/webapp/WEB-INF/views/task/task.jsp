@@ -385,6 +385,7 @@
 					form.date.focus();
 					return false;
 				}
+			
 
 				return true;
 			}

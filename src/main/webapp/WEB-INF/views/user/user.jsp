@@ -5,6 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
@@ -91,7 +92,7 @@
 
 				<div class="x_content">
 
-
+					
 					<form:form id="demo-form2" class="form-horizontal form-label-left"
 						modelAttribute="usere" method="POST" action="saveUser"
 						enctype="multipart/form-data">
@@ -117,6 +118,15 @@
 								<form:input path="password" type="password" id="password"
 									name="password" placeHolder="new Password"
 									class="form-control col-md-7 col-xs-12" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">
+								<spring:message code="label.Saisir_nouveau" />
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="password" placeHolder="Repeat Password"
+									class="form-control" id="password1" name="password1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -382,6 +392,11 @@
 				form.password.focus(); //met le curseur dans le champ demandé
 				return false; //enpèche l'envoi du formulaire
 			}
+			if (form.password.value != form.password1.value) {
+				alert("<spring:message code="label.seize_your_password" />");
+				form.password1.focus(); //met le curseur dans le champ demandé
+				return false; //enpèche l'envoi du formulaire
+			}
 			if (form.email.value == '') {
 				alert("<spring:message code="label.Thank_you_seize_your_email" />");
 				form.email.focus(); //met le curseur dans le champ demandé
@@ -415,10 +430,6 @@
 
 			}
 			</c:forEach>
-
-		
-			
-			
 
 			<c:forEach items="${users}" var="user" varStatus="loop">
 			if (form.email.value == '${user.email}') {

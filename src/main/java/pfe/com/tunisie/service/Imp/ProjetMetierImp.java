@@ -58,10 +58,13 @@ public class ProjetMetierImp implements IProjetMetier {
 		return Projects;
 
 	}
+
+
+
+
 	@Override
 	public void saveProjet(String description, String nom, String categorie,
-			Date date, String status, Long estimation_dure,
-			Long estimation_budget,Long idUser) {
+			Date date, String status, String estimation_budget, String estimation_dure, Long idUser) {
 		Project Project =new Project ();
 		Project.setCategorie(categorie);
 		Project.setDate(date);
@@ -79,9 +82,9 @@ public class ProjetMetierImp implements IProjetMetier {
 
 	@Override
 	public void update(long idProject, String nom, String description,
-			String categorie, Long estimation_budget, Long estimation_dure,
-			String status, Date date) {
-		
+			String categorie, String estimation_dure, String estimation_budget, String status,
+			Date date) {
+
 		Project Project=IProjetDAO.findOne(idProject);
 		Project.setNom(nom);
 		Project.setCategorie(categorie);
@@ -91,7 +94,6 @@ public class ProjetMetierImp implements IProjetMetier {
 		Project.setStatus(status);
 		Project.setDescription(description);
 		IProjetDAO.save(Project);
-		
 		
 	}
 

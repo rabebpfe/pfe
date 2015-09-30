@@ -2,16 +2,12 @@ package pfe.com.tunisie.service.Imp;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import pfe.com.tunisie.dao.IFileTaskDAO;
 import pfe.com.tunisie.dao.ITaskDAO;
-
 import pfe.com.tunisie.entities.FileTask;
-
 import pfe.com.tunisie.entities.Task;
 import pfe.com.tunisie.service.IFileTaskMetier;
 

@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import pfe.com.tunisie.entities.Project;
+import pfe.com.tunisie.service.IActivityProjectMetier;
 import pfe.com.tunisie.service.IFileProjetMetier;
+import pfe.com.tunisie.service.IMessageMetier;
 import pfe.com.tunisie.service.IProjetMetier;
 import pfe.com.tunisie.service.IUserMetier;
 
@@ -22,6 +25,10 @@ public class ProjetDetailController {
 	private IProjetMetier IProjetMetier;
 	@Autowired
 	private IFileProjetMetier IFileProjetMetier;
+	@Autowired
+	private IActivityProjectMetier IActivityProjectMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/projetDetail")
 	public String projetDetail(Model model, HttpServletRequest request,
@@ -37,6 +44,8 @@ public class ProjetDetailController {
 		model.addAttribute("Project", Project);
 		model.addAttribute("Files",
 				IFileProjetMetier.findFileByProjects(idProject));
+		model.addAttribute("Activity", IActivityProjectMetier.findByIdProject(idProject));
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "projet.projetDetail";
 	}
 }

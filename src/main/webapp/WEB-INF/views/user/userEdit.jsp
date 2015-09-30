@@ -120,6 +120,16 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label  class="control-label col-md-3 col-sm-3 col-xs-12">
+								<spring:message code="label.Saisir_nouveau" />
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input  type="password"
+									placeHolder="Repeat Password" class="form-control" id="password1"
+									name="password1" />
+							</div>
+						</div>
+						<div class="form-group">
 							<form:label path="email"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
 								<spring:message code="label.Email" />
@@ -334,6 +344,11 @@
 				if (form.password.value == '') {
 					alert("<spring:message code="label.Thank_you_to_seize_your_password" />");
 					form.password.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+				}
+				if (form.password.value != form.password1.value) {
+					alert("<spring:message code="label.seize_your_password" />");
+					form.password1.focus(); //met le curseur dans le champ demandé
 					return false; //enpèche l'envoi du formulaire
 				}
 				if (form.email.value == '') {

@@ -9,12 +9,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pfe.com.tunisie.service.IMessageMetier;
+import pfe.com.tunisie.service.INotificationMetier;
 import pfe.com.tunisie.service.IUserMetier;
 
 @Controller
 public class NotificationController {
 	@Autowired
 	private IUserMetier IUserMetier;
+	@Autowired
+	private INotificationMetier INotificationMetier;
+	@Autowired
+	private IMessageMetier IMessageMetier;
 
 	@RequestMapping("/notification")
 	public String notification(Model model, HttpServletRequest request) {
@@ -25,7 +31,8 @@ public class NotificationController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-
+		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "task.notification";
 	}
 }

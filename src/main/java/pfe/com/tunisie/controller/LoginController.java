@@ -36,7 +36,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/passWordRec", method = RequestMethod.GET)
 	public String passWordRec(Model model) throws IOException {
-		// public String generatePassword() {
+		
 
 		model.addAttribute("UserModel", new User());
 		return "login/passWordRec";

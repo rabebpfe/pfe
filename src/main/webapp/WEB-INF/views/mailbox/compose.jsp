@@ -61,7 +61,10 @@
 <link
 	href="<c:url value="/resources/production/css/switchery/switchery.min.css" />"
 	rel="stylesheet">
-
+<!-- select2 -->
+<link
+	href="<c:url value="/resources/production/css/select/select2.min.css" />"
+	rel="stylesheet">
 
 
 <script src="<c:url value="/resources/production/js/jquery.min.js" />"></script>
@@ -106,25 +109,39 @@
 			</ul>
 			<div class="clearfix"></div>
 		</div>
-		<form id="demo-form2" data-parsley-validate
-			class="form-horizontal form-label-left" action="compose">
+		
+
+		
+		 
+		<form:form id="demo-form2" class="form-horizontal form-label-left"
+			modelAttribute="msgs" method="POST" action="send">
+
 
 			<div class="form-group">
-				<label class="control-label col-md-3 col-sm-3 col-xs-12"
-					for="first-name"><spring:message code="label.To" /><span
-					class="required">*</span> </label>
+				<form:label path="user"
+					class="control-label col-md-3 col-sm-3 col-xs-12" name="user">
+					<spring:message code="label.To" />
+				</form:label>
 				<div class="col-md-6 col-sm-6 col-xs-12">
-					<input type="text" id="first-name" required="required"
-						class="form-control col-md-7 col-xs-12">
+					<form:select path="user" class="select2_multiple form-control">
+						<c:forEach var="users" items="${users}">
+							<form:option path="user" value="${users.email}" />
+						</c:forEach>
+
+					</form:select>
 				</div>
+
 			</div>
+
 			<div class="form-group">
-				<label class="control-label col-md-3 col-sm-3 col-xs-12"
-					for="last-name"><spring:message code="label.Subject" /> <span
-					class="required">*</span> </label>
+				<form:label path="sujet"
+					class="control-label col-md-3 col-sm-3 col-xs-12" for="Subject">
+					<spring:message code="label.Subject" />
+					<span class="required">*</span>
+				</form:label>
 				<div class="col-md-6 col-sm-6 col-xs-12">
-					<input type="text" id="last-name" name="last-name"
-						required="required" class="form-control col-md-7 col-xs-12">
+					<form:input path="sujet" type="text" id="Subject" name="Subject"
+						class="form-control col-md-7 col-xs-12" />
 				</div>
 			</div>
 			<br />
@@ -192,20 +209,17 @@
 
 				</div>
 
-				<div class="btn-group">
-					<a class="btn" title="Insert picture (or just drag & drop)"
-						id="pictureBtn"><i class="icon-picture"></i></a> <input
-						type="file" data-role="magic-overlay" data-target="#pictureBtn"
-						data-edit="insertImage" />
-				</div>
+
 				<div class="btn-group">
 					<a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i
 						class="icon-undo"></i></a> <a class="btn" data-edit="redo"
 						title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
 				</div>
 			</div>
-			<div id="editor"></div>
-			<textarea name="descr" id="descr" style="display: none;"></textarea>
+			<div id="editor" > </div>
+			<textarea  name="message" id="message"
+				 style="display: none;"></textarea>
+				
 			<br />
 
 
@@ -234,12 +248,7 @@
 				</div>
 			</div>
 
-		</form>
-
-
-
-
-
+		</form:form>
 
 
 		<script
@@ -290,26 +299,77 @@
 			src="<c:url value="/resources/production/js/autocomplete/countries.js" />"></script>
 		<script
 			src="<c:url value="/resources/production/js/autocomplete/jquery.autocomplete.js" />"></script>
-		<script type="text/javascript">
-			$(function() {
-				'use strict';
-				var countriesArray = $.map(countries, function(value, key) {
-					return {
-						value : value,
-						data : key
-					};
-				});
-				// Initialize autocomplete with custom appendTo:
-				$('#autocomplete-custom-append').autocomplete({
-					lookup : countriesArray,
-					appendTo : '#autocomplete-container'
-				});
-			});
-		</script>
-		<script src="js/custom.js"></script>
 
+		    <!-- editor -->
+        <script>
+            $(document).ready(function () {
+                $('.xcxc').click(function () {
+                    $('#message').val($('#editor'));
+                });
+            });
 
+            $(function () {
+                function initToolbarBootstrapBindings() {
+                    var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+                'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+                'Times New Roman', 'Verdana'],
+                        fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+                    $.each(fonts, function (idx, fontName) {
+                        fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
+                    });
+                    $('a[title]').tooltip({
+                        container: 'body'
+                    });
+                    $('.dropdown-menu input').click(function () {
+                            return false;
+                        })
+                        .change(function () {
+                            $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
+                        })
+                        .keydown('esc', function () {
+                            this.value = '';
+                            $(this).change();
+                        });
+
+                    $('[data-role=magic-overlay]').each(function () {
+                        var overlay = $(this),
+                            target = $(overlay.data('target'));
+                        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+                    });
+                    if ("onwebkitspeechchange" in document.createElement("input")) {
+                        var editorOffset = $('#editor').offset();
+                        $('#voiceBtn').css('position', 'absolute').offset({
+                            top: editorOffset.top,
+                            left: editorOffset.left + $('#editor').innerWidth() - 35
+                        });
+                    } else {
+                        $('#voiceBtn').hide();
+                    }
+                };
+
+                function showErrorAlert(reason, detail) {
+                    var msg = '';
+                    if (reason === 'unsupported-file-type') {
+                        msg = "Unsupported format " + detail;
+                    } else {
+                        console.log("error uploading file", reason, detail);
+                    }
+                    $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+                };
+                initToolbarBootstrapBindings();
+                $('#editor').wysiwyg({
+                    fileUploadError: showErrorAlert
+                });
+                window.prettyPrint && prettyPrint();
+            });
+        </script>
+        <!-- /editor -->
 		<!-- select2 -->
+		<script
+			src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
+		<!-- select2 -->
+
 		<script>
 			$(document).ready(function() {
 				$(".select2_single").select2({
@@ -318,160 +378,10 @@
 				});
 				$(".select2_group").select2({});
 				$(".select2_multiple").select2({
-					maximumSelectionLength : 4,
-					placeholder : "With Max Selection limit 4",
+					maximumSelectionLength : 3,
+					placeholder : "With Max Selection limit 3",
 					allowClear : true
 				});
 			});
 		</script>
 		<!-- /select2 -->
-		<!-- input tags -->
-		<script>
-			function onAddTag(tag) {
-				alert("Added a tag: " + tag);
-			}
-
-			function onRemoveTag(tag) {
-				alert("Removed a tag: " + tag);
-			}
-
-			function onChangeTag(input, tag) {
-				alert("Changed a tag: " + tag);
-			}
-
-			$(function() {
-				$('#tags_1').tagsInput({
-					width : 'auto'
-				});
-			});
-		</script>
-		<!-- /input tags -->
-		<!-- form validation -->
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$.listen('parsley:field:validate', function() {
-					validateFront();
-				});
-				$('#demo-form .btn').on('click', function() {
-					$('#demo-form').parsley().validate();
-					validateFront();
-				});
-				var validateFront = function() {
-					if (true === $('#demo-form').parsley().isValid()) {
-						$('.bs-callout-info').removeClass('hidden');
-						$('.bs-callout-warning').addClass('hidden');
-					} else {
-						$('.bs-callout-info').addClass('hidden');
-						$('.bs-callout-warning').removeClass('hidden');
-					}
-				};
-			});
-
-			$(document).ready(function() {
-				$.listen('parsley:field:validate', function() {
-					validateFront();
-				});
-				$('#demo-form2 .btn').on('click', function() {
-					$('#demo-form2').parsley().validate();
-					validateFront();
-				});
-				var validateFront = function() {
-					if (true === $('#demo-form2').parsley().isValid()) {
-						$('.bs-callout-info').removeClass('hidden');
-						$('.bs-callout-warning').addClass('hidden');
-					} else {
-						$('.bs-callout-info').addClass('hidden');
-						$('.bs-callout-warning').removeClass('hidden');
-					}
-				};
-			});
-			try {
-				hljs.initHighlightingOnLoad();
-			} catch (err) {
-			}
-		</script>
-		<!-- /form validation -->
-		<!-- editor -->
-		<script>
-			$(document).ready(function() {
-				$('.xcxc').click(function() {
-					$('#descr').val($('#editor').html());
-				});
-			});
-
-			$(function() {
-				function initToolbarBootstrapBindings() {
-					var fonts = [ 'Serif', 'Sans', 'Arial', 'Arial Black',
-							'Courier', 'Courier New', 'Comic Sans MS',
-							'Helvetica', 'Impact', 'Lucida Grande',
-							'Lucida Sans', 'Tahoma', 'Times',
-							'Times New Roman', 'Verdana' ], fontTarget = $(
-							'[title=Font]').siblings('.dropdown-menu');
-					$
-							.each(
-									fonts,
-									function(idx, fontName) {
-										fontTarget
-												.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">'
-														+ fontName
-														+ '</a></li>'));
-									});
-					$('a[title]').tooltip({
-						container : 'body'
-					});
-					$('.dropdown-menu input').click(function() {
-						return false;
-					}).change(
-							function() {
-								$(this).parent('.dropdown-menu').siblings(
-										'.dropdown-toggle').dropdown('toggle');
-							}).keydown('esc', function() {
-						this.value = '';
-						$(this).change();
-					});
-
-					$('[data-role=magic-overlay]').each(
-							function() {
-								var overlay = $(this), target = $(overlay
-										.data('target'));
-								overlay.css('opacity', 0).css('position',
-										'absolute').offset(target.offset())
-										.width(target.outerWidth()).height(
-												target.outerHeight());
-							});
-					if ("onwebkitspeechchange" in document
-							.createElement("input")) {
-						var editorOffset = $('#editor').offset();
-						$('#voiceBtn').css('position', 'absolute').offset(
-								{
-									top : editorOffset.top,
-									left : editorOffset.left
-											+ $('#editor').innerWidth() - 35
-								});
-					} else {
-						$('#voiceBtn').hide();
-					}
-				}
-				;
-
-				function showErrorAlert(reason, detail) {
-					var msg = '';
-					if (reason === 'unsupported-file-type') {
-						msg = "Unsupported format " + detail;
-					} else {
-						console.log("error uploading file", reason, detail);
-					}
-					$(
-							'<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'
-									+ '<strong>File upload error</strong> '
-									+ msg + ' </div>').prependTo('#alerts');
-				}
-				;
-				initToolbarBootstrapBindings();
-				$('#editor').wysiwyg({
-					fileUploadError : showErrorAlert
-				});
-				window.prettyPrint && prettyPrint();
-			});
-		</script>
-		<!-- /editor -->

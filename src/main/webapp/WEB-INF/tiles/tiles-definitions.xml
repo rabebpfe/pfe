@@ -34,14 +34,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/contacts/contacts.jsp"></put-attribute>
 	</definition>
-	<definition name="mailbox.mailbox" extends="defaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/mailbox/mailbox.jsp"></put-attribute>
+	<definition name="mailbox.reception" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/reception.jsp"></put-attribute>
+	</definition>
+	<definition name="mailbox.envoye" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/envoye.jsp"></put-attribute>
 	</definition>
 	<definition name="mailbox.compose" extends="defaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/mailbox/compose.jsp"></put-attribute>
 	</definition>
-	<definition name="mailbox.read" extends="defaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/mailbox/read.jsp"></put-attribute>
+	<definition name="mailbox.readenvoye" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/readenvoye.jsp"></put-attribute>
+	</definition>
+		<definition name="mailbox.readreception" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/mailbox/readreception.jsp"></put-attribute>
 	</definition>
 	<definition name="projet.projet" extends="defaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/projet/projet.jsp"></put-attribute>
@@ -77,21 +83,18 @@
 			value="/WEB-INF/views/contacts/contactProfile.jsp"></put-attribute>
 	</definition>
 	<definition name="user.userEdit" extends="defaultTemplate">
-		<put-attribute name="body"
-			value="/WEB-INF/views/user/userEdit.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/user/userEdit.jsp"></put-attribute>
 	</definition>
 	<definition name="projet.projetEdit" extends="defaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/projet/projetEdit.jsp"></put-attribute>
 	</definition>
 	<definition name="task.taskEdit" extends="defaultTemplate">
-		<put-attribute name="body"
-			value="/WEB-INF/views/task/taskEdit.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/task/taskEdit.jsp"></put-attribute>
 	</definition>
-	
 
 	<definition name="comment.edit" template="/WEB-INF/views/comment/ajax_edit.jsp">
-		
+
 	</definition>
 
 

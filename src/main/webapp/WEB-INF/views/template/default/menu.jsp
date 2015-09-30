@@ -50,16 +50,18 @@
 									code="label.Contacts" /></a></li>
 					</sec:authorize>
 				</ul></li>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<li><a> <i class="fa fa-bar-chart-o   "></i> <spring:message
 						code="label.Projects" /><span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu" style="display: none">
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
+					
 						<li><a href="projet"><spring:message
 									code="label.Projects" /></a></li>
 						<li><a href="projetGallery"><spring:message
 									code="label.Gallery" /></a></li>
-					</sec:authorize>
+				
 				</ul></li>
+					</sec:authorize>
 			<li><a><i class="fa fa-tasks"></i> <spring:message
 						code="label.Task" /><span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu" style="display: none">
@@ -90,7 +92,9 @@
 			<li><a><i class="fa fa-envelope"></i> <spring:message
 						code="label.Mailbox" /><span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu" style="display: none">
-					<li><a href="mailbox"><spring:message code="label.Inbox" /></a>
+					<li><a href="envoye"><spring:message code="label.Envoye" /></a>
+					</li>
+					<li><a href="reception"><spring:message code="label.Inbox" /></a>
 					</li>
 					<li><a href="compose"><spring:message code="label.Compose" /></a>
 					</li>

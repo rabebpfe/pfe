@@ -1,7 +1,6 @@
 package pfe.com.tunisie.service;
 
 import java.util.List;
-
 import pfe.com.tunisie.entities.Event;
 
 public interface IEventMetier {
