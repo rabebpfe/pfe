@@ -18,8 +18,7 @@ public class Project implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProject;
 	private String nom;
-
-	private String categorie;
+    private String categorie;
 	private String status;
 	private String estimation_budget;
 	private String estimation_dure;

@@ -34,7 +34,7 @@ public class Skills implements Serializable {
 
 	public Skills() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public void setIdSkills(Long idSkills) {

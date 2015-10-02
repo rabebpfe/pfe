@@ -18,7 +18,9 @@ public class Message implements Serializable {
 	private Long idMail;
 	private String sujet;
 	private String message; 
-	
+	private int day;
+	private String month;
+	long hours;
 	@ManyToOne
 	@JoinColumn(name = "create_By")
 	private User users;
@@ -26,9 +28,7 @@ public class Message implements Serializable {
 	@JoinColumn(name = "idUser")
 	private User user;
 	
-	private int day;
-	private String month;
-	long hours;
+	
 	long munite;
 	public Long getIdMail() {
 		return idMail;

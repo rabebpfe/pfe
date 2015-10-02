@@ -16,6 +16,10 @@ public class Commente implements Serializable {
 	private String Description;
 	private int day;
 	private String month;
+	@ManyToOne
+	@JoinColumn(name = "idUser")
+	private User user;
+
 	
 
 	public Commente(Long idCommente, String description, int day, String month,
@@ -27,6 +31,7 @@ public class Commente implements Serializable {
 		this.month = month;
 		this.user = user;
 		this.task = task;
+		
 	}
 
 	public int getDay() {
@@ -45,9 +50,6 @@ public class Commente implements Serializable {
 		this.month = month;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "idUser")
-	private User user;
 
 	public User getUser() {
 		return user;

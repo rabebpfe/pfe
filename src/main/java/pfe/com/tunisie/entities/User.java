@@ -43,14 +43,15 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Collection<Notification> notifications;
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private Collection<Notification> notfication;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Collection<Event> events;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Collection<Message> mails;
 	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	private Collection<Message> messages;
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private Collection<Notification> notfication;
+	
 	
 
 	public Collection<Message> getMessages() {
