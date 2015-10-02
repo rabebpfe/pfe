@@ -217,8 +217,8 @@
 				</div>
 			</div>
 			<div id="editor" > </div>
-			<textarea  name="message" id="message"
-				 style="display: none;"></textarea>
+			<form:textarea  path="message" name="message" id="message"
+				 style="display: none;"></form:textarea>
 				
 			<br />
 

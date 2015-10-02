@@ -18,6 +18,12 @@ public interface IMessageMetier {
 
 	public List<Message> findByIdUser(Long idUser);
 
-	public List<Message> findByCreate_By(Long idUser);
+    public List<Message> findAllByIdUser(Long idUser);
+
+	public List<Message> findAllByCreate_By(Long idUser);
+
+	public Message findReadByIdUser(Long idUser);
+
+	public Message findReadByCreate_By(Long idUser);
 
 }
