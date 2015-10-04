@@ -1,6 +1,7 @@
 package pfe.com.tunisie.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Activity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idActivity;
+	private Long id;
 	private int day;
 	private String month;
 	private String description;
@@ -21,18 +22,12 @@ public class Activity implements Serializable {
 	@JoinColumn(name = "idUser")
 	private User user;
 
-	public User getUser() {
-		return user;
+	public Long getId() {
+		return id;
 	}
 
-	public Activity(Long idActivity, int day, String month, String description,
-			User user) {
-		super();
-		this.idActivity = idActivity;
-		this.day = day;
-		this.month = month;
-		this.description = description;
-		this.user = user;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public int getDay() {
@@ -51,36 +46,36 @@ public class Activity implements Serializable {
 		this.month = month;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Long getIdActivity() {
-		return idActivity;
-	}
-
-	public void setIdActivity(Long idActivity) {
-		this.idActivity = idActivity;
-	}
-
-	public Activity(Long idActivity, String description) {
-		super();
-		this.idActivity = idActivity;
-
-		this.description = description;
-
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public Activity() {
-		super();
-
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Activity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Activity(Long id, int day, String month, String description,
+			User user) {
+		super();
+		this.id = id;
+		this.day = day;
+		this.month = month;
+		this.description = description;
+		this.user = user;
+	}
+
+	
 }

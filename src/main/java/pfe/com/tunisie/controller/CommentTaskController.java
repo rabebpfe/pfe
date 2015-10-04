@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pfe.com.tunisie.entities.Commente;
-import pfe.com.tunisie.model.CommenteModel;
+import pfe.com.tunisie.entities.Comment;
+import pfe.com.tunisie.model.CommentModel;
 import pfe.com.tunisie.model.UserModel;
 import pfe.com.tunisie.service.ICommenteMetier;
 import pfe.com.tunisie.service.IMessageMetier;
@@ -34,7 +34,7 @@ public class CommentTaskController {
 
 	@RequestMapping(value = "/saveComment", method = RequestMethod.POST)
 	public String saveCommentProjet(
-			@ModelAttribute("SpringWeb") CommenteModel CommenteModel,
+			@ModelAttribute("SpringWeb") CommentModel CommenteModel,
 			Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -76,7 +76,7 @@ public class CommentTaskController {
 	
 	@RequestMapping(value = "/comment/edit")
 	public String add(Model model, @RequestParam(value="id") Long idCommente) {
-	    Commente comment = ICommenteMetier.findOne(idCommente);
+	    Comment comment = ICommenteMetier.findOne(idCommente);
 	    model.addAttribute("comment", comment);
 	    return "comment.edit";
 	}
@@ -85,7 +85,7 @@ public class CommentTaskController {
 	@RequestMapping(value = "/comment/save", method = RequestMethod.POST)
 	public String save(Model model, @RequestParam(value="idCommente") Long idComment, 
 	        @RequestParam(value = "Description") String description) {
-	    Commente comment = ICommenteMetier.findOne(idComment);
+	    Comment comment = ICommenteMetier.findOne(idComment);
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
 	    ICommenteMetier.update(idComment, description, date);

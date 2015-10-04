@@ -16,61 +16,12 @@
 
 <!-- Bootstrap core CSS -->
 
-<!-- Bootstrap core CSS -->
-
-<link
-	href="<c:url value="/resources/production/css/bootstrap.min.css" />"
-	rel="stylesheet">
-
-<link
-	href="<c:url value="/resources/production/fonts/css/font-awesome.min.css" />"
-	rel="stylesheet">
-<link href="<c:url value="/resources/production/css/animate.min.css" />"
-	rel="stylesheet">
-
-<!-- Custom styling plus plugins -->
-<link href="<c:url value="/resources/production/css/custom.css" />"
-	rel="stylesheet">
-<link
-	href="<c:url value="/resources/production/css/icheck/flat/green.css" />"
-	rel="stylesheet">
-<link
-	href="<c:url value="/resources/production/css/datatables/tools/css/dataTables.tableTools.css" />"
-	rel="stylesheet">
-<!-- select2 -->
-<link
-	href="<c:url value="/resources/production/css/select/select2.min.css" />"
-	rel="stylesheet">
-
-<script src="<c:url value="/resources/production/js/jquery.min.js" />"></script>
 
 
 </head>
 
 <div class="">
-	<div class="page-title">
-		<div class="title_left">
-			<h3>
-
-				<small> </small>
-			</h3>
-		</div>
-
-		<div class="title_right">
-			<div
-				class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-				<div class="input-group">
-					<input type="text" class="form-control"
-						placeholder=<spring:message code="label.Search" />> <span
-						class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<spring:message code="label.Go" />
-						</button>
-					</span>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<div class="clearfix"></div>
 
 	<div class="row">
@@ -290,70 +241,8 @@
 	<script
 		src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
 
-	<!-- Datatables -->
-	<script
-		src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
-
-	<script>
-		$(document).ready(function() {
-			$('input.tableflat').iCheck({
-				checkboxClass : 'icheckbox_flat-green',
-				radioClass : 'iradio_flat-green'
-			});
-		});
-
-		var asInitVals = new Array();
-		$(document)
-				.ready(
-						function() {
-							var oTable = $('#example')
-									.dataTable(
-											{
-												"oLanguage" : {
-													"sSearch" : "Search all columns:"
-												},
-												"aoColumnDefs" : [ {
-													'bSortable' : false,
-													'aTargets' : [ 0 ]
-												} //disables sorting for column one
-												],
-												'iDisplayLength' : 12,
-												"sPaginationType" : "full_numbers",
-												"dom" : 'T<"clear">lfrtip',
-												"tableTools" : {
-													"sSwfPath" : "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
-												}
-											});
-							$("tfoot input").keyup(
-									function() {
-										/* Filter on the column based on the index of this element's parent <th> */
-										oTable.fnFilter(this.value, $(
-												"tfoot th").index(
-												$(this).parent()));
-									});
-							$("tfoot input").each(function(i) {
-								asInitVals[i] = this.value;
-							});
-							$("tfoot input").focus(function() {
-								if (this.className == "search_init") {
-									this.className = "";
-									this.value = "";
-								}
-							});
-							$("tfoot input")
-									.blur(
-											function(i) {
-												if (this.value == "") {
-													this.className = "search_init";
-													this.value = asInitVals[$(
-															"tfoot input")
-															.index(this)];
-												}
-											});
-						});
-	</script>
+	
+	
 	<script>
 		function controle(form1) {
 

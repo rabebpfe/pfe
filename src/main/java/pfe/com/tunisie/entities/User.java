@@ -30,7 +30,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Role> roles;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Collection<Commente> commentes;
+	private Collection<Comment> commentes;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Collection<Activity> activitys;
@@ -221,11 +221,11 @@ public class User implements Serializable {
 		this.roles = roles;
 	}
 
-	public Collection<Commente> getCommentes() {
+	public Collection<Comment> getCommentes() {
 		return commentes;
 	}
 
-	public void setCommentes(Collection<Commente> commentes) {
+	public void setCommentes(Collection<Comment> commentes) {
 		this.commentes = commentes;
 	}
 

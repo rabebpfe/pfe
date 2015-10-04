@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Commente implements Serializable {
+public class Comment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCommente;
@@ -22,7 +22,7 @@ public class Commente implements Serializable {
 
 	
 
-	public Commente(Long idCommente, String description, int day, String month,
+	public Comment(Long idCommente, String description, int day, String month,
 			User user, Task task) {
 		super();
 		this.idCommente = idCommente;
@@ -91,12 +91,12 @@ public class Commente implements Serializable {
 		Description = description;
 	}
 
-	public Commente() {
+	public Comment() {
 		super();
 
 	}
 
-	public Commente(Long idCommente, String description) {
+	public Comment(Long idCommente, String description) {
 		super();
 		this.idCommente = idCommente;
 		Description = description;

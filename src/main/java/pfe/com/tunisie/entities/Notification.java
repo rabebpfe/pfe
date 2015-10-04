@@ -17,7 +17,7 @@ public class Notification implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "create_By")
 	private User users;
-	private String Description;
+	private String description;
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User user;
@@ -38,10 +38,10 @@ public class Notification implements Serializable {
 		this.users = users;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 	public User getUser() {
 		return user;
@@ -78,7 +78,7 @@ public class Notification implements Serializable {
 		super();
 		this.idNotification = idNotification;
 		this.users = users;
-		Description = description;
+		this.description = description;
 		this.user = user;
 		this.day = day;
 		this.month = month;

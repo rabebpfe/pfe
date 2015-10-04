@@ -26,7 +26,7 @@ public class Task implements Serializable {
 	private String description;
 	private String priorite;
 	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-	private Collection<Commente> commentes;
+	private Collection<Comment> commentes;
 	@ManyToOne
 	@JoinColumn(name = "idProjet")
 	private Project projet;
@@ -37,7 +37,7 @@ public class Task implements Serializable {
 	public Task(Long idTask, String nom, Date date, String status,
 			 Long create_by, Long user,
 			String description, String priorite,
-			Collection<Commente> commentes, Project projet,
+			Collection<Comment> commentes, Project projet,
 			Collection<FileTask> fileTasks) {
 		super();
 		this.idTask = idTask;
@@ -64,11 +64,11 @@ public class Task implements Serializable {
 		this.priorite = priorite;
 	}
 
-	public Collection<Commente> getCommentes() {
+	public Collection<Comment> getCommentes() {
 		return commentes;
 	}
 
-	public void setCommentes(Collection<Commente> commentes) {
+	public void setCommentes(Collection<Comment> commentes) {
 		this.commentes = commentes;
 	}
 

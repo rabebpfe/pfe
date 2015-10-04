@@ -3,14 +3,14 @@ package pfe.com.tunisie.model;
 public class NotificationModel {
 
 	private Long idNotification;
-	private String Description;
+	private String description;
 	private String create_By;
 	private String user;
 	public NotificationModel(Long idNotification, String description,
 			String create_By, String user) {
 		super();
 		this.idNotification = idNotification;
-		Description = description;
+		description = description;
 		this.create_By = create_By;
 		this.user = user;
 	}
@@ -40,11 +40,11 @@ public class NotificationModel {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	
@@ -53,7 +53,7 @@ public class NotificationModel {
 			) {
 		super();
 		this.idNotification = idNotification;
-		Description = description;
+		this.description = description;
 
 	}
 

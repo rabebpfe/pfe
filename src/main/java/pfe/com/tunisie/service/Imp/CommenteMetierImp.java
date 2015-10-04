@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pfe.com.tunisie.dao.ICommenteDAO;
 import pfe.com.tunisie.dao.ITaskDAO;
 import pfe.com.tunisie.dao.IUserDAO;
-import pfe.com.tunisie.entities.Commente;
+import pfe.com.tunisie.entities.Comment;
 import pfe.com.tunisie.entities.Task;
 import pfe.com.tunisie.entities.User;
 import pfe.com.tunisie.service.ICommenteMetier;
@@ -25,13 +25,13 @@ public class CommenteMetierImp implements ICommenteMetier {
 	private ITaskDAO ITaskDAO;
 
 	@Override
-	public void save(Commente commente) {
+	public void save(Comment commente) {
 		ICommenteDAO.save(commente);
 
 	}
 
 	@Override
-	public Commente findOne(Long idCommente) {
+	public Comment findOne(Long idCommente) {
 
 		return ICommenteDAO.findOne(idCommente);
 	}
@@ -43,16 +43,16 @@ public class CommenteMetierImp implements ICommenteMetier {
 	}
 
 	@Override
-	public List<Commente> findAll() {
+	public List<Comment> findAll() {
 
 		return ICommenteDAO.findAll();
 	}
 
 	@Override
-	public List<Commente> findByIdTask(Long idTask) {
+	public List<Comment> findByIdTask(Long idTask) {
 
-		List<Commente> Commentes = new ArrayList<Commente>();
-		List<Commente> Commente = ICommenteDAO.findAll();
+		List<Comment> Commentes = new ArrayList<Comment>();
+		List<Comment> Commente = ICommenteDAO.findAll();
 
 		for (int i = 0; i < Commente.size(); i++) {
 			if (Commente.get(i).getTask().getIdTask() == idTask) {
@@ -64,7 +64,7 @@ public class CommenteMetierImp implements ICommenteMetier {
 
 	@Override
 	public void save(String description, long idTask, Long idUser, Date date) {
-		Commente Commente = new Commente();
+		Comment Commente = new Comment();
 		Commente.setDescription(description);
 		Task Task = ITaskDAO.findOne(idTask);
 		Commente.setTask(Task);
@@ -120,7 +120,7 @@ public class CommenteMetierImp implements ICommenteMetier {
 	public void update(long idCommente, String description, Date date) {
 
 		System.out.println("**************edit commente ***************"+idCommente);
-		Commente Commente=ICommenteDAO.findOne(idCommente);
+		Comment Commente=ICommenteDAO.findOne(idCommente);
 		Commente.setDescription(description);
 		int day = date.getDate();
 		int month = date.getMonth() + 1;

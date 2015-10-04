@@ -244,6 +244,12 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>${tiles-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio-java-sdk</artifactId>
+			<version>4.5.0</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

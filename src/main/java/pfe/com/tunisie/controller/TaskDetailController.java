@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pfe.com.tunisie.entities.Commente;
+import pfe.com.tunisie.entities.Comment;
 import pfe.com.tunisie.entities.Task;
 import pfe.com.tunisie.service.ICommenteMetier;
 import pfe.com.tunisie.service.IFileTaskMetier;
@@ -49,7 +49,7 @@ public class TaskDetailController {
 		model.addAttribute("Files", IFileTaskMetier.findFileByTask(idTask));
 		model.addAttribute("Comments", ICommenteMetier.findByIdTask(idTask));
 		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
-		model.addAttribute("Commente", new Commente());
+		model.addAttribute("Commente", new Comment());
 		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "task.taskDetail";
 	}
