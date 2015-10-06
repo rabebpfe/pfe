@@ -56,7 +56,7 @@
 								</div>
 								<div class="right">
 									<h3>
-									<a href="readnotification?idNotification=${notificationAll.idNotification}">${notificationAll.users.username}</a><small>${messageAll.hours} :
+									<a href="readnotification?idNotification=${notificationAll.idNotification}">${notificationAll.users.username}</a><small>${notificationAll.hours} :
 									${notificationAll.munite} PM</small>
 									</h3>
 									<p>${notificationAll.description}</p>
