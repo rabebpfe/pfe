@@ -76,10 +76,7 @@
 								<div class="mail_heading row">
 									<div class="col-md-8">
 										<div class="compose-btn">
-											<a class="btn btn-sm btn-primary" href="supprMail?idMail=${messageRead.idMail}"><i
-												class="fa fa-trash-o"
-												onclick="return confirm('Etes vous sûre de vouloir supprimer cette message ?');"></i> <spring:message
-													code="label.delete" /></a>
+										
 												<a class="btn btn-sm btn-primary" href="compose"><i
 												class="fa fa-reply"></i> <spring:message
 													code="label.Compose" /></a>

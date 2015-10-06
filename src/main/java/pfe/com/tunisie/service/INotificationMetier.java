@@ -1,6 +1,7 @@
 package pfe.com.tunisie.service;
 
 import java.util.List;
+
 import pfe.com.tunisie.entities.Notification;
 
 public interface INotificationMetier {
@@ -13,5 +14,9 @@ public interface INotificationMetier {
 	public List<Notification> findAll();
 
 	public List<Notification>  findByIdUser(Long idUser);
+
+	public List<Notification> findAllByIdUser(Long idUser);
+
+	public Notification findReadByIdUser(Long idUser);
 
 }

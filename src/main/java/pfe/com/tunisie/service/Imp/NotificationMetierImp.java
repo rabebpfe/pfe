@@ -45,9 +45,48 @@ public class NotificationMetierImp implements INotificationMetier {
 		List<Notification> Notifications = new ArrayList<Notification>();
 		List<Notification> Notification = INotificationDAO.findAll();
 
-		for (int i = 0; i < Notification.size(); i++) {
-			if (Notification.get(i).getUser().getIdUser() == idUser) {
+		int j = 0;
+		for (int i = Notification.size()-1; i>= 0 ; i--) {
+			if (Notification.get(i).getUser().getIdUser() == idUser && j >= 0
+					&& j <= 3) {
 				Notifications.add(Notification.get(i));
+				j = j + 1;
+			}
+		}
+		return Notifications;
+	}
+	@Override
+	public List<Notification> findAllByIdUser(Long idUser) {
+	
+		List<Notification> Notifications = new ArrayList<Notification>();
+		List<Notification> Notification = INotificationDAO.findAll();
+		
+		for (int i = Notification.size()-1; i>= 0 ; i--) {
+			if (Notification.get(i).getUser().getIdUser() == idUser ) {
+				Notifications.add(Notification.get(i));
+			
+			}
+		}
+		return Notifications;
+	}
+
+	@Override
+	public Notification findReadByIdUser(Long idUser) {
+		Notification Notifications = new Notification();
+		List<Notification> Notification = INotificationDAO.findAll();
+		int j=0;
+		for (int i = Notification.size()-1; i>= 0 ; i--) {
+			if (Notification.get(i).getUser().getIdUser() == idUser  && j == 0 ) {
+				Notifications.setDay(Notification.get(i).getDay());
+				Notifications.setHours(Notification.get(i).getHours());
+				
+				Notifications.setMonth(Notification.get(i).getMonth());
+				Notifications.setMunite(Notification.get(i).getMunite());
+				Notifications.setDescription(Notification.get(i).getDescription());
+				Notifications.setUser(Notification.get(i).getUser());
+				Notifications.setUsers(Notification.get(i).getUsers());
+				j=j+1;
+			
 			}
 		}
 		return Notifications;

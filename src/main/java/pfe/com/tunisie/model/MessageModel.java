@@ -9,7 +9,6 @@ public class MessageModel {
 	private String message; 
 	private String create_By;
 	private String user;
-	
 	private int day;
 	private String month;
 	long hours;

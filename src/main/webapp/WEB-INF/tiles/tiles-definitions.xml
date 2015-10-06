@@ -74,9 +74,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/task/taskPerDetail.jsp"></put-attribute>
 	</definition>
-	<definition name="task.notification" extends="defaultTemplate">
+	<definition name="notification.notification" extends="defaultTemplate">
 		<put-attribute name="body"
-			value="/WEB-INF/views/task/notification.jsp"></put-attribute>
+			value="/WEB-INF/views/notification/notification.jsp"></put-attribute>
 	</definition>
 	<definition name="contacts.contactProfile" extends="defaultTemplate">
 		<put-attribute name="body"
@@ -92,6 +92,10 @@
 	<definition name="task.taskEdit" extends="defaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/task/taskEdit.jsp"></put-attribute>
 	</definition>
+	<definition name="notification.readnotification" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/notification/readnotification.jsp"></put-attribute>
+	</definition>
+	
 
 	<definition name="comment.edit" template="/WEB-INF/views/comment/ajax_edit.jsp">
 
