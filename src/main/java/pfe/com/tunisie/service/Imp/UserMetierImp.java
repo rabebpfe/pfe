@@ -32,42 +32,6 @@ public class UserMetierImp implements IUserMetier {
 	private ApplicationMailer applicationMailer;
 	@Autowired
 	private IActivityDAO IActivityDAO;
-	@Override
-	public String saveUser(String role, String username, String password,
-			String email, String adresse, String nomphoto, byte[] photo,
-			String[] skills) {
-		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
-		sha.setEncodeHashAsBase64(false);
-		String hash = sha.encodePassword(password, null);
-		User user = new User();
-		user.setUsername(username);
-		user.setAdresse(adresse);
-		user.setPassword(hash);
-		user.setEmail(email);
-		user.setNomPhoto(nomphoto);
-		user.setPhoto(photo);
-		user.setActived(true);
-		IUserDAO.save(user);
-		user = IUserDAO.findOne(user.getIdUser());
-		if (role.equals("Admin")) {
-
-			Role role1 = new Role("ROLE_ADMIN", user);
-			IRoleDAO.save(role1);
-
-		} else if (role.equals("Dev")) {
-			Role role1 = new Role("ROLE_ADMIN", user);
-			IRoleDAO.save(role1);
-
-		}
-
-		for (int i = 0; i < skills.length; i++) {
-			Skills Skills = new Skills();
-			Skills.setNomSkills(skills[i]);
-			Skills.setUser(user);
-			ISkillsDAO.save(Skills);
-		}
-		return "user/user";
-	}
 
 	@Override
 	public void save(User user) {
@@ -146,50 +110,7 @@ public class UserMetierImp implements IUserMetier {
 
 	
 
-	@Override
-	public void update(long idUser, String roles, String username,
-			String password, String email, String adresse, String nomphoto,
-			byte[] photo, String[] skills) {
-		User user = IUserDAO.findOne(idUser);
 
-		user.setNomPhoto(nomphoto);
-		user.setPhoto(photo);
-		user.setUsername(username);
-		user.setEmail(email);
-		user.setAdresse(adresse);
-
-		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
-		sha.setEncodeHashAsBase64(false);
-		String hash = sha.encodePassword(password, null);
-		user.setPassword(hash);
-		IUserDAO.save(user);
-		Role role = IRoleDAO.findByuser(user);
-		
-		if (roles.equals("Admin")) {
-
-			role.setNomRole("ROLE_ADMIN");
-			role.setUser(user);
-			IRoleDAO.save(role);
-
-		} else if (roles.equals("Dev")) {
-			role.setNomRole("ROLE_DEV");
-			role.setUser(user);
-			IRoleDAO.save(role);
-
-		}
-		List<Skills> Skill = ISkillsDAO.findByuser(user);
-
-		for (int i = 0; i < Skill.size(); i++) {
-
-			ISkillsDAO.delete(Skill);
-		}
-		for (int i = 0; i < skills.length; i++) {
-			Skills Skills = new Skills();
-			Skills.setNomSkills(skills[i]);
-			Skills.setUser(user);
-			ISkillsDAO.save(Skills);
-		}
-	}
 
 	@Override
 	public List<User> useredit(Long idUser) {
@@ -341,5 +262,92 @@ public class UserMetierImp implements IUserMetier {
 
 		
 	}
+
+	@Override
+	public String saveUser(String role, String username, String password,
+			String email, String adresse, String nomphoto, byte[] photo,
+			String[] skills, String phone) {
+		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
+		sha.setEncodeHashAsBase64(false);
+		String hash = sha.encodePassword(password, null);
+		User user = new User();
+		user.setUsername(username);
+		user.setAdresse(adresse);
+		user.setPassword(hash);
+		user.setEmail(email);
+		user.setNomPhoto(nomphoto);
+		user.setPhoto(photo);
+		user.setActived(true);
+		user.setPhone(phone);
+		IUserDAO.save(user);
+		user = IUserDAO.findOne(user.getIdUser());
+		if (role.equals("Admin")) {
+
+			Role role1 = new Role("ROLE_ADMIN", user);
+			IRoleDAO.save(role1);
+
+		} else if (role.equals("Dev")) {
+			Role role1 = new Role("ROLE_ADMIN", user);
+			IRoleDAO.save(role1);
+
+		}
+
+		for (int i = 0; i < skills.length; i++) {
+			Skills Skills = new Skills();
+			Skills.setNomSkills(skills[i]);
+			Skills.setUser(user);
+			ISkillsDAO.save(Skills);
+		}
+		return "user/user";
+		
+	}
+
+	@Override
+	public void update(long idUser, String roles, String username,
+			String password, String email, String adresse, String nomphoto,
+			byte[] photo, String[] skills, String Phone) {
+		User user = IUserDAO.findOne(idUser);
+
+		user.setNomPhoto(nomphoto);
+		user.setPhoto(photo);
+		user.setUsername(username);
+		user.setEmail(email);
+		user.setAdresse(adresse);
+		user.setPhone(Phone);
+
+		ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
+		sha.setEncodeHashAsBase64(false);
+		String hash = sha.encodePassword(password, null);
+		user.setPassword(hash);
+		IUserDAO.save(user);
+		Role role = IRoleDAO.findByuser(user);
+		
+		if (roles.equals("Admin")) {
+
+			role.setNomRole("ROLE_ADMIN");
+			role.setUser(user);
+			IRoleDAO.save(role);
+
+		} else if (roles.equals("Dev")) {
+			role.setNomRole("ROLE_DEV");
+			role.setUser(user);
+			IRoleDAO.save(role);
+
+		}
+		List<Skills> Skill = ISkillsDAO.findByuser(user);
+
+		for (int i = 0; i < Skill.size(); i++) {
+
+			ISkillsDAO.delete(Skill);
+		}
+		for (int i = 0; i < skills.length; i++) {
+			Skills Skills = new Skills();
+			Skills.setNomSkills(skills[i]);
+			Skills.setUser(user);
+			ISkillsDAO.save(Skills);
+		}
+	}
+		
+	
 
 }

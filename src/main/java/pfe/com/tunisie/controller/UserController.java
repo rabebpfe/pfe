@@ -76,7 +76,7 @@ public class UserController {
 		IUserMetier.saveUser(userModel.getRoles(), userModel.getUsername(),
 				userModel.getPassword(), userModel.getEmail(),
 				userModel.getAdresse(), nomphoto, photo,
-				request.getParameterValues("skills"));
+				request.getParameterValues("skills"),userModel.getPhone());
 		model.addAttribute("user", new User());
 		model.addAttribute("users", IUserMetier.findAll());
 		
@@ -126,7 +126,7 @@ public class UserController {
 		IUserMetier.update(idUser, userModel.getRoles(),
 				userModel.getUsername(), userModel.getPassword(),
 				userModel.getEmail(), userModel.getAdresse(), nomphoto, photo,
-				request.getParameterValues("skills"));
+				request.getParameterValues("skills"),userModel.getPhone());
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String username = auth.getName();

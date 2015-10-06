@@ -3,11 +3,17 @@ import java.util.*;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pfe.com.tunisie.dao.IProjetDAO;
+import pfe.com.tunisie.dao.ITaskDAO;
+import pfe.com.tunisie.dao.IUserDAO;
 
 import com.twilio.sdk.*;
 import com.twilio.sdk.resource.factory.*;
 import com.twilio.sdk.resource.instance.*;
 import com.twilio.sdk.resource.list.*;
+
 
 public class TwilioTest {
 	// Find your Account Sid and Token at twilio.com/user/account

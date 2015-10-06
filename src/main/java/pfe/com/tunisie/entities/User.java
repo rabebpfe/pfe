@@ -2,6 +2,7 @@ package pfe.com.tunisie.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class User implements Serializable {
 	private byte[] photo;
 	private String nomPhoto;
 	boolean actived;
+	private String phone;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Role> roles;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -53,6 +55,26 @@ public class User implements Serializable {
 	private Collection<Message> messages;
 	
 	
+
+	
+
+	
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Collection<Notification> getNotfication() {
+		return notfication;
+	}
+
+	public void setNotfication(Collection<Notification> notfication) {
+		this.notfication = notfication;
+	}
 
 	public Collection<Message> getMessages() {
 		return messages;

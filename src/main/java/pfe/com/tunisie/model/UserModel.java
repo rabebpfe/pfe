@@ -9,6 +9,18 @@ public class UserModel {
 	private String adresse;
 	private String roles;
 	private String skills;
+	private String phone;
+
+
+
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public String getSkills() {
 		return skills;

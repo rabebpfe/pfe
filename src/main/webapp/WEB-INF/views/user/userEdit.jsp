@@ -91,8 +91,21 @@
 									value="${useredite.email}" />
 
 							</div>
-							<p>${message}</p>
+							
 						</div>
+						<div class="form-group">
+							<form:label path="phone"
+								class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">
+								<spring:message code="label.Phone" />
+								<span class="required">*</span>
+							
+							</form:label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<form:input path="phone"  id="phone" name="phone"
+									class="form-control col-md-7 col-xs-12" value="${useredite.phone}"/>
+
+							</div>
+							</div>
 						<div class="form-group">
 							<form:label path="photo"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
@@ -249,7 +262,23 @@
 					form.email.focus();
 					return false;
 				}
-
+				if (form.phone.value  == '') {
+					alert("<spring:message code="label.Please_include_phone" />");
+					form.phone.focus();
+					return false;
+				}
+				if (isNaN(form.phone.value ) == true) {
+					alert("<spring:message code="label.Please_include_phone_number" />");
+					form.phone.focus();
+					return false;
+				}
+				
+				if (form.phone.value.length !=8)
+				{
+				alert("<spring:message code="label.un_numéro_à_8_chiffres" />");
+				form.phone.focus();
+				return false;
+				}
 				if (form.adresse.value == '') {
 					alert("<spring:message code="label.Thank_you_seize_your_address" />");
 					form.adresse.focus();

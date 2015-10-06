@@ -19,7 +19,7 @@ public interface IUserMetier {
 
 	public String  saveUser(String roles, String username, String password,
 			String email, String adresse, String nomphoto, byte[] photo,
-			String[] skills);
+			String[] skills, String phone);
 
 	public Long findByusername(String username);
 
@@ -32,7 +32,7 @@ public interface IUserMetier {
 
 	public void update(long idUser, String roles, String username, String password,
 			String email, String adresse, String nomphoto, byte[] photo,
-			String[] parameterValues);
+			String[] parameterValues, String Phone);
 
 	public List<User>   useredit(Long idUser);
 
