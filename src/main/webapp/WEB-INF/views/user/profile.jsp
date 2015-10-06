@@ -246,7 +246,7 @@
 												<tr>
 
 
-													<td width="35%">${Project.nom}</td>
+													<td width="40%">${Project.nom}</td>
 													<td>${Project.status}</td>
 													<td class="hidden-phone">${Project.estimation_dure}</td>
 													<td class="vertical-align-mid">

@@ -104,8 +104,8 @@
 										</div>
 									</div>
 								</div>
-								<div class="view-mail">
-									<p>${messageRead.message }</p>
+								<div  class="view-mail" >
+									<p >${messageRead.message }</p>
 								</div>
 								
 								

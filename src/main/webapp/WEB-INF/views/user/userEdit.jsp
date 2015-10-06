@@ -274,6 +274,8 @@
 				}
 
 				</c:forEach>
+				
+				return confirm("<spring:message code="label.modifier_cet_utilisateur" />");
 				return true;
 			}
 		</script>

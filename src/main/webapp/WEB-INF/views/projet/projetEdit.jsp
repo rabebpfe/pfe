@@ -284,7 +284,8 @@
 					return false; //enpèche l'envoi du formulaire
 
 				}
-
+				return confirm("<spring:message code="label.modifier_ce_projet" />");
+			
 				return true;
 			}
 		</script>

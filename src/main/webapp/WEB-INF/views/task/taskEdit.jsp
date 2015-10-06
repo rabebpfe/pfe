@@ -292,7 +292,8 @@
 				form.date.focus();
 				return false;
 			}
-
+			return confirm("<spring:message code="label.modifier_cette_tâche" />");
+			
 			return true;
 		}
 	</script>
