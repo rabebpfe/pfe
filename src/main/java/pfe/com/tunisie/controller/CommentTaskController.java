@@ -2,9 +2,7 @@ package pfe.com.tunisie.controller;
 
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import pfe.com.tunisie.entities.Comment;
 import pfe.com.tunisie.model.CommentModel;
 import pfe.com.tunisie.model.UserModel;
@@ -49,18 +46,15 @@ public class CommentTaskController {
 		Date date = calendar.getTime();
 		ICommenteMetier.save(CommenteModel.getDescription(), idTask, idUser,
 				date);
-		String url =  (String) request.getSession().getAttribute("url");
-		if(url.equals("/tunisie/taskDetail")){
-		
-			   return "redirect:/taskDetail?idTask=" + idTask;
-	}
-		else
-			   return "redirect:/taskPerDetail?idTask=" + idTask;
-	
+		String url = (String) request.getSession().getAttribute("url");
+		if (url.equals("/tunisie/taskDetail")) {
+
+			return "redirect:/taskDetail?idTask=" + idTask;
+		} else
+			return "redirect:/taskPerDetail?idTask=" + idTask;
 
 	}
 
-	
 	@RequestMapping(value = "/suppComment", method = RequestMethod.GET)
 	public String deleteCommente(
 			@ModelAttribute("SpringWeb") UserModel UserModel, ModelMap model,
@@ -76,42 +70,38 @@ public class CommentTaskController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 
 		long idTask = (Long) request.getSession().getAttribute("idTask");
-		String url =  (String) request.getSession().getAttribute("url");
-		if(url.equals("/tunisie/taskDetail")){
-			
-			   return "redirect:/taskDetail?idTask=" + idTask;
+		String url = (String) request.getSession().getAttribute("url");
+		if (url.equals("/tunisie/taskDetail")) {
+
+			return "redirect:/taskDetail?idTask=" + idTask;
+		} else
+			return "redirect:/taskPerDetail?idTask=" + idTask;
 	}
-		else
-			   return "redirect:/taskPerDetail?idTask=" + idTask;
-	}
-	
+
 	@RequestMapping(value = "/comment/edit")
-	public String add(Model model, @RequestParam(value="id") Long idCommente) {
-	    Comment comment = ICommenteMetier.findOne(idCommente);
-	    model.addAttribute("comment", comment);
-	    return "comment.edit";
+	public String add(Model model, @RequestParam(value = "id") Long idCommente) {
+		Comment comment = ICommenteMetier.findOne(idCommente);
+		model.addAttribute("comment", comment);
+		return "comment.edit";
 	}
-	
-	
+
 	@RequestMapping(value = "/comment/save", method = RequestMethod.POST)
-	public String save(Model model, @RequestParam(value="idCommente") Long idComment, 
-	        @RequestParam(value = "Description") String description,
-	        HttpServletRequest request) {
-	    Comment comment = ICommenteMetier.findOne(idComment);
+	public String save(Model model,
+			@RequestParam(value = "idCommente") Long idComment,
+			@RequestParam(value = "Description") String description,
+			HttpServletRequest request) {
+		Comment comment = ICommenteMetier.findOne(idComment);
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
-	    ICommenteMetier.update(idComment, description, date);
-	    Long taskId = comment.getTask().getIdTask();
-	  
-	    
-	    String url =  (String) request.getSession().getAttribute("url");
-			if(url.equals("/tunisie/taskDetail")){
-				
-				   return "redirect:/taskDetail?idTask=" + taskId;
-		}
-			else
-				   return "redirect:/taskPerDetail?idTask=" + taskId;
-		}
-	
+		ICommenteMetier.update(idComment, description, date);
+		Long taskId = comment.getTask().getIdTask();
+
+		String url = (String) request.getSession().getAttribute("url");
+		if (url.equals("/tunisie/taskDetail")) {
+
+			return "redirect:/taskDetail?idTask=" + taskId;
+		} else
+			return "redirect:/taskPerDetail?idTask=" + taskId;
+	}
 
 }

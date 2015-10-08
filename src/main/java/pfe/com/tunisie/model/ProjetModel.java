@@ -11,14 +11,14 @@ public class ProjetModel {
 	private String estimation_dure;
 	private String description;
 	private Date date;
-	private int contribution;
+	private Long contribution;
 
-	public int getContribution() {
+	public Long getContribution() {
 		return contribution;
 	}
 
 
-	public void setContribution(int contribution) {
+	public void setContribution(Long contribution) {
 		this.contribution = contribution;
 	}
 

@@ -2,7 +2,6 @@ package pfe.com.tunisie.model;
 
 
 
-
 public class ActivityModel  {
 	
 	private Long idActivity;

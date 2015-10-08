@@ -25,7 +25,7 @@
 
 
 <div class="">
-	
+
 	<div class="clearfix"></div>
 
 	<div class="row">
@@ -54,7 +54,7 @@
 							<div id="crop-avatar">
 								<!-- Current avatar -->
 								<div class="avatar-view">
-						
+
 									<img src="photoUser?idUser=${user.idUser} ">
 								</div>
 
@@ -71,7 +71,7 @@
 							<!-- end of image cropping -->
 
 						</div>
-				
+
 						<h3>${user.username}</h3>
 
 						<ul class="list-unstyled user_data">
@@ -118,9 +118,7 @@
 									<spring:message code="label.User_Activity_Report" />
 								</h2>
 							</div>
-							<div class="col-md-6">
-								
-							</div>
+							<div class="col-md-6"></div>
 						</div>
 						<!-- start of user-activity-graph -->
 						<div id="graph_bar" style="width: 100%; height: 280px;"></div>
@@ -133,12 +131,12 @@
 content1" id="home-tab" role="tab" data-toggle="tab"
 									aria-expanded="true"><spring:message
 											code="label.Recent_Activity" /></a></li>
-								
-									<li role="presentation" class=""><a href="#tab_content2"
-										role="tab" id="profile-tab" data-toggle="tab"
-										aria-expanded="false"><spring:message
-												code="label.Projects_Worked_on" /></a></li>
-						
+
+								<li role="presentation" class=""><a href="#tab_content2"
+									role="tab" id="profile-tab" data-toggle="tab"
+									aria-expanded="false"><spring:message
+											code="label.Projects_Worked_on" /></a></li>
+
 
 
 							</ul>
@@ -192,13 +190,13 @@ content1" id="home-tab" role="tab" data-toggle="tab"
 												<tr>
 
 
-													<td>${Project.nom}</td>
+													<td width="40%">${Project.nom}</td>
 													<td>${Project.status}</td>
 													<td class="hidden-phone">${Project.estimation_dure}</td>
 													<td class="vertical-align-mid">
 														<div class="progress">
 															<div class="progress-bar progress-bar-info"
-																data-transitiongoal="80"></div>
+																data-transitiongoal="${Project.contribution}"></div>
 														</div>
 													</td>
 												</tr>
@@ -296,4 +294,3 @@ content1" id="home-tab" role="tab" data-toggle="tab"
 				});
 			});
 		</script>
-		

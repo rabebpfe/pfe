@@ -2,9 +2,7 @@ package pfe.com.tunisie.controller;
 
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import pfe.com.tunisie.entities.Task;
 import pfe.com.tunisie.model.TaskModel;
 import pfe.com.tunisie.model.UserModel;

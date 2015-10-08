@@ -39,8 +39,9 @@ public class TaskMetierImp implements ITaskMetier {
 	@Autowired
 	private IActivityProjectDAO IActivityProjectDAO;
 	public static final String ACCOUNT_SID = "ACeabfa92df506dce47a896e59b4e6e05b";
-	
+
 	public static final String AUTH_TOKEN = "667f381b077d17bf47be705792cac327";
+
 	@Override
 	public void save(Task task) {
 		ITaskDAO.save(task);
@@ -65,13 +66,11 @@ public class TaskMetierImp implements ITaskMetier {
 		return ITaskDAO.findAll();
 	}
 
-
-
 	@Override
 	public void update(long idTask, String nom, Date date, String priorite,
 			String description, String projet, String user, Long idUser) {
 
-		Task task=ITaskDAO.findOne(idTask);
+		Task task = ITaskDAO.findOne(idTask);
 		task.setDate(date);
 		task.setDescription(description);
 		task.setNom(nom);
@@ -79,12 +78,12 @@ public class TaskMetierImp implements ITaskMetier {
 		task.setStatus("Open");
 		Project Project = IProjetDAO.findBynom(projet);
 		task.setProjet(Project);
-		User User=IUserDAO.findByemail(user);
+		User User = IUserDAO.findByemail(user);
 		task.setUser(User.getIdUser());
 		task.setCreate_by(idUser);
-		
+
 		ITaskDAO.save(task);
-		
+
 	}
 
 	@Override
@@ -113,22 +112,24 @@ public class TaskMetierImp implements ITaskMetier {
 		Task.setStatus("Open");
 		Project Project = IProjetDAO.findBynom(Projet);
 		Task.setProjet(Project);
-		User User=IUserDAO.findByemail(Attribuer);
+		User User = IUserDAO.findByemail(Attribuer);
 		Task.setUser(User.getIdUser());
 		Task.setCreate_by(idUser);
-	
+
 		ITaskDAO.save(Task);
-		Notification Notification=new Notification();
-		ActivityProject ActivityProject=new ActivityProject();
+		Notification Notification = new Notification();
+		ActivityProject ActivityProject = new ActivityProject();
 		Notification.setUser(User);
-		
-		User user=IUserDAO.findOne(idUser);
+
+		User user = IUserDAO.findOne(idUser);
 		Notification.setUsers(user);
-		Notification.setDescription("Un administrateur"+"  " +user.getUsername()+ "vous avez attribuer une tache intitulé  "+nom);
+		Notification.setDescription("Un administrateur" + "  "
+				+ user.getUsername()
+				+ "vous avez attribuer une tache intitulé  " + nom);
 		int day = date2.getDate();
 		int month = date2.getMonth() + 1;
-		long hours=date2.getHours();
-		long munite=date2.getMinutes();
+		long hours = date2.getHours();
+		long munite = date2.getMinutes();
 		Notification.setHours(hours);
 		Notification.setMunite(munite);
 		if (month == 1) {
@@ -183,25 +184,16 @@ public class TaskMetierImp implements ITaskMetier {
 		Notification.setDay(day);
 		ActivityProject.setDay(day);
 		ActivityProject.setIdUser(idUser);
-		ActivityProject.setDescription("Un administrateur "+"  " +user.getUsername()+ "vous avez  attribuer une tache intitulé  "+nom+" pour votre projet");
+		ActivityProject.setDescription("Un administrateur " + "  "
+				+ user.getUsername()
+				+ "vous avez  attribuer une tache intitulé  " + nom
+				+ " pour votre projet");
 		ActivityProject.setProjet(Project);
-		
-		
 
 		INotificationDAO.save(Notification);
 		IActivityProjectDAO.save(ActivityProject);
-	
-		
-		
-	
-		
-		
+
 	}
-
-
-
-
-	
 
 	@Override
 	public List<Task> findByStatus(String Status, Long idUser) {
@@ -209,17 +201,12 @@ public class TaskMetierImp implements ITaskMetier {
 		List<Task> Task = ITaskDAO.findAll();
 
 		for (int i = 0; i < Task.size(); i++) {
-			if (Task.get(i).getUser() == idUser	&&	
-					Task.get(i).getStatus().equals(Status)) {
+			if (Task.get(i).getUser() == idUser
+					&& Task.get(i).getStatus().equals(Status)) {
 				Tasks.add(Task.get(i));
 			}
 		}
 		return Tasks;
 	}
-
-	
-	
-	
-
 
 }

@@ -185,7 +185,7 @@
 
 								<th>Nom</th>
 
-								<th>Satus</th>
+								<th width="10%">Satus</th>
 								<th>Priorite</th>
 
 								<th width="30%">Action</th>
@@ -199,7 +199,7 @@
 								<tr class="odd pointer">
 
 									<td class=" ">${tasks.nom}</td>
-									<td width="2%">${tasks.status}</td>
+									<td >${tasks.status}</td>
 									<td width="2%">${tasks.priorite}</td>
 									<td><a class="btn btn-warning"
 										href="taskDetail?idTask=${tasks.idTask}"> <i

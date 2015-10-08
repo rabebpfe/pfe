@@ -3,7 +3,6 @@
 package pfe.com.tunisie.SendSMS;
 
 import java.util.*;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.quartz.Job;
@@ -12,12 +11,10 @@ import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import pfe.com.tunisie.entities.Task;
 import pfe.com.tunisie.entities.User;
 import pfe.com.tunisie.dao.ITaskDAO;
 import pfe.com.tunisie.dao.IUserDAO;
-
 import com.twilio.sdk.*;
 import com.twilio.sdk.resource.factory.*;
 import com.twilio.sdk.resource.instance.*;

@@ -58,9 +58,10 @@ public class ProjetMetierImp implements IProjetMetier {
 		for (int i = 0; i < Project.size(); i++) {
 			int l = 0;
 			int j = 0;
-			int s = 0;
+			long s ;
 			if (Project.get(i).getUser().getIdUser() == idUser) {
 				Projects.add(Project.get(i));
+				System.out.println("**************projet ***************"+Project.get(i).getIdProject());
 
 				for (int k = 0; k < Task.size(); k++) {
 					if (Task.get(k).getProjet().getIdProject()
@@ -68,10 +69,11 @@ public class ProjetMetierImp implements IProjetMetier {
 
 					{
 						j = j + 1;
-						System.out.println("**************j ***************"+j);
+						
 					}
 
 				}
+				System.out.println("**************j ***************"+j);
 				
 				for (int k = 0; k < Task.size(); k++) {
 					if ((Task.get(k).getStatus().equals("Review")
@@ -80,22 +82,26 @@ public class ProjetMetierImp implements IProjetMetier {
 							&& Task.get(k).getProjet().getIdProject()
 									.equals(Project.get(i).getIdProject())) {
 						l = l + 1;
-						System.out.println("**************l ***************"+l);
+					
 					}
 				}
+				System.out.println("**************l ***************"+l);
 				
 				if (l == 0) {
 
-					s = 100;
+					s = (long) 100;
 					Project.get(i).setStatus("Done");
-					Project.get(i).setContribution(s);
+					
+				    Project.get(i).setContribution(s);
 					IProjetDAO.save(Project);
 
 				}
+			
 
 				else {
-					int d = (l/j)*100 ;
-					s = d ;
+				
+					s = (long) (l*100)/j ;
+					Project.get(i).setStatus("Open");
 					Project.get(i).setContribution(s);
 					IProjetDAO.save(Project);
 				}
