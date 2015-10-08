@@ -3,9 +3,16 @@ package pfe.com.tunisie.service.Imp;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.twilio.sdk.TwilioRestClient;
+import com.twilio.sdk.TwilioRestException;
+import com.twilio.sdk.resource.factory.MessageFactory;
+import com.twilio.sdk.resource.instance.Account;
+import com.twilio.sdk.resource.instance.Message;
 import pfe.com.tunisie.dao.IActivityProjectDAO;
 import pfe.com.tunisie.dao.INotificationDAO;
 import pfe.com.tunisie.dao.IProjetDAO;
@@ -31,6 +38,9 @@ public class TaskMetierImp implements ITaskMetier {
 	private INotificationDAO INotificationDAO;
 	@Autowired
 	private IActivityProjectDAO IActivityProjectDAO;
+	public static final String ACCOUNT_SID = "ACeabfa92df506dce47a896e59b4e6e05b";
+	
+	public static final String AUTH_TOKEN = "667f381b077d17bf47be705792cac327";
 	@Override
 	public void save(Task task) {
 		ITaskDAO.save(task);
@@ -188,65 +198,28 @@ public class TaskMetierImp implements ITaskMetier {
 		
 	}
 
-	@Override
-	public List<Task> findByResult(String Status, Long idUser) {
-		List<Task> Tasks = new ArrayList<Task>();
-		List<Task> Task = ITaskDAO.findAll();
 
-		for (int i = 0; i < Task.size(); i++) {
-			if (Task.get(i).getUser() == idUser	&&	
-					Task.get(i).getStatus().equals(Status)) {
-				Tasks.add(Task.get(i));
-			}
-		}
-		return Tasks;
-	}
-
-	@Override
-	public List<Task> findByReview(String Status, Long idUser) {
-		List<Task> Tasks = new ArrayList<Task>();
-		List<Task> Task = ITaskDAO.findAll();
-
-		for (int i = 0; i < Task.size(); i++) {
-			if (Task.get(i).getUser() == idUser	&&	
-					Task.get(i).getStatus().equals(Status)) {
-				Tasks.add(Task.get(i));
-			}
-		}
-		return Tasks;
-	}
-
-	@Override
-	public List<Task> findByTest(String Status, Long idUser) {
-		List<Task> Tasks = new ArrayList<Task>();
-		List<Task> Task = ITaskDAO.findAll();
-
-		for (int i = 0; i < Task.size(); i++) {
-			if (Task.get(i).getUser() == idUser	&&	
-					Task.get(i).getStatus().equals(Status)) {
-				Tasks.add(Task.get(i));
-			}
-		}
-		return Tasks;
-	}
-
-	@Override
-	public List<Task> findByOpen(String Status, Long idUser) {
-		List<Task> Tasks = new ArrayList<Task>();
-		List<Task> Task = ITaskDAO.findAll();
-
-		for (int i = 0; i < Task.size(); i++) {
-			if (Task.get(i).getUser() == idUser	&&	
-					Task.get(i).getStatus().equals(Status)) {
-				Tasks.add(Task.get(i));
-			}
-		}
-		return Tasks;
-	}
 
 
 	
 
+	@Override
+	public List<Task> findByStatus(String Status, Long idUser) {
+		List<Task> Tasks = new ArrayList<Task>();
+		List<Task> Task = ITaskDAO.findAll();
+
+		for (int i = 0; i < Task.size(); i++) {
+			if (Task.get(i).getUser() == idUser	&&	
+					Task.get(i).getStatus().equals(Status)) {
+				Tasks.add(Task.get(i));
+			}
+		}
+		return Tasks;
+	}
+
+	
+	
+	
 
 
 }

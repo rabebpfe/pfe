@@ -1,20 +1,26 @@
 package pfe.com.tunisie.service.Imp;
 
+
 import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import pfe.com.tunisie.dao.IActivityDAO;
 import pfe.com.tunisie.dao.ISkillsDAO;
+import pfe.com.tunisie.dao.ITaskDAO;
 import pfe.com.tunisie.dao.IUserDAO;
 import pfe.com.tunisie.dao.IRoleDAO;
 import pfe.com.tunisie.entities.Activity;
+
 import pfe.com.tunisie.entities.Role;
 import pfe.com.tunisie.entities.Skills;
+
 import pfe.com.tunisie.entities.User;
 import pfe.com.tunisie.service.ApplicationMailer;
 import pfe.com.tunisie.service.IUserMetier;
@@ -32,6 +38,9 @@ public class UserMetierImp implements IUserMetier {
 	private ApplicationMailer applicationMailer;
 	@Autowired
 	private IActivityDAO IActivityDAO;
+	
+	@Autowired
+	private ITaskDAO ITaskDAO;
 
 	@Override
 	public void save(User user) {
@@ -346,6 +355,7 @@ public class UserMetierImp implements IUserMetier {
 			Skills.setUser(user);
 			ISkillsDAO.save(Skills);
 		}
+	
 	}
 		
 	

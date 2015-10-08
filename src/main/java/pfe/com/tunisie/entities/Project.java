@@ -24,6 +24,16 @@ public class Project implements Serializable {
 	private String estimation_dure;
 	private String description;
 	private Date date;
+	private int contribution;
+
+	public int getContribution() {
+		return contribution;
+	}
+
+
+	public void setContribution(int contribution) {
+		this.contribution = contribution;
+	}
 
 	@OneToMany(mappedBy = "projet", cascade = CascadeType.ALL)
 	private Collection<Task> tasks;

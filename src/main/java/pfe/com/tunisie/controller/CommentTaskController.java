@@ -49,8 +49,14 @@ public class CommentTaskController {
 		Date date = calendar.getTime();
 		ICommenteMetier.save(CommenteModel.getDescription(), idTask, idUser,
 				date);
-
-		return "redirect:/taskDetail?idTask=" + idTask;
+		String url =  (String) request.getSession().getAttribute("url");
+		if(url.equals("/tunisie/taskDetail")){
+		
+			   return "redirect:/taskDetail?idTask=" + idTask;
+	}
+		else
+			   return "redirect:/taskPerDetail?idTask=" + idTask;
+	
 
 	}
 
@@ -70,8 +76,13 @@ public class CommentTaskController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 
 		long idTask = (Long) request.getSession().getAttribute("idTask");
-
-		return "redirect:/taskDetail?idTask=" + idTask;
+		String url =  (String) request.getSession().getAttribute("url");
+		if(url.equals("/tunisie/taskDetail")){
+			
+			   return "redirect:/taskDetail?idTask=" + idTask;
+	}
+		else
+			   return "redirect:/taskPerDetail?idTask=" + idTask;
 	}
 	
 	@RequestMapping(value = "/comment/edit")
@@ -84,13 +95,23 @@ public class CommentTaskController {
 	
 	@RequestMapping(value = "/comment/save", method = RequestMethod.POST)
 	public String save(Model model, @RequestParam(value="idCommente") Long idComment, 
-	        @RequestParam(value = "Description") String description) {
+	        @RequestParam(value = "Description") String description,
+	        HttpServletRequest request) {
 	    Comment comment = ICommenteMetier.findOne(idComment);
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
 	    ICommenteMetier.update(idComment, description, date);
 	    Long taskId = comment.getTask().getIdTask();
-	    return "redirect:/taskDetail?idTask=" + taskId;
-	}
+	  
+	    
+	    String url =  (String) request.getSession().getAttribute("url");
+			if(url.equals("/tunisie/taskDetail")){
+				
+				   return "redirect:/taskDetail?idTask=" + taskId;
+		}
+			else
+				   return "redirect:/taskPerDetail?idTask=" + taskId;
+		}
+	
 
 }

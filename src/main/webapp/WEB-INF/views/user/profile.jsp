@@ -252,7 +252,7 @@
 													<td class="vertical-align-mid">
 														<div class="progress">
 															<div class="progress-bar progress-bar-info"
-																data-transitiongoal="80"></div>
+																data-transitiongoal="${Project.contribution}"></div>
 														</div>
 													</td>
 												</tr>

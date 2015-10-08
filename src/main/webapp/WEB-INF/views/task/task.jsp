@@ -18,7 +18,7 @@
 </head>
 
 <div class="">
-	
+
 	<div class="clearfix"></div>
 
 	<div class="row">
@@ -158,12 +158,16 @@
 		</div>
 
 
+	
+
+
 
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-					<spring:message code="label.Task" /> <small></small>
+						<spring:message code="label.Task" />
+						<small></small>
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -201,8 +205,7 @@
 										href="taskDetail?idTask=${tasks.idTask}"> <i
 											class=" fa fa-link"></i></a> <a class="btn btn-success"
 										href="editTask?idTask=${tasks.idTask}"> <i
-											class="fa fa-edit m-right-xs"></i></a> 
-											<a class="btn btn-danger"
+											class="fa fa-edit m-right-xs"></i></a> <a class="btn btn-danger"
 										href="suppTask?idTask=${tasks.idTask}"
 										onclick="return confirm('Etes vous sûre de vouloir supprimer cette tache ?');">
 											<i class="fa fa-trash-o"></i>
@@ -234,7 +237,7 @@
 		<script src="<c:url value="/resources/production/js/custom.js" />"></script>
 
 
-		
+
 		<!-- select2 -->
 		<script
 			src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
@@ -274,62 +277,69 @@
 					form.date.focus();
 					return false;
 				}
-				
-			
-				
+
 				return true;
 			}
 		</script>
 		<!-- Datatables -->
-       <script
-		src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
-       <script
-		src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
-        <script>
-            $(document).ready(function () {
-                $('input.tableflat').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-            });
+		<script
+			src="<c:url value="/resources/production/js/datatables/js/jquery.dataTables.js" />"></script>
+		<script
+			src="<c:url value="/resources/production/js/datatables/tools/js/dataTables.tableTools.js" />"></script>
+		<script>
+			$(document).ready(function() {
+				$('input.tableflat').iCheck({
+					checkboxClass : 'icheckbox_flat-green',
+					radioClass : 'iradio_flat-green'
+				});
+			});
 
-            var asInitVals = new Array();
-            $(document).ready(function () {
-                var oTable = $('#example').dataTable({
-                    "oLanguage": {
-                        "sSearch": "Search all columns:"
-                    },
-                    "aoColumnDefs": [
-                        {
-                            'bSortable': false,
-                            'aTargets': [0]
-                        } //disables sorting for column one
-            ],
-                    'iDisplayLength': 12,
-                    "sPaginationType": "full_numbers",
-                    "dom": 'T<"clear">lfrtip',
-                    "tableTools": {
-                        "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
-                    }
-                });
-                $("tfoot input").keyup(function () {
-                    /* Filter on the column based on the index of this element's parent <th> */
-                    oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
-                });
-                $("tfoot input").each(function (i) {
-                    asInitVals[i] = this.value;
-                });
-                $("tfoot input").focus(function () {
-                    if (this.className == "search_init") {
-                        this.className = "";
-                        this.value = "";
-                    }
-                });
-                $("tfoot input").blur(function (i) {
-                    if (this.value == "") {
-                        this.className = "search_init";
-                        this.value = asInitVals[$("tfoot input").index(this)];
-                    }
-                });
-            });
-        </script>
+			var asInitVals = new Array();
+			$(document)
+					.ready(
+							function() {
+								var oTable = $('#example')
+										.dataTable(
+												{
+													"oLanguage" : {
+														"sSearch" : "Search all columns:"
+													},
+													"aoColumnDefs" : [ {
+														'bSortable' : false,
+														'aTargets' : [ 0 ]
+													} //disables sorting for column one
+													],
+													'iDisplayLength' : 12,
+													"sPaginationType" : "full_numbers",
+													"dom" : 'T<"clear">lfrtip',
+													"tableTools" : {
+														"sSwfPath" : "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+													}
+												});
+								$("tfoot input").keyup(
+										function() {
+											/* Filter on the column based on the index of this element's parent <th> */
+											oTable.fnFilter(this.value, $(
+													"tfoot th").index(
+													$(this).parent()));
+										});
+								$("tfoot input").each(function(i) {
+									asInitVals[i] = this.value;
+								});
+								$("tfoot input").focus(function() {
+									if (this.className == "search_init") {
+										this.className = "";
+										this.value = "";
+									}
+								});
+								$("tfoot input").blur(
+										function(i) {
+											if (this.value == "") {
+												this.className = "search_init";
+												this.value = asInitVals[$(
+														"tfoot input").index(
+														this)];
+											}
+										});
+							});
+		</script>

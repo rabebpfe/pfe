@@ -11,6 +11,17 @@ public class ProjetModel {
 	private String estimation_dure;
 	private String description;
 	private Date date;
+	private int contribution;
+
+	public int getContribution() {
+		return contribution;
+	}
+
+
+	public void setContribution(int contribution) {
+		this.contribution = contribution;
+	}
+
 
 	public Long getIdProject() {
 		return idProject;

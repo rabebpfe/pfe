@@ -33,10 +33,10 @@ public class TaskPerController {
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
-		model.addAttribute("Task_Open",ITaskMetier.findByOpen("Open",idUser));
-		model.addAttribute("Task_Result",ITaskMetier.findByResult("Result",idUser));
-		model.addAttribute("Task_Review",ITaskMetier.findByReview("Review",idUser));
-		model.addAttribute("Task_Test",ITaskMetier.findByTest("Test",idUser));
+		model.addAttribute("Task_Open",ITaskMetier.findByStatus("Open",idUser));
+		model.addAttribute("Task_IN_progress",ITaskMetier.findByStatus("IN progress",idUser));
+		model.addAttribute("Task_Review",ITaskMetier.findByStatus("Review",idUser));
+		model.addAttribute("Task_DONE",ITaskMetier.findByStatus("Done",idUser));
 		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
 		return "task.taskPer";
 	}

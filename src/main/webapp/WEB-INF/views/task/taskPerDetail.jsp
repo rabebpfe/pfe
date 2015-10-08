@@ -68,23 +68,7 @@
 							<br /> <br />
 
 
-							<h5>3. Rediger les descriptions de taches La redaction des
-								descriptions de postes permet de communiquer clairement aux
-								employe.es les attentes et les exigences face au travail qu'ils
-								devront accomplir. Il est important de revoir la egislation du
-								travail et les normes salariales lors de la rédaction des
-								descriptions de taches afin de s'assurer de les respecter. A la
-								page suivante se retrouve un exemple concret du contenu d'une
-								description de taches.</h5>
-							<br />
-							<h5>3. Rediger les descriptions de taches La redaction des
-								descriptions de postes permet de communiquer clairement aux
-								employe.es les attentes et les exigences face au travail qu'ils
-								devront accomplir. Il est important de revoir la legislation du
-								travail et les normes salariales lors de la rédaction des
-								descriptions de taches afin de s'assurer de les respecter. A la
-								page suivante se retrouve un exemple concret du contenu d'une
-								description de taches.</h5>
+							${Task.description}
 							<br />
 
 
@@ -96,65 +80,51 @@
 
 							<!-- end of user messages -->
 							<ul class="messages">
-								<li><img
-									src="<c:url value="/resources/img/user1-128x128.jpg" />"
-									class="avatar" alt="Avatar">
-									<div class="message_date">
-										<h3 class="date text-info">24</h3>
-										<p class="month">May</p>
-									</div>
-									<div class="message_wrapper">
-										<h4 class="heading">Desmond Davison</h4>
-										<blockquote class="message">Raw denim you
-											probably haven't heard of them jean shorts Austin. Nesciunt
-											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
-											synth.</blockquote>
-										<br />
-										<p class="url">
-											<span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-											<a href="#"><i class="fa fa-paperclip"></i> User
-												Acceptance Test.doc </a>
-										</p>
-									</div></li>
-								<li><img
-									src="<c:url value="/resources/img/user1-128x128.jpg" /> "
-									class="avatar" alt="Avatar">
-									<div class="message_date">
-										<h3 class="date text-error">21</h3>
-										<p class="month">May</p>
-									</div>
-									<div class="message_wrapper">
-										<h4 class="heading">Brian Michaels</h4>
-										<blockquote class="message">Raw denim you
-											probably haven't heard of them jean shorts Austin. Nesciunt
-											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
-											synth.</blockquote>
-										<br />
-										<p class="url">
-											<span class="fs1" aria-hidden="true" data-icon=""></span> <a
-												href="#" data-original-title="">Download</a>
-										</p>
-									</div></li>
-								<li><img
-									src="<c:url value="/resources/img/user1-128x128.jpg" />"
-									class="avatar" alt="Avatar">
-									<div class="message_date">
-										<h3 class="date text-info">24</h3>
-										<p class="month">May</p>
-									</div>
-									<div class="message_wrapper">
-										<h4 class="heading">Desmond Davison</h4>
-										<blockquote class="message">Raw denim you
-											probably haven't heard of them jean shorts Austin. Nesciunt
-											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
-											synth.</blockquote>
-										<br />
-										<p class="url">
-											<span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-											<a href="#"><i class="fa fa-paperclip"></i> User
-												Acceptance Test.doc </a>
-										</p>
-									</div></li>
+								<c:forEach var="Comments" items="${Comments}">
+
+
+
+				
+
+
+									<li><img src="photoUser?idUser=${Comments.user.idUser} "
+										class="avatar" alt="Avatar">
+										<div class="message_date">
+
+
+											<h3 class="date text-info">${Comments.day}</h3>
+											<p class="month">${Comments.month}</p>
+										</div>
+										<div class="message_wrapper">
+											<h4 class="heading">${Comments.user.username}</h4>
+											<blockquote class="message">${Comments.description}
+
+
+
+											</blockquote>
+											<blockquote class="message">
+												<c:url var="editComment" value="/comment/edit">
+													<c:param name="id" value="${Comments.idCommente}"></c:param>
+												</c:url>
+												<a href="${editComment}" data-remote="false" title="edit"
+													type="button" data-original-title="edit"
+													class="btn  btn-sm tooltips" data-toggle="modal"
+													data-target="#CommentEdit"> <i
+													class="fa fa-edit m-right-xs"></i>
+												</a> <a href="suppComment?idCommente=${Comments.idCommente}"
+												 title="delete" data-original-title="delete"
+														class="btn  btn-sm tooltips"
+														onclick="return confirm('Etes vous sûre de vouloir supprimer ce commentaire ?');">
+														<i class="fa fa-trash-o"></i>
+													
+												</a>
+											</blockquote>
+
+
+										</div></li>
+								</c:forEach>
+
+
 
 
 
@@ -162,10 +132,12 @@
 
 
 							</ul>
-							<br /> <a href="#" class="btn btn-sm btn-primary">Add
-								comments</a>
+							<br />
+							<h5 class="btn btn-sm btn-primary" data-toggle="modal"
+								data-target="#CommentNew">
+								<spring:message code="label.Add_comments" />
 
-
+							</h5>
 							<!-- end of user messages -->
 
 
@@ -180,45 +152,34 @@
 						<section class="panel">
 
 							<div class="x_title">
-								<h2>Project Description</h2>
+								<h2>
+									<spring:message code="label.Project_Description" />
+								</h2>
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-body">
 								<h3 class="green">
-									<i class="fa fa-paint-brush"></i> Gentelella
+									<i class="fa fa-paint-brush"></i>
 								</h3>
 
-								<p>Raw denim you probably haven't heard of them jean shorts
-									Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh
-									dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
-								<br />
-
-								<div class="project_detail">
-
-									<p class="title">Client Company</p>
-									<p>Deveint Inc</p>
-									<p class="title">Project Leader</p>
-									<p>Tony Chicken</p>
-								</div>
-
-								<br />
-								<h5>Project files</h5>
+								<p>${Task.projet.description}</p>
+								<br /> <br />
+								<h5>
+									<spring:message code="label.Task_files" />
+								</h5>
 								<ul class="list-unstyled project_files">
-									<li><a href=""><i class="fa fa-file-word-o"></i>
-											Functional-requirements.docx</a></li>
-									<li><a href=""><i class="fa fa-file-pdf-o"></i>
-											UAT.pdf</a></li>
-									<li><a href=""><i class="fa fa-mail-forward"></i>
-											Email-from-flatbal.mln</a></li>
-									<li><a href=""><i class="fa fa-picture-o"></i>
-											Logo.png</a></li>
-									<li><a href=""><i class="fa fa-file-word-o"></i>
-											Contract-10_12_2014.docx</a></li>
+									<c:forEach var="files" items="${Files}">
+										<li><a href="Download?id=${files.idfileTask}"><i
+												class="fa fa-paperclip"></i> ${files.nom}</a></li>
+									</c:forEach>
 								</ul>
 								<br />
 
 								<div class="text-center mtop20">
-									<a href="#" class="btn btn-sm btn-primary">Add files</a>
+									<h5 class="btn btn-sm btn-primary" data-toggle="modal"
+										data-target="#FileNew">
+										<spring:message code="label.Add_files" />
+									</h5>
 
 								</div>
 							</div>
@@ -228,11 +189,121 @@
 					</div>
 					<!-- end project-detail sidebar -->
 
+			<div id="CommentNew" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<spring:message code="label.New_Comment_Entry" />
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div id="testmodal" style="padding: 30px 30px;">
+					<form:form modelAttribute="Commente" action="saveComment"
+						method="POST">
+
+						<div class="form-group">
+							<form:label path="description"
+								class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="Comment_Description">
+								<spring:message code="label.Commented" />
+								<span class="required">*</span>
+							</form:label>
+							<div class="col-sm-9">
+								<form:textarea path="description" id="Comment_Description"
+									name="Comment_Description"
+									class="form-control col-md-7 col-xs-12" />
+							</div>
+						</div>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default antoclose"
+								data-dismiss="modal">
+								<spring:message code="label.Close" />
+							</button>
+							<input type="submit" name="submit" class="btn btn-primary"
+								value="<spring:message code="label.Save" />" />
+
+						</div>
+
+					</form:form>
 				</div>
 			</div>
+
 		</div>
 	</div>
+</div>
+<script type="text/javascript">
+	//Fill modal with content from link href
+	$(document).ready(function() {
+		$("#CommentEdit").on("show.bs.modal", function(e) {
+			var link = $(e.relatedTarget);
+			$(this).find(".modal-body").load(link.attr("href"));
+		});
+	});
+</script>
+<div id="CommentEdit" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
 
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<spring:message code="label.Edit_Comment_Entry" /></h4>
+			</div>
+			<div class="modal-body"></div>
+
+		</div>
+	</div>
+</div>
+<div id="FileNew" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<spring:message code="label.New_File_Entry" />
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div id="testmodal" style="padding: 5px 20px;">
+					<form:form action="Upload" method="POST"
+						enctype="multipart/form-data">
+
+						<br />
+						<input type="file" name="file" id="fille">
+						<br />
+						<br />
+						<br />
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default antoclose"
+								data-dismiss="modal">
+								<spring:message code="label.Close" />
+							</button>
+							<input type="submit" name="submit" class="btn btn-primary"
+								value="<spring:message code="label.Save" />" />
+
+						</div>
+
+					</form:form>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 
 	<script
@@ -256,12 +327,4 @@
 	<script
 		src="<c:url value="/resources/production/js/echart/echarts-all.js" />"></script>
 	<script
-		src="<c:url value="/resources/production/js/echart/green.js" />"></script>
-	<script
-		src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
-	<!-- icheck -->
-	<script
-		src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
-
-
-	
+		src="<c:url value="/resources/production/js/echart/green.js" />"></script>	

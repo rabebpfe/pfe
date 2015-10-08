@@ -52,19 +52,17 @@
 						<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 							<li role="presentation" class="active"><a
 								href="#tab_content1" id="home-tab" role="tab" data-toggle="tab"
-								aria-expanded="true"><spring:message code="label.Task_Open" /></a>
+								aria-expanded="true"> OPEN</a>
 							</li>
 							<li role="presentation" class=""><a href="#tab_content2"
 								role="tab" id="profile-tab" data-toggle="tab"
-								aria-expanded="false"><spring:message
-										code="label.Task_Result" /></a></li>
+								aria-expanded="false">IN progress</a></li>
 							<li role="presentation" class=""><a href="#tab_content3"
 								role="tab" id="profile-tab2" data-toggle="tab"
-								aria-expanded="false"><spring:message
-										code="label.Task_Review" /></a></li>
+								aria-expanded="false">CODE REVIEW</a></li>
 							<li role="presentation" class=""><a href="#tab_content4"
 								role="tab" id="profile-tab3" data-toggle="tab"
-								aria-expanded="false"><spring:message code="label.Task_Test" /></a>
+								aria-expanded="false">DONE</a>
 							</li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
@@ -87,7 +85,7 @@
 										<c:forEach var="Task_Open" items="${Task_Open}">
 											<tr>
 
-												<td><a href="taskPerDetail">${Task_Open.nom}</a></td>
+												<td><a href="taskPerDetail?idTask=${Task_Open.idTask}">${Task_Open.nom}</a></td>
 												<td>${Task_Open.priorite}</td>
 												<td>${Task_Open.projet.nom}</td>
 												<td>${Task_Open.date}</td>
@@ -120,7 +118,7 @@
 
 										<c:forEach var="Task_Result" items="${Task_Result}">
 											<tr>
-												<td><a href="taskPerDetail">${Task_Result.nom}</a></td>
+												<td><a href="taskPerDetail?idTask=${Task_Result.idTask}">${Task_Result.nom}</a></td>
 
 												<td>${Task_Result.priorite}</td>
 												<td>${Task_Result.projet.nom}</td>
@@ -152,7 +150,7 @@
 
 										<c:forEach var="Task_Review" items="${Task_Review}">
 											<tr>
-												<td><a href="taskPerDetail">${Task_Review.nom}</a></td>
+												<td><a href="taskPerDetail?idTask=${Task_Review.idTask}">${Task_Review.nom}</a></td>
 
 												<td>${Task_Review.priorite}</td>
 												<td>${Task_Review.projet.nom}</td>
@@ -182,7 +180,7 @@
 
 										<c:forEach var="Task_Test" items="${Task_Test}">
 											<tr>
-												<td><a href="taskPerDetail">$Task_Test.nom}</a></td>
+												<td><a href="taskPerDetail?idTask=${Task_Test.idTask}">$Task_Test.nom}</a></td>
 
 												<td>${Task_Test.priorite}</td>
 												<td>${Task_Test.projet.nom}</td>

@@ -89,6 +89,8 @@
 			<property name="paramName" value="language" />
 		</bean>
 	</mvc:interceptors>
+	
+	<context:annotation-config />
 
 </beans>
 
