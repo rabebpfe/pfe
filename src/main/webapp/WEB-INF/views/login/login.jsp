@@ -52,6 +52,8 @@
 			<div class="row-fluid">
 				<div class="login-box">
 					<div class="icons"></div>
+
+
 					<h2>
 						<spring:message code="label.Login_to_your_account" />
 					</h2>
@@ -63,14 +65,17 @@
 
 
 
-						<div class="input-prepend" title="<spring:message code="label.Username" />">
+						<div class="input-prepend"
+							title="<spring:message code="label.Username" />">
 							<span class="add-on"><i class="icon-user"></i></span> <input
 								class="input-large span10" name='j_username' id="username"
-								type="text" placeholder="<spring:message code="label.Username" />" />
+								type="text"
+								placeholder="<spring:message code="label.Username" />" />
 						</div>
 						<div class="clearfix"></div>
 
-						<div class="input-prepend" title="<spring:message code="label.Password" />">
+						<div class="input-prepend"
+							title="<spring:message code="label.Password" />">
 							<span class="add-on"><i class="icon-lock"></i></span> <input
 								class="input-large span10" name='j_password' id="password"
 								type="password"

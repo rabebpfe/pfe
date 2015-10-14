@@ -31,7 +31,7 @@
 <link
 	href="<c:url value="/resources/production/css/select/select2.min.css" />"
 	rel="stylesheet">
-	<!-- editor -->
+<!-- editor -->
 <link
 	href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" />
 <link
@@ -40,7 +40,7 @@
 <link
 	href="<c:url value="/resources/production/css/editor/index.css" />"
 	rel="stylesheet">
-	
+
 <link
 	href="<c:url value="/resources/production/css/calendar/fullcalendar.css" />"
 	rel="stylesheet">
@@ -69,44 +69,37 @@
 			<!-- /top navigation -->
 
 			<!-- page content -->
-			
+
 			<div class="right_col" role="main">
-		
- <div class="">
 
-                        <div class="page-title">
-                            <div class="title_left">
-                                <h3>
-                                 
-                                    <small>
-                                     
-                                    </small>
-                                </h3>
-                            </div>
+				<div class="">
 
-                            <div class="title_right">
-                                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search for...">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button">Go!</button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-				<tiles:insertAttribute name="body" />
+					<div class="page-title">
+						<div class="title_left">
+							<h3>
+
+								<small> </small>
+							</h3>
+						</div>
+
+						<div class="title_right">
+							<div
+								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+								<div class="input-group"></div>
+							</div>
+						</div>
+					</div>
+					<tiles:insertAttribute name="body" />
+
+				</div>
+				<!-- footer content -->
+				<tiles:insertAttribute name="footer" />
+				<!-- /footer content -->
 
 			</div>
-			<!-- footer content -->
-			<tiles:insertAttribute name="footer" />
-			<!-- /footer content -->
-
+			<!-- /page content -->
 		</div>
-		<!-- /page content -->
-	</div>
-
 </body>
 
-	
+
 </html>
