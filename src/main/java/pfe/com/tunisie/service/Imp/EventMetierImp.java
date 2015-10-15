@@ -1,9 +1,14 @@
 package pfe.com.tunisie.service.Imp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import pfe.com.tunisie.dao.IEventDAO;
 import pfe.com.tunisie.dao.IUserDAO;
 import pfe.com.tunisie.entities.Event;
@@ -42,33 +47,37 @@ public class EventMetierImp implements IEventMetier {
 	}
 
 	@Override
-	public void saveEvent(String title, String description, Long d, Long m,
-			Long y, Long idUser) {
-		Event Event = new Event();
+	public void editEvent(Long idEvent, String title, String description,
+			Long idUser) {
+		Event Event = IEventDAO.findOne(idEvent);
 		Event.setDescription(description);
-		Event.setTitle(title);
-		Event.setD(d);
-		Event.setM(m);
-		Event.setY(y);
-		User user=IUserDAO.findOne(idUser);
+		User user = IUserDAO.findOne(idUser);
 		Event.setUser(user);
+		Event.setTitle(title);
 		IEventDAO.save(Event);
-		
+
 	}
 
 	@Override
-	public void editEvent(Long idEvent, String title, String description,
-			Long idUser) {
-		Event Event=IEventDAO.findOne(idEvent);
+	public void saveEvent(String title, String description, Date start,
+			Date end, Long idUser) throws ParseException {
+		System.out.println(start);
+		System.out.println(end);
+
+		String format = "yyyy-MM-dd ";
+
+		SimpleDateFormat formater = new SimpleDateFormat(format);
+
+		Event Event = new Event();
+		Event.setStart(formater.format(start));
+		Event.setEnd(formater.format(end));
 		Event.setDescription(description);
-		User user=IUserDAO.findOne(idUser);
-		Event.setUser(user);
 		Event.setTitle(title);
+
+		User user = IUserDAO.findOne(idUser);
+		Event.setUser(user);
 		IEventDAO.save(Event);
-		
-		
+
 	}
-
-
 
 }

@@ -1,6 +1,10 @@
 package pfe.com.tunisie.controller;
 
+import java.text.ParseException;
+
+
 import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import pfe.com.tunisie.entities.Event;
 import pfe.com.tunisie.model.EventModel;
@@ -37,8 +42,9 @@ public class CalenderController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
 		return "calender.calender";
@@ -46,7 +52,8 @@ public class CalenderController {
 
 	@RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
 	public String saveEvent(Model model, HttpServletRequest request,
-			@ModelAttribute("SpringWeb") EventModel EventModel) {
+			@ModelAttribute("SpringWeb") EventModel EventModel)
+			throws ParseException {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String username = auth.getName();
@@ -56,10 +63,10 @@ public class CalenderController {
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
 		IEventMetier.saveEvent(EventModel.getTitle(),
-				EventModel.getDescription(), EventModel.getD(),
-				EventModel.getM(), EventModel.getY(), idUser);
+				EventModel.getDescription(), EventModel.getStart(),
+				EventModel.getEnd(), idUser);
 
-		return "calender.calender";
+		return "redirect:/calender";
 
 	}
 
@@ -76,11 +83,12 @@ public class CalenderController {
 
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
-		IEventMetier.editEvent((long) 1, EventModel.getTitle(),
+
+		IEventMetier.editEvent(EventModel.getIdEvent(), EventModel.getTitle(),
 				EventModel.getDescription(), idUser);
 
 		return "redirect:/calender";
 
 	}
-	
-	 }
+
+}

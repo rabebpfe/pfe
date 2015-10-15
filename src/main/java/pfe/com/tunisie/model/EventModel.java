@@ -1,84 +1,60 @@
 package pfe.com.tunisie.model;
 
+import java.util.Date;
+
+
+
 public class EventModel {
 
 	private Long idEvent;
 	private String title;
 	private String description;
-	private Long m;
-	private Long d;
-	private Long y;
-	
-
-	public EventModel(Long idEvent, String title, String description, Long m,
-			Long d, Long y) {
+	private Date start;
+	private Date end;
+	public EventModel() {
+		super();
+		
+	}
+	public EventModel(Long idEvent, String title, String description,
+			Date start, Date end) {
 		super();
 		this.idEvent = idEvent;
 		this.title = title;
 		this.description = description;
-		this.m = m;
-		this.d = d;
-		this.y = y;
+		this.start = start;
+		this.end = end;
 	}
-
-	public Long getM() {
-		return m;
-	}
-
-	public void setM(Long m) {
-		this.m = m;
-	}
-
-	public Long getD() {
-		return d;
-	}
-
-	public void setD(Long d) {
-		this.d = d;
-	}
-
-	public Long getY() {
-		return y;
-	}
-
-	public void setY(Long y) {
-		this.y = y;
-	}
-
 	public Long getIdEvent() {
 		return idEvent;
 	}
-
 	public void setIdEvent(Long idEvent) {
 		this.idEvent = idEvent;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public EventModel() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Date getStart() {
+		return start;
 	}
-
-	public EventModel(Long idEvent, String title, String description) {
-		super();
-		this.idEvent = idEvent;
-		this.title = title;
-		this.description = description;
+	public void setStart(Date start) {
+		this.start = start;
 	}
+	public Date getEnd() {
+		return end;
+	}
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+	
+	
 
 }

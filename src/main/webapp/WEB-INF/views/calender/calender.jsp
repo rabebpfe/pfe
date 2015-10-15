@@ -80,6 +80,16 @@
 										<form:textarea path="description" class="form-control"
 											style="height: 55px;" id="descr" name="descr" />
 									</div>
+
+
+									<form:input path="start" type="hidden" id="startEvent"
+										name="startEvent" />
+
+									<form:input path="end" type="hidden" id="endEvent"
+										name="endEvent" />
+										
+										<form:input path="idEvent" type="hidden" id="id"
+										name="id" />
 								</div>
 
 								<div class="modal-footer">
@@ -137,7 +147,10 @@
 										<form:textarea path="description" class="form-control"
 											style="height: 55px;" id="descr2" name="descr" />
 									</div>
+									
 								</div>
+									<form:input path="idEvent" type="hidden" id="id2"
+										name="id2" />
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default antoclose"
@@ -221,278 +234,287 @@
 		<script
 			src="<c:url value="/resources/production/js/textarea/autosize.min.js" />"></script>
 		<script>
-		autosize($('.resizable_textarea'));
-	</script>
+			autosize($('.resizable_textarea'));
+		</script>
 		<!-- Autocomplete -->
 		<script
 			src="<c:url value="/resources/production/js/autocomplete/countries.js" />"></script>
 		<script
 			src="<c:url value="/resources/production/js/autocomplete/jquery.autocomplete.js" />"></script>
 		<script type="text/javascript">
-		$(function() {
-			'use strict';
-			var countriesArray = $.map(countries, function(value, key) {
-				return {
-					value : value,
-					data : key
-				};
+			$(function() {
+				'use strict';
+				var countriesArray = $.map(countries, function(value, key) {
+					return {
+						value : value,
+						data : key
+					};
+				});
+				// Initialize autocomplete with custom appendTo:
+				$('#autocomplete-custom-append').autocomplete({
+					lookup : countriesArray,
+					appendTo : '#autocomplete-container'
+				});
 			});
-			// Initialize autocomplete with custom appendTo:
-			$('#autocomplete-custom-append').autocomplete({
-				lookup : countriesArray,
-				appendTo : '#autocomplete-container'
-			});
-		});
-	</script>
+		</script>
 		<script src="js/custom.js"></script>
 
 
 		<!-- select2 -->
 		<script>
-		$(document).ready(function() {
-			$(".select2_single").select2({
-				placeholder : "Select a state",
-				allowClear : true
+			$(document).ready(function() {
+				$(".select2_single").select2({
+					placeholder : "Select a state",
+					allowClear : true
+				});
+				$(".select2_group").select2({});
+				$(".select2_multiple").select2({
+					maximumSelectionLength : 4,
+					placeholder : "With Max Selection limit 4",
+					allowClear : true
+				});
 			});
-			$(".select2_group").select2({});
-			$(".select2_multiple").select2({
-				maximumSelectionLength : 4,
-				placeholder : "With Max Selection limit 4",
-				allowClear : true
-			});
-		});
-	</script>
+		</script>
 		<!-- /select2 -->
 		<!-- input tags -->
 		<script>
-		function onAddTag(tag) {
-			alert("Added a tag: " + tag);
-		}
+			function onAddTag(tag) {
+				alert("Added a tag: " + tag);
+			}
 
-		function onRemoveTag(tag) {
-			alert("Removed a tag: " + tag);
-		}
+			function onRemoveTag(tag) {
+				alert("Removed a tag: " + tag);
+			}
 
-		function onChangeTag(input, tag) {
-			alert("Changed a tag: " + tag);
-		}
+			function onChangeTag(input, tag) {
+				alert("Changed a tag: " + tag);
+			}
 
-		$(function() {
-			$('#tags_1').tagsInput({
-				width : 'auto'
+			$(function() {
+				$('#tags_1').tagsInput({
+					width : 'auto'
+				});
 			});
-		});
-	</script>
+		</script>
 		<!-- /input tags -->
 		<!-- form validation -->
 		<script type="text/javascript">
-		$(document).ready(function() {
-			$.listen('parsley:field:validate', function() {
-				validateFront();
+			$(document).ready(function() {
+				$.listen('parsley:field:validate', function() {
+					validateFront();
+				});
+				$('#demo-form .btn').on('click', function() {
+					$('#demo-form').parsley().validate();
+					validateFront();
+				});
+				var validateFront = function() {
+					if (true === $('#demo-form').parsley().isValid()) {
+						$('.bs-callout-info').removeClass('hidden');
+						$('.bs-callout-warning').addClass('hidden');
+					} else {
+						$('.bs-callout-info').addClass('hidden');
+						$('.bs-callout-warning').removeClass('hidden');
+					}
+				};
 			});
-			$('#demo-form .btn').on('click', function() {
-				$('#demo-form').parsley().validate();
-				validateFront();
-			});
-			var validateFront = function() {
-				if (true === $('#demo-form').parsley().isValid()) {
-					$('.bs-callout-info').removeClass('hidden');
-					$('.bs-callout-warning').addClass('hidden');
-				} else {
-					$('.bs-callout-info').addClass('hidden');
-					$('.bs-callout-warning').removeClass('hidden');
-				}
-			};
-		});
 
-		$(document).ready(function() {
-			$.listen('parsley:field:validate', function() {
-				validateFront();
+			$(document).ready(function() {
+				$.listen('parsley:field:validate', function() {
+					validateFront();
+				});
+				$('#demo-form2 .btn').on('click', function() {
+					$('#demo-form2').parsley().validate();
+					validateFront();
+				});
+				var validateFront = function() {
+					if (true === $('#demo-form2').parsley().isValid()) {
+						$('.bs-callout-info').removeClass('hidden');
+						$('.bs-callout-warning').addClass('hidden');
+					} else {
+						$('.bs-callout-info').addClass('hidden');
+						$('.bs-callout-warning').removeClass('hidden');
+					}
+				};
 			});
-			$('#demo-form2 .btn').on('click', function() {
-				$('#demo-form2').parsley().validate();
-				validateFront();
-			});
-			var validateFront = function() {
-				if (true === $('#demo-form2').parsley().isValid()) {
-					$('.bs-callout-info').removeClass('hidden');
-					$('.bs-callout-warning').addClass('hidden');
-				} else {
-					$('.bs-callout-info').addClass('hidden');
-					$('.bs-callout-warning').removeClass('hidden');
-				}
-			};
-		});
-		try {
-			hljs.initHighlightingOnLoad();
-		} catch (err) {
-		}
-	</script>
+			try {
+				hljs.initHighlightingOnLoad();
+			} catch (err) {
+			}
+		</script>
 		<!-- /form validation -->
 		<!-- editor -->
 		<script>
-		$(document).ready(function() {
-			$('.xcxc').click(function() {
-				$('#descr').val($('#editor').html());
+			$(document).ready(function() {
+				$('.xcxc').click(function() {
+					$('#descr').val($('#editor').html());
+				});
 			});
-		});
 
-		$(function() {
-			function initToolbarBootstrapBindings() {
-				var fonts = [ 'Serif', 'Sans', 'Arial', 'Arial Black',
-						'Courier', 'Courier New', 'Comic Sans MS', 'Helvetica',
-						'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma',
-						'Times', 'Times New Roman', 'Verdana' ], fontTarget = $(
-						'[title=Font]').siblings('.dropdown-menu');
-				$
-						.each(
-								fonts,
-								function(idx, fontName) {
-									fontTarget
-											.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">'
-													+ fontName + '</a></li>'));
-								});
-				$('a[title]').tooltip({
-					container : 'body'
-				});
-				$('.dropdown-menu input').click(function() {
-					return false;
-				}).change(
-						function() {
-							$(this).parent('.dropdown-menu').siblings(
-									'.dropdown-toggle').dropdown('toggle');
-						}).keydown('esc', function() {
-					this.value = '';
-					$(this).change();
-				});
+			$(function() {
+				function initToolbarBootstrapBindings() {
+					var fonts = [ 'Serif', 'Sans', 'Arial', 'Arial Black',
+							'Courier', 'Courier New', 'Comic Sans MS',
+							'Helvetica', 'Impact', 'Lucida Grande',
+							'Lucida Sans', 'Tahoma', 'Times',
+							'Times New Roman', 'Verdana' ], fontTarget = $(
+							'[title=Font]').siblings('.dropdown-menu');
+					$
+							.each(
+									fonts,
+									function(idx, fontName) {
+										fontTarget
+												.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">'
+														+ fontName
+														+ '</a></li>'));
+									});
+					$('a[title]').tooltip({
+						container : 'body'
+					});
+					$('.dropdown-menu input').click(function() {
+						return false;
+					}).change(
+							function() {
+								$(this).parent('.dropdown-menu').siblings(
+										'.dropdown-toggle').dropdown('toggle');
+							}).keydown('esc', function() {
+						this.value = '';
+						$(this).change();
+					});
 
-				$('[data-role=magic-overlay]').each(
-						function() {
-							var overlay = $(this), target = $(overlay
-									.data('target'));
-							overlay.css('opacity', 0).css('position',
-									'absolute').offset(target.offset()).width(
-									target.outerWidth()).height(
-									target.outerHeight());
-						});
-				if ("onwebkitspeechchange" in document.createElement("input")) {
-					var editorOffset = $('#editor').offset();
-					$('#voiceBtn').css('position', 'absolute').offset(
-							{
-								top : editorOffset.top,
-								left : editorOffset.left
-										+ $('#editor').innerWidth() - 35
+					$('[data-role=magic-overlay]').each(
+							function() {
+								var overlay = $(this), target = $(overlay
+										.data('target'));
+								overlay.css('opacity', 0).css('position',
+										'absolute').offset(target.offset())
+										.width(target.outerWidth()).height(
+												target.outerHeight());
 							});
-				} else {
-					$('#voiceBtn').hide();
+					if ("onwebkitspeechchange" in document
+							.createElement("input")) {
+						var editorOffset = $('#editor').offset();
+						$('#voiceBtn').css('position', 'absolute').offset(
+								{
+									top : editorOffset.top,
+									left : editorOffset.left
+											+ $('#editor').innerWidth() - 35
+								});
+					} else {
+						$('#voiceBtn').hide();
+					}
 				}
-			}
-			;
+				;
 
-			function showErrorAlert(reason, detail) {
-				var msg = '';
-				if (reason === 'unsupported-file-type') {
-					msg = "Unsupported format " + detail;
-				} else {
-					console.log("error uploading file", reason, detail);
+				function showErrorAlert(reason, detail) {
+					var msg = '';
+					if (reason === 'unsupported-file-type') {
+						msg = "Unsupported format " + detail;
+					} else {
+						console.log("error uploading file", reason, detail);
+					}
+					$(
+							'<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'
+									+ '<strong>File upload error</strong> '
+									+ msg + ' </div>').prependTo('#alerts');
 				}
-				$(
-						'<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'
-								+ '<strong>File upload error</strong> '
-								+ msg
-								+ ' </div>').prependTo('#alerts');
-			}
-			;
-			initToolbarBootstrapBindings();
-			$('#editor').wysiwyg({
-				fileUploadError : showErrorAlert
+				;
+				initToolbarBootstrapBindings();
+				$('#editor').wysiwyg({
+					fileUploadError : showErrorAlert
+				});
+				window.prettyPrint && prettyPrint();
 			});
-			window.prettyPrint && prettyPrint();
-		});
-	</script>
+		</script>
 
 
 
 
 		<script>
-		$(window).load(function() {
+			$(window).load(function() {
 
-			var date = new Date();
-			var d = date.getDate();
-			var m = date.getMonth();
-			var y = date.getFullYear();
-			var started;
-			var categoryClass;
+				var date = new Date();
+				var d = date.getDate();
+				var m = date.getMonth();
+				var y = date.getFullYear();
+				var started;
+				var categoryClass;
 
-			var calendar = $('#calendar').fullCalendar({
-				header : {
-					left : 'prev,next today',
-					center : 'title',
-					right : 'month,agendaWeek,agendaDay'
-				},
-				selectable : true,
-				selectHelper : true,
-				select : function(start, end, allDay) {
-					$('#fc_create').click();
+				var calendar = $('#calendar').fullCalendar({
+					header : {
+						left : 'prev,next today',
+						center : 'title',
+						right : 'month,agendaWeek,agendaDay'
+					},
+					selectable : true,
+					selectHelper : true,
+					select : function(start, end, allDay) {
+						$('#fc_create').click();
+					
 
-					started = start;
-					ended = end
-				
+						started = start;
+						ended = end
+						$('#startEvent').val(start);
 
-					$(".antosubmit").on("click", function() {
-						var title = $("#title").val();
-						if (end) {
-							ended = end
-						}
+						$('#endEvent').val(ended);
+
+						$(".antosubmit").on("click", function() {
+							var title = $("#title").val();
+							if (end) {
+								ended = end
+							}
+							categoryClass = $("#event_type").val();
+
+							if (title) {
+								calendar.fullCalendar('renderEvent', {
+									title : title,
+									start : started,
+									end : end,
+									allDay : allDay
+								}, true // make the event "stick"
+								);
+							}
+							$('#title').val('');
+							calendar.fullCalendar('unselect');
+
+							$('.antoclose').click();
+
+							return false;
+						});
+					},
+					eventClick : function(calEvent, jsEvent, view) {
+
+						$('#fc_edit').click();
+						$('#title2').val(calEvent.title);
+						$('#descr2').val(calEvent.descr);
+						$('#id2').val(calEvent.id);
+						
 						categoryClass = $("#event_type").val();
 
-						if (title) {
-							calendar.fullCalendar('renderEvent', {
-								title : title,
-								start : started,
-								end : end,
-								allDay : allDay
-							}, true // make the event "stick"
-							);
-						}
-						$('#title').val('');
+						$(".antosubmit2").on("click", function() {
+							calEvent.title = $("#title2").val();
+							calEvent.title = $("#descr2").val();
+							$('#id2').val(calEvent.id);
+
+							calendar.fullCalendar('updateEvent', calEvent);
+							$('.antoclose2').click();
+						});
 						calendar.fullCalendar('unselect');
-
-						$('.antoclose').click();
-
-						return false;
-					});
-				},
-				eventClick : function(calEvent, jsEvent, view) {
-					
-
-					$('#fc_edit').click();
-					$('#title2').val(calEvent.title);
-				
-					
-					categoryClass = $("#event_type").val();
-
-					$(".antosubmit2").on("click", function() {
-						calEvent.title = $("#title2").val();
+					},
+					editable : true,
+					events : [    
+					   <c:forEach items="${events}" var="events" varStatus="loop">
+			           {
+							title : '${events.title}',
+							start : new Date('${events.start}'),
+							end : new Date('${events.end}'),
+							id :  '${events.idEvent}'
 						
-						calendar.fullCalendar('updateEvent', calEvent);
-						$('.antoclose2').click();
-					});
-					calendar.fullCalendar('unselect');
-				},
-				editable : true,
-				events : [    
-				   <c:forEach items="${events}" var="events" varStatus="loop">
-		           {
-						title : '${events.title}',
-						start : new Date('${events.y}','${events.m-1}', '${events.d}')
-					
-		           }, 
-					           </c:forEach>
-		          
-				          
-				  
-				]
+			           }, 
+						           </c:forEach>
+			          
+					          
+					  
+					]
+				});
 			});
-		});
-	</script>
+		</script>
