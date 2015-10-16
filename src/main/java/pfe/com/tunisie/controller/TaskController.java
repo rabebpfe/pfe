@@ -47,9 +47,10 @@ public class TaskController {
 		model.addAttribute("task", new Task());
 		model.addAttribute("tasks", ITaskMetier.findAll());
 		model.addAttribute("projets", IProjetMetier.findAll());
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("users", IUserMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 
 		return "task.task";
 	}
@@ -67,7 +68,7 @@ public class TaskController {
 
 		ITaskMetier.saveTask(TaskModel.getNom(), TaskModel.getDate(),
 				TaskModel.getPriorite(), TaskModel.getDescription(),
-				TaskModel.getProjet(), TaskModel.getUser(), idUser,date);
+				TaskModel.getProjet(), TaskModel.getUser(), idUser, date);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("task", new Task());
 		model.addAttribute("tasks", ITaskMetier.findAll());
@@ -115,8 +116,7 @@ public class TaskController {
 		model.addAttribute("tasks", ITaskMetier.findAll());
 		model.addAttribute("projets", IProjetMetier.findAll());
 		model.addAttribute("users", IUserMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
-
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 
 		return "task.taskEdit";
 	}
@@ -142,12 +142,10 @@ public class TaskController {
 		model.addAttribute("tasks", ITaskMetier.findAll());
 		model.addAttribute("projets", IProjetMetier.findAll());
 		model.addAttribute("users", IUserMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
-
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 
 		return "redirect:/task";
 
 	}
-	
 
 }

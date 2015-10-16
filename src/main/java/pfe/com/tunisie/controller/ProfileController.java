@@ -53,10 +53,11 @@ public class ProfileController {
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
 		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
-		model.addAttribute("useredit",IUserMetier.useredit(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("useredit", IUserMetier.useredit(idUser));
 		model.addAttribute("usere", new User());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "user.profile";
 	}
 
@@ -75,7 +76,7 @@ public class ProfileController {
 		}
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
-		IUserMetier.update(idUser, nomphoto, photo,date);
+		IUserMetier.update(idUser, nomphoto, photo, date);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
@@ -89,7 +90,7 @@ public class ProfileController {
 	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
 	public String editeInformationUser(
 			@ModelAttribute("SpringWeb") UserModel UserModel, ModelMap model,
-			@RequestParam Long idUser,HttpServletRequest request) {
+			@RequestParam Long idUser, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String username = auth.getName();
@@ -98,14 +99,11 @@ public class ProfileController {
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
 		IUserMetier.update(idUser, UserModel.getUsername(),
-		UserModel.getPassword(), UserModel.getEmail(),date);
+				UserModel.getPassword(), UserModel.getEmail(), date);
 		model.addAttribute("tache", ITaskMetier.findByIdUser(idUser));
-		model.addAttribute("useredit",IUserMetier.useredit(idUser1));
-        return "redirect:/login";
+		model.addAttribute("useredit", IUserMetier.useredit(idUser1));
+		return "redirect:/login";
 
 	}
-	
-	
-	
 
 }

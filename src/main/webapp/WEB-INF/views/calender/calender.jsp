@@ -53,7 +53,7 @@
 
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
+							aria-hidden="true">ï¿½</button>
 						<h4 class="modal-title" id="myModalLabel">
 							<spring:message code="label.New_Calender_Entry" />
 						</h4>
@@ -119,7 +119,7 @@
 
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
+							aria-hidden="true">ï¿½</button>
 						<h4 class="modal-title" id="myModalLabel2">
 							<spring:message code="label.Edit_Calender_Entry" />
 						</h4>

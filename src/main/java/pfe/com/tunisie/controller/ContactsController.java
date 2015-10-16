@@ -19,6 +19,7 @@ public class ContactsController {
 	private INotificationMetier INotificationMetier;
 	@Autowired
 	private IMessageMetier IMessageMetier;
+
 	@RequestMapping("/contacts")
 	public String contacts(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
@@ -27,9 +28,10 @@ public class ContactsController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("users", IUserMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "contacts.contacts";
 	}
 }

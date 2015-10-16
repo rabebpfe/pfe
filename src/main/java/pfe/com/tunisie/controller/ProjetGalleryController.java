@@ -29,7 +29,7 @@ public class ProjetGalleryController {
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("projects", IProjetMetier.findAll());
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "projet.projetGallery";
 	}
 }

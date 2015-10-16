@@ -66,7 +66,7 @@ public class NotificationController {
 	@RequestMapping(value = "/supprNotification", method = RequestMethod.GET)
 	public String deleteMessage(
 			@ModelAttribute("SpringWeb") NotificationModel NotificationModel,
-            ModelMap model, @RequestParam Long idNotification,
+			ModelMap model, @RequestParam Long idNotification,
 			HttpServletRequest request)
 
 	{

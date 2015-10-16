@@ -37,7 +37,7 @@ public class ProjetController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "projet.projet";
 
 	}
@@ -124,7 +124,7 @@ public class ProjetController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "redirect:/projet";
 
 	}

@@ -42,8 +42,9 @@ public class ProjetDetailController {
 		model.addAttribute("Project", Project);
 		model.addAttribute("Files",
 				IFileProjetMetier.findFileByProjects(idProject));
-		model.addAttribute("Activity", IActivityProjectMetier.findByIdProject(idProject));
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("Activity",
+				IActivityProjectMetier.findByIdProject(idProject));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "projet.projetDetail";
 	}
 }

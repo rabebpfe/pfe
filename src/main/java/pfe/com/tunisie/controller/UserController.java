@@ -41,8 +41,8 @@ public class UserController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
-		
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+
 		return "user.user";
 	}
 
@@ -74,10 +74,10 @@ public class UserController {
 		IUserMetier.saveUser(userModel.getRoles(), userModel.getUsername(),
 				userModel.getPassword(), userModel.getEmail(),
 				userModel.getAdresse(), nomphoto, photo,
-				request.getParameterValues("skills"),userModel.getPhone());
+				request.getParameterValues("skills"), userModel.getPhone());
 		model.addAttribute("user", new User());
 		model.addAttribute("users", IUserMetier.findAll());
-		
+
 		return "redirect:/users";
 	}
 
@@ -124,7 +124,7 @@ public class UserController {
 		IUserMetier.update(idUser, userModel.getRoles(),
 				userModel.getUsername(), userModel.getPassword(),
 				userModel.getEmail(), userModel.getAdresse(), nomphoto, photo,
-				request.getParameterValues("skills"),userModel.getPhone());
+				request.getParameterValues("skills"), userModel.getPhone());
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String username = auth.getName();
@@ -134,7 +134,7 @@ public class UserController {
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
 		model.addAttribute("useredit", IUserMetier.useredit(idUser));
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "redirect:/users";
 
 	}

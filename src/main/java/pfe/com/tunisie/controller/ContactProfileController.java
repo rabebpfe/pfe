@@ -43,11 +43,12 @@ public class ContactProfileController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
-        model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUserNotif));
+		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUserNotif));
 		model.addAttribute("usere", new User());
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "contacts.contactProfile";
 	}
 

@@ -46,12 +46,13 @@ public class TaskDetailController {
 		model.addAttribute("Task", Task);
 		model.addAttribute("Files", IFileTaskMetier.findFileByTask(idTask));
 		model.addAttribute("Comments", ICommenteMetier.findByIdTask(idTask));
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("Commente", new Comment());
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
-		  String url =  request.getRequestURI();
-		   System.out.println("**************End url ***************"+url);
-		   request.getSession().setAttribute("url", url);
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		String url = request.getRequestURI();
+		System.out.println("**************End url ***************" + url);
+		request.getSession().setAttribute("url", url);
 		return "task.taskDetail";
 	}
 

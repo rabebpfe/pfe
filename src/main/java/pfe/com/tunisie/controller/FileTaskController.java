@@ -49,17 +49,15 @@ public class FileTaskController {
 
 		IFileTaskMetier.save(f, idTask);
 
-		  String url =  (String) request.getSession().getAttribute("url");
-			if(url.equals("/tunisie/taskDetail")){
-				
-				   return "redirect:/taskDetail?idTask=" + idTask;
-		}
-			else
-				   return "redirect:/taskPerDetail?idTask=" + idTask;
-		
+		String url = (String) request.getSession().getAttribute("url");
+		if (url.equals("/tunisie/taskDetail")) {
+
+			return "redirect:/taskDetail?idTask=" + idTask;
+		} else
+			return "redirect:/taskPerDetail?idTask=" + idTask;
 
 	}
-	
+
 	@RequestMapping(value = "/Download")
 	public ModelAndView download(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

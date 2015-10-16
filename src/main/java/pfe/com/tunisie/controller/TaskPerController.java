@@ -22,6 +22,7 @@ public class TaskPerController {
 	private ITaskMetier ITaskMetier;
 	@Autowired
 	private IMessageMetier IMessageMetier;
+
 	@RequestMapping("/taskPer")
 	public String taskPer(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
@@ -30,12 +31,17 @@ public class TaskPerController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-		model.addAttribute("notification",INotificationMetier.findByIdUser(idUser));
-		model.addAttribute("Task_Open",ITaskMetier.findByStatus("Open",idUser));
-		model.addAttribute("Task_IN_progress",ITaskMetier.findByStatus("IN progress",idUser));
-		model.addAttribute("Task_Review",ITaskMetier.findByStatus("Review",idUser));
-		model.addAttribute("Task_DONE",ITaskMetier.findByStatus("Done",idUser));
-		model.addAttribute("message",IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("notification",
+				INotificationMetier.findByIdUser(idUser));
+		model.addAttribute("Task_Open",
+				ITaskMetier.findByStatus("Open", idUser));
+		model.addAttribute("Task_IN_progress",
+				ITaskMetier.findByStatus("IN progress", idUser));
+		model.addAttribute("Task_Review",
+				ITaskMetier.findByStatus("Review", idUser));
+		model.addAttribute("Task_DONE",
+				ITaskMetier.findByStatus("Done", idUser));
+		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "task.taskPer";
 	}
 }
