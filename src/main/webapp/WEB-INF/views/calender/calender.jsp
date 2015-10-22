@@ -53,7 +53,7 @@
 
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">�</button>
+							aria-hidden="true">x</button>
 						<h4 class="modal-title" id="myModalLabel">
 							<spring:message code="label.New_Calender_Entry" />
 						</h4>
@@ -119,7 +119,7 @@
 
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">�</button>
+							aria-hidden="true">x</button>
 						<h4 class="modal-title" id="myModalLabel2">
 							<spring:message code="label.Edit_Calender_Entry" />
 						</h4>
@@ -492,7 +492,7 @@
 
 						$(".antosubmit2").on("click", function() {
 							calEvent.title = $("#title2").val();
-							calEvent.title = $("#descr2").val();
+							calEvent.descr= $("#descr2").val();
 							$('#id2').val(calEvent.id);
 
 							calendar.fullCalendar('updateEvent', calEvent);

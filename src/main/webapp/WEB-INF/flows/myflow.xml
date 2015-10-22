@@ -3,28 +3,25 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
       http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
-
-    
-    
 	<action-state id="OPEN">
-		<evaluate expression="TacheAction.Etatchang()" />
+		<evaluate expression="TaskPerDetail.Etatchang()" />
 		<transition on="Star_Progress" to="IN_PROGRESS" />
 	</action-state>
-    <action-state id="IN_PROGRESS">
-		<evaluate expression="TacheAction.Etatchang()" />
+	<action-state id="IN_PROGRESS">
+		<evaluate expression="TaskPerDetail.Etatchang()" />
 		<transition on="Stop_Progress" to="OPEN" />
 		<transition on="Readly_for_review" to="CODE_REVIEW" />
 	</action-state>
 	<action-state id="CODE_REVIEW">
-		<evaluate expression="TacheAction.Etatchang()" />
+		<evaluate expression="TaskPerDetail.Etatchang()" />
 		<transition on="Code_Review_Passed" to="DONE" />
 		<transition on="Code_Review _Failed" to="IN_PROGRESS" />
 	</action-state>
 	<action-state id="DONE">
-		<evaluate expression="TacheAction.Etatchang()" />
+		<evaluate expression="TaskPerDetail.Etatchang()" />
 		<transition on="Code_Review_Passed" to="DONE" />
 		<transition on="Reopen" to="OPEN" />
 	</action-state>
-	
-	
+
+
 </flow>
