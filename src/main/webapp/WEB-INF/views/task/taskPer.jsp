@@ -56,7 +56,7 @@
 							</li>
 							<li role="presentation" class=""><a href="#tab_content2"
 								role="tab" id="profile-tab" data-toggle="tab"
-								aria-expanded="false">IN progress</a></li>
+								aria-expanded="false">IN PROGRESS</a></li>
 							<li role="presentation" class=""><a href="#tab_content3"
 								role="tab" id="profile-tab2" data-toggle="tab"
 								aria-expanded="false">CODE REVIEW</a></li>

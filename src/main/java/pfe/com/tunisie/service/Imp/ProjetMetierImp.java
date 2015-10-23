@@ -76,7 +76,7 @@ public class ProjetMetierImp implements IProjetMetier {
 				System.out.println("**************j ***************"+j);
 				
 				for (int k = 0; k < Task.size(); k++) {
-					if ((Task.get(k).getStatus().equals("Review")
+					if ((Task.get(k).getStatus().equals("Code Review")
 							|| Task.get(k).getStatus().equals("IN progress")
 							|| Task.get(k).getStatus().equals("Open"))
 							&& Task.get(k).getProjet().getIdProject()

@@ -31,8 +31,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						<spring:message code="label.User_Report" />
-						<small> <spring:message code="label.Activity_report" /></small>
+						
+						<small> </small>
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -424,7 +424,7 @@
 				hideHover : 'auto',
 				barColors : [ '#007aff', '#007aff', '#ACADAC', '#3498DB' ],
 				ykeys : [ 'Hours worked', 'sorned' ],
-				labels : [ 'Hours worked', 'SORN' ],
+				
 				xLabelAngle : 60
 			});
 		});

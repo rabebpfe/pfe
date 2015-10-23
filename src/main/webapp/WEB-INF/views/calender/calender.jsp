@@ -3,6 +3,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -87,9 +89,8 @@
 
 									<form:input path="end" type="hidden" id="endEvent"
 										name="endEvent" />
-										
-										<form:input path="idEvent" type="hidden" id="id"
-										name="id" />
+
+									<form:input path="idEvent" type="hidden" id="id" name="id" />
 								</div>
 
 								<div class="modal-footer">
@@ -147,10 +148,9 @@
 										<form:textarea path="description" class="form-control"
 											style="height: 55px;" id="descr2" name="descr" />
 									</div>
-									
+
 								</div>
-									<form:input path="idEvent" type="hidden" id="id2"
-										name="id2" />
+								<form:input path="idEvent" type="hidden" id="id2" name="id2" />
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default antoclose"
@@ -168,10 +168,12 @@
 				</div>
 			</div>
 		</div>
-		<div id="fc_create" data-toggle="modal"
-			data-target="#CalenderModalNew"></div>
-		<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<div id="fc_create" data-toggle="modal"
+				data-target="#CalenderModalNew"></div>
+			<div id="fc_edit" data-toggle="modal"
+				data-target="#CalenderModalEdit"></div>
+		</sec:authorize>
 		<!-- End Calender modal -->
 		<!-- /page content -->
 
@@ -500,7 +502,7 @@
 						});
 						calendar.fullCalendar('unselect');
 					},
-					editable : true,
+					editable : false,
 					events : [    
 					   <c:forEach items="${events}" var="events" varStatus="loop">
 			           {

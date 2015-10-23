@@ -289,7 +289,7 @@ content1" id="home-tab" role="tab" data-toggle="tab"
 					hideHover : 'auto',
 					barColors : [ '#007aff', '#007aff', '#ACADAC', '#3498DB' ],
 					ykeys : [ 'Hours worked', 'sorned' ],
-					labels : [ 'Hours worked', 'SORN' ],
+					
 					xLabelAngle : 60
 				});
 			});
