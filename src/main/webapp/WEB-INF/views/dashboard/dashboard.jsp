@@ -286,7 +286,7 @@
 			easing : 'easeOutElastic',
 			delay : 3000,
 			barColor : '#1479B8',
-			trackColor : '#555',
+			trackColor : '#fff',
 			scaleColor : false,
 			lineWidth : 20,
 			trackWidth : 16,
