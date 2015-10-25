@@ -37,9 +37,8 @@
 	<div class="menu_section">
 		<h3>General</h3>
 		<ul class="nav side-menu">
-			<li><a><i class="fa fa-users"></i>
-				<spring:message code="label.Users" /><span
-					class="fa fa-chevron-down"></span></a>
+			<li><a><i class="fa fa-users"></i> <spring:message
+						code="label.Users" /><span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu" style="display: none">
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<li><a href="users"><spring:message code="label.Users" /></a>
@@ -50,18 +49,18 @@
 									code="label.Contacts" /></a></li>
 					</sec:authorize>
 				</ul></li>
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<li><a> <i class="fa fa-bar-chart-o   "></i> <spring:message
-						code="label.Projects" /><span class="fa fa-chevron-down"></span></a>
-				<ul class="nav child_menu" style="display: none">
-					
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a> <i class="fa fa-bar-chart-o   "></i> <spring:message
+							code="label.Projects" /><span class="fa fa-chevron-down"></span></a>
+					<ul class="nav child_menu" style="display: none">
+
 						<li><a href="projet"><spring:message
 									code="label.Projects" /></a></li>
 						<li><a href="projetGallery"><spring:message
 									code="label.Gallery" /></a></li>
-				
-				</ul></li>
-					</sec:authorize>
+
+					</ul></li>
+			</sec:authorize>
 			<li><a><i class="fa fa-tasks"></i> <spring:message
 						code="label.Task" /><span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu" style="display: none">
@@ -75,18 +74,17 @@
 					</sec:authorize>
 
 				</ul></li>
-			<li><a><i class="fa fa-calendar"></i>
-				<spring:message code="label.Calender" /><span
-					class="fa fa-chevron-down"></span></a>
+			<li><a><i class="fa fa-calendar"></i> <spring:message
+						code="label.Calender" /><span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu" style="display: none">
 					<li><a href="calender"><spring:message
 								code="label.Calender" /></a></li>
 
 				</ul></li>
-			
-				
 
-				
+
+
+
 
 
 			<li><a><i class="fa fa-envelope"></i> <spring:message
@@ -101,12 +99,12 @@
 
 
 				</ul></li>
-				
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-					
-					 <li><a href="dashboard"><i class="fa fa-laptop"></i> Dashboard <span class="label label-success pull-right"></span></a>
-                                </li>
-					</sec:authorize>
+
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+
+				<li><a href="dashboard"><i class="fa fa-laptop"></i>
+						Dashboard <span class="label label-success pull-right"></span></a></li>
+			</sec:authorize>
 
 		</ul>
 	</div>
