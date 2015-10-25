@@ -48,9 +48,45 @@ public class ProjetMetierImp implements IProjetMetier {
 		return IProjetDAO.findAll();
 	}
 
-	@Override
-	public List<Project> findByIdUser(Long idUser) {
 
+	@Override
+	public void saveProjet(String description, String nom, String categorie,
+			Date date, String status, String estimation_budget,
+			String estimation_dure, Long idUser) {
+		Project Project = new Project();
+		Project.setCategorie(categorie);
+		Project.setDate(date);
+		Project.setDescription(description);
+		Project.setEstimation_dure(estimation_dure);
+		Project.setEstimation_budget(estimation_budget);
+		Project.setStatus(status);
+		Project.setNom(nom);
+		User user = IUserDAO.findOne(idUser);
+		Project.setUser(user);
+
+		IProjetDAO.save(Project);
+
+	}
+
+	@Override
+	public void update(long idProject, String nom, String description,
+			String categorie, String estimation_dure, String estimation_budget,
+			String status, Date date) {
+
+		Project Project = IProjetDAO.findOne(idProject);
+		Project.setNom(nom);
+		Project.setCategorie(categorie);
+		Project.setDate(date);
+		Project.setEstimation_budget(estimation_budget);
+		Project.setEstimation_dure(estimation_dure);
+		Project.setStatus(status);
+		Project.setDescription(description);
+		IProjetDAO.save(Project);
+
+	}
+
+	@Override
+	public List<Project> findByContribution() {
 		List<Project> Projects = new ArrayList<Project>();
 		List<Project> Project = IProjetDAO.findAll();
 		List<Task> Task = ITaskDAO.findAll();
@@ -59,9 +95,9 @@ public class ProjetMetierImp implements IProjetMetier {
 			int l = 0;
 			int j = 0;
 			long s ;
-			if (Project.get(i).getUser().getIdUser() == idUser) {
+		
 				Projects.add(Project.get(i));
-				System.out.println("**************projet ***************"+Project.get(i).getIdProject());
+				
 
 				for (int k = 0; k < Task.size(); k++) {
 					if (Task.get(k).getProjet().getIdProject()
@@ -108,46 +144,9 @@ public class ProjetMetierImp implements IProjetMetier {
 				
 			}
 
-		}
+	
 
 		return Projects;
-
-	}
-
-	@Override
-	public void saveProjet(String description, String nom, String categorie,
-			Date date, String status, String estimation_budget,
-			String estimation_dure, Long idUser) {
-		Project Project = new Project();
-		Project.setCategorie(categorie);
-		Project.setDate(date);
-		Project.setDescription(description);
-		Project.setEstimation_dure(estimation_dure);
-		Project.setEstimation_budget(estimation_budget);
-		Project.setStatus(status);
-		Project.setNom(nom);
-		User user = IUserDAO.findOne(idUser);
-		Project.setUser(user);
-
-		IProjetDAO.save(Project);
-
-	}
-
-	@Override
-	public void update(long idProject, String nom, String description,
-			String categorie, String estimation_dure, String estimation_budget,
-			String status, Date date) {
-
-		Project Project = IProjetDAO.findOne(idProject);
-		Project.setNom(nom);
-		Project.setCategorie(categorie);
-		Project.setDate(date);
-		Project.setEstimation_budget(estimation_budget);
-		Project.setEstimation_dure(estimation_dure);
-		Project.setStatus(status);
-		Project.setDescription(description);
-		IProjetDAO.save(Project);
-
 	}
 
 }

@@ -52,7 +52,7 @@ public class ProfileController {
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
-		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
+		model.addAttribute("Project", IProjetMetier.findByContribution());
 		model.addAttribute("notification",
 				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("useredit", IUserMetier.useredit(idUser));
@@ -82,7 +82,7 @@ public class ProfileController {
 		model.addAttribute("skills", ISkillsMetier.findByIdUser(idUser));
 		model.addAttribute("Activity", IActivityMetier.findByIdUser(idUser));
 		model.addAttribute("tache", ITaskMetier.findByIdUser(idUser));
-		model.addAttribute("Project", IProjetMetier.findByIdUser(idUser));
+		model.addAttribute("Project", IProjetMetier.findByContribution());
 		model.addAttribute("usere", new User());
 		return "redirect:/profile";
 	}

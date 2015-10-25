@@ -52,8 +52,7 @@
 						<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 							<li role="presentation" class="active"><a
 								href="#tab_content1" id="home-tab" role="tab" data-toggle="tab"
-								aria-expanded="true"> OPEN</a>
-							</li>
+								aria-expanded="true"> OPEN</a></li>
 							<li role="presentation" class=""><a href="#tab_content2"
 								role="tab" id="profile-tab" data-toggle="tab"
 								aria-expanded="false">IN PROGRESS</a></li>
@@ -62,8 +61,7 @@
 								aria-expanded="false">CODE REVIEW</a></li>
 							<li role="presentation" class=""><a href="#tab_content4"
 								role="tab" id="profile-tab3" data-toggle="tab"
-								aria-expanded="false">DONE</a>
-							</li>
+								aria-expanded="false">DONE</a></li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade active in"
@@ -78,6 +76,7 @@
 											<th>Priorité</th>
 											<th>Projet</th>
 											<th>Date</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -85,10 +84,13 @@
 										<c:forEach var="Task_Open" items="${Task_Open}">
 											<tr>
 
-												<td><a href="taskPerDetail?idTask=${Task_Open.idTask}">${Task_Open.nom}</a></td>
+												<td>${Task_Open.nom}</td>
 												<td>${Task_Open.priorite}</td>
 												<td>${Task_Open.projet.nom}</td>
 												<td>${Task_Open.date}</td>
+												<td><a class="btn btn-warning"
+													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
 
@@ -112,17 +114,21 @@
 											<th>Priorité</th>
 											<th>Projet</th>
 											<th>Date</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="Task_Result" items="${Task_Result}">
 											<tr>
-												<td><a href="taskPerDetail?idTask=${Task_Result.idTask}">${Task_Result.nom}</a></td>
+												<td>${Task_Result.nom}</td>
 
 												<td>${Task_Result.priorite}</td>
 												<td>${Task_Result.projet.nom}</td>
 												<td>${Task_Result.date}</td>
+												<td><a class="btn btn-warning"
+													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
 
@@ -144,17 +150,21 @@
 											<th>Priorité</th>
 											<th>Projet</th>
 											<th>Date</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="Task_Review" items="${Task_Review}">
 											<tr>
-												<td><a href="taskPerDetail?idTask=${Task_Review.idTask}">${Task_Review.nom}</a></td>
+												<td>${Task_Review.nom}</td>
 
 												<td>${Task_Review.priorite}</td>
 												<td>${Task_Review.projet.nom}</td>
 												<td>${Task_Review.date}</td>
+												<td><a class="btn btn-warning"
+													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
 
@@ -174,17 +184,21 @@
 											<th>Priorité</th>
 											<th>Projet</th>
 											<th>Date</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="Task_Test" items="${Task_Test}">
 											<tr>
-												<td><a href="taskPerDetail?idTask=${Task_Test.idTask}">$Task_Test.nom}</a></td>
+												<td>$Task_Test.nom}</td>
 
 												<td>${Task_Test.priorite}</td>
 												<td>${Task_Test.projet.nom}</td>
 												<td>${Task_Test.date}</td>
+												<td><a class="btn btn-warning"
+													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
 

@@ -182,7 +182,7 @@ content1" id="home-tab" role="tab" data-toggle="tab"
 												<th><spring:message code="label.State" /></th>
 												<th class="hidden-phone"><spring:message
 														code="label.Hours_Spent" /></th>
-												<th><spring:message code="label.Contribution" /></th>
+											
 											</tr>
 										</thead>
 										<tbody>
@@ -193,12 +193,7 @@ content1" id="home-tab" role="tab" data-toggle="tab"
 													<td width="40%">${Project.nom}</td>
 													<td>${Project.status}</td>
 													<td class="hidden-phone">${Project.estimation_dure}</td>
-													<td class="vertical-align-mid">
-														<div class="progress">
-															<div class="progress-bar progress-bar-info"
-																data-transitiongoal="${Project.contribution}"></div>
-														</div>
-													</td>
+													
 												</tr>
 											</c:forEach>
 

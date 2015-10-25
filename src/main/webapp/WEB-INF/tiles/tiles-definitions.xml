@@ -100,6 +100,10 @@
 	<definition name="comment.edit" template="/WEB-INF/views/comment/ajax_edit.jsp">
 
 	</definition>
+	<definition name="dashboard.dashboard" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/dashboard/dashboard.jsp"></put-attribute>
+	</definition>
+
 
 
 

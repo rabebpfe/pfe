@@ -101,6 +101,12 @@
 
 
 				</ul></li>
+				
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+					
+					 <li><a href="dashboard"><i class="fa fa-laptop"></i> Dashboard <span class="label label-success pull-right"></span></a>
+                                </li>
+					</sec:authorize>
 
 		</ul>
 	</div>

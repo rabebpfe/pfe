@@ -37,5 +37,6 @@ http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.4.x
         <property name="flowRegistry" ref="flowRegistry" /> 
         <property name="order" value="0" /> 
     </bean>
+     <bean class="pfe.com.tunisie.controller.TaskPerDetail" id="TaskPerDetail"> </bean>
     
   </beans>

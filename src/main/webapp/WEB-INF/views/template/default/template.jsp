@@ -49,6 +49,9 @@
 	rel="stylesheet" media="print">
 
 <script src="<c:url value="/resources/production/js/jquery.min.js" />"></script>
+<link
+	href="<c:url value="/resources/production/css/progressbar/bootstrap-progressbar-3.3.0.css" />"></script>
+
 
 <body class="nav-md">
 
