@@ -38,8 +38,8 @@ public class TaskPerController {
 		model.addAttribute("Task_IN_progress",
 				ITaskMetier.findByStatus("IN progress", idUser));
 		model.addAttribute("Task_Review",
-				ITaskMetier.findByStatus("Review", idUser));
-		model.addAttribute("Task_DONE",
+				ITaskMetier.findByStatus("Code Review", idUser));
+		model.addAttribute("Task_Done",
 				ITaskMetier.findByStatus("Done", idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "task.taskPer";

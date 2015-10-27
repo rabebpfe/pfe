@@ -119,15 +119,15 @@
 									</thead>
 									<tbody>
 
-										<c:forEach var="Task_Result" items="${Task_Result}">
+										<c:forEach var="Task_IN_progress" items="${Task_IN_progress}">
 											<tr>
-												<td>${Task_Result.nom}</td>
+												<td>${Task_IN_progress.nom}</td>
 
-												<td>${Task_Result.priorite}</td>
-												<td>${Task_Result.projet.nom}</td>
-												<td>${Task_Result.date}</td>
+												<td>${Task_IN_progress.priorite}</td>
+												<td>${Task_IN_progress.projet.nom}</td>
+												<td>${Task_IN_progress.date}</td>
 												<td><a class="btn btn-warning"
-													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+													href="taskPerDetail?idTask=${Task_IN_progress.idTask}"> <i
 														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
@@ -163,7 +163,7 @@
 												<td>${Task_Review.projet.nom}</td>
 												<td>${Task_Review.date}</td>
 												<td><a class="btn btn-warning"
-													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+													href="taskPerDetail?idTask=${Task_Review.idTask}"> <i
 														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
@@ -189,15 +189,15 @@
 									</thead>
 									<tbody>
 
-										<c:forEach var="Task_Test" items="${Task_Test}">
+										<c:forEach var="Task_Done" items="${Task_Done}">
 											<tr>
-												<td>$Task_Test.nom}</td>
+												<td>${Task_Done.nom}</td>
 
-												<td>${Task_Test.priorite}</td>
-												<td>${Task_Test.projet.nom}</td>
-												<td>${Task_Test.date}</td>
+												<td>${Task_Done.priorite}</td>
+												<td>${Task_Done.projet.nom}</td>
+												<td>${Task_Done.date}</td>
 												<td><a class="btn btn-warning"
-													href="taskPerDetail?idTask=${Task_Open.idTask}"> <i
+													href="taskPerDetail?idTask=${Task_Done.idTask}"> <i
 														class=" fa fa-link"></i></a></td>
 											</tr>
 										</c:forEach>
