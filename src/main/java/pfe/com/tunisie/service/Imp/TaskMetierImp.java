@@ -3,9 +3,11 @@ package pfe.com.tunisie.service.Imp;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import pfe.com.tunisie.dao.IActivityProjectDAO;
 import pfe.com.tunisie.dao.INotificationDAO;
 import pfe.com.tunisie.dao.IProjetDAO;
@@ -31,9 +33,7 @@ public class TaskMetierImp implements ITaskMetier {
 	private INotificationDAO INotificationDAO;
 	@Autowired
 	private IActivityProjectDAO IActivityProjectDAO;
-	public static final String ACCOUNT_SID = "ACeabfa92df506dce47a896e59b4e6e05b";
-
-	public static final String AUTH_TOKEN = "667f381b077d17bf47be705792cac327";
+	
 
 	@Override
 	public void save(Task task) {
@@ -108,6 +108,7 @@ public class TaskMetierImp implements ITaskMetier {
 		User User = IUserDAO.findByemail(Attribuer);
 		Task.setUser(User.getIdUser());
 		Task.setCreate_by(idUser);
+		Task.setHours((long) 0);
 
 		ITaskDAO.save(Task);
 		Notification Notification = new Notification();
@@ -200,6 +201,60 @@ public class TaskMetierImp implements ITaskMetier {
 			}
 		}
 		return Tasks;
+	}
+
+	@Override
+	public void IN_progress(Long idTask) {
+		Task task = ITaskDAO.findOne(idTask);
+		task.setStatus("IN progress");
+		
+		ITaskDAO.save(task);
+	}
+
+	@Override
+	public void Open(Long idTask) {
+		
+		Task task = ITaskDAO.findOne(idTask);
+		task.setStatus("Open");
+		
+		ITaskDAO.save(task);
+	}
+
+	@Override
+	public void Code_Review(Long idTask) {
+		Task task = ITaskDAO.findOne(idTask);
+		task.setStatus("Code Review");
+		
+		ITaskDAO.save(task);
+		
+	}
+
+	@Override
+	public void Done(Long idTask) {
+
+		Task task = ITaskDAO.findOne(idTask);
+		task.setStatus("Done");
+		
+		ITaskDAO.save(task);
+	}
+
+	@Override
+	public void attribut(Long idTask, String email) {
+		Task task = ITaskDAO.findOne(idTask);
+		User User = IUserDAO.findByemail(email);
+		task.setUser(User.getIdUser());
+		
+		ITaskDAO.save(task);
+		
+	}
+
+	@Override
+	public void saveHours(Long idTask, Long hours) {
+		Task task = ITaskDAO.findOne(idTask);
+		Long hour=task.getHours()+hours;
+		task.setHours(hour);
+		ITaskDAO.save(task);
+		
 	}
 
 }

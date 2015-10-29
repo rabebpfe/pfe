@@ -28,8 +28,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>
-						Task Report <small><spring:message
-								code="label.Task_Report" /></small>
+						<spring:message
+								code="label.Task_Report" />
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -40,11 +40,6 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="x_content">
-
-
-
-
-
 
 
 					<div style="width: 100%; height: 1000px;" class="" role="tabpanel"
@@ -127,8 +122,9 @@
 												<td>${Task_IN_progress.projet.nom}</td>
 												<td>${Task_IN_progress.date}</td>
 												<td><a class="btn btn-warning"
-													href="taskPerDetail?idTask=${Task_IN_progress.idTask}"> <i
-														class=" fa fa-link"></i></a></td>
+													href="taskPerDetail?idTask=${Task_IN_progress.idTask}">
+														<i class=" fa fa-link"></i>
+												</a></td>
 											</tr>
 										</c:forEach>
 

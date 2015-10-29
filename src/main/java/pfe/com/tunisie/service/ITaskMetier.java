@@ -25,6 +25,18 @@ public interface ITaskMetier {
 
 	public List<Task> findByStatus(String string, Long idUser);
 
+	public void IN_progress(Long idTask);
+
+	public void Open(Long idTask);
+
+	public void Code_Review(Long idTask);
+
+	public void Done(Long idTask);
+
+	public void attribut(Long idTask, String email);
+
+	public void saveHours(Long idTask, Long hours);
+
 
 
 

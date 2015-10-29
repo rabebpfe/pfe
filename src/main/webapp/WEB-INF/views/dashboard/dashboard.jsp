@@ -119,8 +119,6 @@
 
 
 
-
-
 			<div class="row top_tiles">
 				<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					<div class="tile-stats">
@@ -226,7 +224,8 @@
 
 						<div class="divider"></div>
 
-						<p>${Project.description}</p>
+						<p><spring:message code="label.estumation_durée" />: ${Project.estimation_dure}</p>
+						<p><spring:message code="label.durée_réelle" /> : ${Project.reel_dure}</p>
 
 					</div>
 				</div>

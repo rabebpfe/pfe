@@ -73,7 +73,7 @@ public class SampleSMS implements Job {
 						.println("Bonjour  "
 								+ user.getUsername()
 								+ ", il fout rendre le travail de votre tâche intitulé "
-								+ Tasks.get(i).getNom() + "avant le "
+								+ Tasks.get(i).getNom() +" "+"avant le "
 								+ Tasks.get(i).getDate());
 				try {
 					sms = messageFactory.create(params);

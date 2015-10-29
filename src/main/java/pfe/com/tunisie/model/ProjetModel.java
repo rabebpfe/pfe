@@ -9,9 +9,20 @@ public class ProjetModel {
 	private String status;
 	private String estimation_budget;
 	private String estimation_dure;
+	private String reel_dure;
 	private String description;
 	private Date date;
 	private Long contribution;
+
+	public String getReel_dure() {
+		return reel_dure;
+	}
+
+
+	public void setReel_dure(String reel_dure) {
+		this.reel_dure = reel_dure;
+	}
+
 
 	public Long getContribution() {
 		return contribution;

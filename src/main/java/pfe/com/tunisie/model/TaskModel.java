@@ -12,8 +12,16 @@ public class TaskModel {
 	private String user;
 	private String description;
 	private String Projet;
+	private Long  hours;
+	public Long getHours() {
+		return hours;
+	}
 
-	public TaskModel(Long idTask, String nom, Date date, String status,
+	public void setHours(Long hours) {
+		this.hours = hours;
+	}
+
+	TaskModel(Long idTask, String nom, Date date, String status,
 			String priorite, Long create_by, String user, String description,
 			String Projet) {
 		super();
@@ -141,5 +149,7 @@ public class TaskModel {
 	public void setUser(String user) {
 		this.user = user;
 	}
+
+
 
 }

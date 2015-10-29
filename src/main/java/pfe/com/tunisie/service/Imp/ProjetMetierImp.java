@@ -57,10 +57,11 @@ public class ProjetMetierImp implements IProjetMetier {
 		Project.setCategorie(categorie);
 		Project.setDate(date);
 		Project.setDescription(description);
-		Project.setEstimation_dure(estimation_dure);
-		Project.setEstimation_budget(estimation_budget);
+		Project.setEstimation_dure(estimation_budget);
+		Project.setEstimation_budget(estimation_dure);
 		Project.setStatus(status);
 		Project.setNom(nom);
+		Project.setReel_dure("0 heures");
 		User user = IUserDAO.findOne(idUser);
 		Project.setUser(user);
 
@@ -77,8 +78,8 @@ public class ProjetMetierImp implements IProjetMetier {
 		Project.setNom(nom);
 		Project.setCategorie(categorie);
 		Project.setDate(date);
-		Project.setEstimation_budget(estimation_budget);
-		Project.setEstimation_dure(estimation_dure);
+		Project.setEstimation_budget(estimation_dure);
+		Project.setEstimation_dure(estimation_budget);
 		Project.setStatus(status);
 		Project.setDescription(description);
 		IProjetDAO.save(Project);
@@ -95,6 +96,7 @@ public class ProjetMetierImp implements IProjetMetier {
 			int l = 0;
 			int j = 0;
 			long s ;
+			long hours_reel=0;
 		
 				Projects.add(Project.get(i));
 				
@@ -105,6 +107,7 @@ public class ProjetMetierImp implements IProjetMetier {
 
 					{
 						j = j + 1;
+						hours_reel=Task.get(k).getHours()+hours_reel;
 						
 					}
 
@@ -128,6 +131,7 @@ public class ProjetMetierImp implements IProjetMetier {
 					s = (long) 100;
 					Project.get(i).setStatus("Done");
 					
+					Project.get(i).setReel_dure(hours_reel+" "+"heures");
 				    Project.get(i).setContribution(s);
 					IProjetDAO.save(Project);
 
@@ -138,6 +142,7 @@ public class ProjetMetierImp implements IProjetMetier {
 				
 					s = (long) (l*100)/j ;
 					Project.get(i).setStatus("Open");
+					Project.get(i).setReel_dure(hours_reel+" "+"heures");
 					Project.get(i).setContribution(s);
 					IProjetDAO.save(Project);
 				}

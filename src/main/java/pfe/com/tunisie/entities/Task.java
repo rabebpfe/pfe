@@ -25,6 +25,7 @@ public class Task implements Serializable {
 	private Long user;
 	private String description;
 	private String priorite;
+	private Long  hours;
 	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
 	private Collection<Comment> commentes;
 	@ManyToOne
@@ -34,6 +35,18 @@ public class Task implements Serializable {
 	private Collection<FileTask> fileTasks;
 	
 	
+	public Long getHours() {
+		return hours;
+	}
+
+
+
+	public void setHours(Long hours) {
+		this.hours = hours;
+	}
+
+
+
 	public Task(Long idTask, String nom, Date date, String status,
 			 Long create_by, Long user,
 			String description, String priorite,

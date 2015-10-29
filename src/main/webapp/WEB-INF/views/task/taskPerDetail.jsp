@@ -25,7 +25,7 @@
 		<div class="col-md-12">
 			<div class="x_panel">
 				<div class="x_title">
-					<h2>New Partner Contracts Consultancy</h2>
+					<h2></h2>
 					<ul class="nav navbar-right panel_toolbox">
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 						</li>
@@ -46,10 +46,41 @@
 						<div style="height: 350px;">
 
 							<c:if test="${Task.status=='Open'}">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											<spring:message code="label.Operations_1" />
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up"></i></a></li>
+
+											<li><a class="close-link"><i class="fa fa-close"></i></a>
+											</li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
 
 
-								<button type="button" class="btn btn-warning">Start
-									progress</button>
+										<a class="btn btn-round btn-warning" href="IN_progress">Start
+											progress</a>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#AttributNew">
+											<spring:message code="label.Attribuer" />
+										</h5>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#SuiteNew">Suite</h5>
+
+
+
+									</div>
+								</div>
+
+
+
+
+
 
 
 
@@ -57,48 +88,128 @@
 							</c:if>
 
 							<c:if test="${Task.status=='IN progress'}">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											<spring:message code="label.Operations_2" />
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up"></i></a></li>
+
+											<li><a class="close-link"><i class="fa fa-close"></i></a>
+											</li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+										<a class="btn  btn-round btn-danger" href="Open">Stop
+											progress </a> <a class="btn  btn-round  btn-warning"
+											href="Code_Review">Ready for review</a>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#AttributNew">
+											<spring:message code="label.Attribuer" />
+										</h5>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#SuiteNew">Suite</h5>
 
 
-								<button type="button" class="btn btn-warning">Stop
-									progress</button>
+									</div>
+								</div>
 
 
-
-
-								<button type="button" class="btn btn-warning">Ready for
-									review</button>
 
 							</c:if>
 							<c:if test="${Task.status=='Code Review'}">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											<spring:message code="label.Operations_3" />
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up"></i></a></li>
+
+											<li><a class="close-link"><i class="fa fa-close"></i></a>
+											</li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+
+										<a class="btn btn-round btn-danger" href="IN_progress">Code
+											review failed</a> <a class="btn btn-round btn-warning"
+											href="Done">Code review passed</a>
+
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#AttributNew">
+											<spring:message code="label.Attribuer" />
+										</h5>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#SuiteNew">Suite</h5>
+									</div>
+								</div>
 
 
-								<button type="button" class="btn btn-warning">Code
-									review passed</button>
 
-								<button type="button" class="btn btn-warning">Code
-									review failed</button>
+
+
+
+
+
 							</c:if>
 							<c:if test="${Task.status=='Done'}">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											<spring:message code="label.Operations_4" />
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up"></i></a></li>
+
+											<li><a class="close-link"><i class="fa fa-close"></i></a>
+											</li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
 
 
-								<button type="button" class="btn btn-warning">Reopen</button>
+										<a class="btn btn-round btn-danger" href="Open">Reopen</a>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#AttributNew">
+											<spring:message code="label.Attribuer" />
+										</h5>
+										<h5 class="btn btn-round btn-info" data-toggle="modal"
+											data-target="#SuiteNew">Suite</h5>
+									</div>
+								</div>
 
 
 							</c:if>
 
-							<h2 class="btn btn-primary" data-toggle="modal"
-								data-target="#AttributetNew">attribute</h2>
-							<h2 class="btn btn-info" data-toggle="modal"
-								data-target="#SuiteNew">Suite</h2>
 
-							<br /> <br /> ${Task.description}
 
+							<div class="clearfix"></div>
+
+							<div class="panel-body">
+								<h3 class="green">
+									<i class="fa fa-paint-brush"></i>
+								</h3>
+							</div>
+							${Task.description} <br /> <br />
 
 						</div>
 
 						<div>
 
-							<h4>Commented</h4>
+
+
+
+							<h4>
+								<spring:message code="label.Commented" />
+							</h4>
 
 							<!-- end of user messages -->
 							<ul class="messages">
@@ -203,6 +314,117 @@
 					</div>
 					<!-- end project-detail sidebar -->
 
+					<div id="AttributNew" class="modal fade" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">x</button>
+									<h4 class="modal-title" id="myModalLabel">
+										<spring:message code="label.Attribuer" />
+									</h4>
+								</div>
+								<div class="modal-body">
+									<div id="testmodal" style="padding: 30px 30px;">
+										<form:form modelAttribute="Commente" action="attribut"
+											method="POST">
+
+											<div class="form-group">
+												<form:label path="user"
+													class="control-label col-md-3 col-sm-3 col-xs-12"
+													name="user">
+													<spring:message code="label.User" />
+												</form:label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<form:select path="user" class=" form-control">
+														<c:forEach var="users" items="${users}">
+															<form:option path="user" value="${users.email}" />
+														</c:forEach>
+
+													</form:select>
+												</div>
+
+											</div>
+											<br />
+											<br />
+											<br />
+											<br />
+											<br />
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default antoclose"
+													data-dismiss="modal">
+													<spring:message code="label.Close" />
+												</button>
+												<input type="submit" name="submit" class="btn btn-primary"
+													value="<spring:message code="label.Save" />" />
+
+											</div>
+
+										</form:form>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div id="SuiteNew" class="modal fade" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">x</button>
+									<h4 class="modal-title" id="myModalLabel">Suite</h4>
+								</div>
+								<div class="modal-body">
+									<div id="testmodal" style="padding: 30px 30px;">
+										<form:form modelAttribute="Task" action="saveHours"
+											method="POST">
+
+											<div class="form-group">
+												<form:label path="hours"
+													class="control-label col-md-3 col-sm-3 col-xs-12"
+													for="Hours_Task">
+													<spring:message code="label.nembres_heures" />
+
+												</form:label>
+												<div class="col-sm-9">
+													<div class="col-md-6 col-sm-6 col-xs-12">
+														<form:input path="hours" type="text" id="hours" value=" "
+															class="form-control col-md-7 col-xs-12" />
+													</div>
+												</div>
+											</div>
+											<br />
+											<br />
+											<br />
+											<br />
+											<br />
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default antoclose"
+													data-dismiss="modal">
+													<spring:message code="label.Close" />
+												</button>
+												<input type="submit" name="submit" class="btn btn-primary"
+													onclick="return valider(this.form);"
+													value="<spring:message code="label.Save" />" />
+
+											</div>
+
+										</form:form>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
 					<div id="CommentNew" class="modal fade" tabindex="-1" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="false">
 						<div class="modal-dialog">
@@ -255,116 +477,6 @@
 							</div>
 						</div>
 					</div>
-
-
-					<div id="AttributetNew" class="modal fade" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-						<div class="modal-dialog">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">x</button>
-									<h4 class="modal-title" id="myModalLabel">
-										<spring:message code="label.New_Comment_Entry" />
-									</h4>
-								</div>
-								<div class="modal-body">
-									<div id="testmodal" style="padding: 30px 30px;">
-										<form:form modelAttribute="Commente" action="saveComment"
-											method="POST">
-
-											<div class="form-group">
-												<form:label path="description"
-													class="control-label col-md-3 col-sm-3 col-xs-12"
-													for="Comment_Description">
-													<spring:message code="label.Commented" />
-													<span class="required">*</span>
-												</form:label>
-												<div class="col-sm-9">
-													<form:textarea path="description" id="Comment_Description"
-														name="Comment_Description"
-														class="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<br />
-											<br />
-											<br />
-											<br />
-											<br />
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default antoclose"
-													data-dismiss="modal">
-													<spring:message code="label.Close" />
-												</button>
-												<input type="submit" name="submit" class="btn btn-primary"
-													value="<spring:message code="label.Save" />" />
-
-											</div>
-
-										</form:form>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-
-
-					<div id="SuiteNew" class="modal fade" tabindex="-1" role="dialog"
-						aria-labelledby="myModalLabel" aria-hidden="false">
-						<div class="modal-dialog">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">x</button>
-									<h4 class="modal-title" id="myModalLabel">
-										<spring:message code="label.New_Comment_Entry" />
-									</h4>
-								</div>
-								<div class="modal-body">
-									<div id="testmodal" style="padding: 30px 30px;">
-										<form:form modelAttribute="Commente" action="saveComment"
-											method="POST">
-
-											<div class="form-group">
-												<form:label path="description"
-													class="control-label col-md-3 col-sm-3 col-xs-12"
-													for="Comment_Description">
-													<spring:message code="label.Commented" />
-													<span class="required">*</span>
-												</form:label>
-												<div class="col-sm-9">
-													<form:textarea path="description" id="Comment_Description"
-														name="Comment_Description"
-														class="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<br />
-											<br />
-											<br />
-											<br />
-											<br />
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default antoclose"
-													data-dismiss="modal">
-													<spring:message code="label.Close" />
-												</button>
-												<input type="submit" name="submit" class="btn btn-primary"
-													value="<spring:message code="label.Save" />" />
-
-											</div>
-
-										</form:form>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
 
 
 
@@ -423,45 +535,78 @@
 
 							</div>
 						</div>
+					</div>
+				</div>
 
-						<script type="text/javascript">
-							//Fill modal with content from link href
-							$(document)
-									.ready(
-											function() {
-												$("#CommentEdit")
-														.on(
-																"show.bs.modal",
-																function(e) {
-																	var link = $(e.relatedTarget);
-																	$(this)
-																			.find(
-																					".modal-body")
-																			.load(
-																					link
-																							.attr("href"));
-																});
-											});
-						</script>
-						<script
-							src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
+				<script type="text/javascript">
+					//Fill modal with content from link href
+					$(document).ready(
+							function() {
+								$("#CommentEdit").on(
+										"show.bs.modal",
+										function(e) {
+											var link = $(e.relatedTarget);
+											$(this).find(".modal-body").load(
+													link.attr("href"));
+										});
+							});
+				</script>
+				<script
+					src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
 
-						<!-- chart js -->
-						<script
-							src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
-						<!-- bootstrap progress js -->
-						<script
-							src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
-						<script
-							src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
-						<!-- icheck -->
-						<script
-							src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
+				<!-- chart js -->
+				<script
+					src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
+				<!-- bootstrap progress js -->
+				<script
+					src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
+				<script
+					src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
+				<!-- icheck -->
+				<script
+					src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
 
-						<script src="<c:url value="/resources/production/js/custom.js" />"></script>
+				<script src="<c:url value="/resources/production/js/custom.js" />"></script>
 
-						<!-- echart -->
-						<script
-							src="<c:url value="/resources/production/js/echart/echarts-all.js" />"></script>
-						<script
-							src="<c:url value="/resources/production/js/echart/green.js" />"></script>
+				<!-- echart -->
+				<script
+					src="<c:url value="/resources/production/js/echart/echarts-all.js" />"></script>
+				<script
+					src="<c:url value="/resources/production/js/echart/green.js" />"></script>
+				<!-- select2 -->
+				<script
+					src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
+
+				<!-- select2 -->
+				<script
+					src="<c:url value="/resources/production/js/select/select2.full.js" />"></script>
+				<!-- select2 -->
+
+				<script>
+					$(document).ready(function() {
+						$(".select2_single").select2({
+							placeholder : "Select a state",
+							allowClear : true
+						});
+						$(".select2_group").select2({});
+						$(".select2_multiple").select2({
+							maximumSelectionLength : 3,
+							placeholder : "With Max Selection limit 3",
+							allowClear : true
+						});
+					});
+				</script>
+				<!-- /select2 -->
+
+				<script type="text/javascript">
+					function valider(form) {
+						if (isNaN(form.hours.value) == true) {
+							alert("<spring:message code="label.Please_include_number" />");
+							form.hours.focus();
+							return false;
+
+						}
+
+						return true;
+					}
+				</script>
