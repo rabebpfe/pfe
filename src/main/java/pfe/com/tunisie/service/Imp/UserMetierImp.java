@@ -296,7 +296,7 @@ public class UserMetierImp implements IUserMetier {
 			IRoleDAO.save(role1);
 
 		} else if (role.equals("Dev")) {
-			Role role1 = new Role("ROLE_ADMIN", user);
+			Role role1 = new Role("ROLE_DEV", user);
 			IRoleDAO.save(role1);
 
 		}
