@@ -203,7 +203,7 @@
 
 
 
-						<div class="ui-ribbon">${Project.contribution}%Off</div>
+						
 					</div>
 					<div class="x_title">
 						<h2>${Project.categorie}</h2>

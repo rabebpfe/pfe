@@ -119,7 +119,7 @@ public class TaskPerDetailController {
 	}
 	
 	
-	@RequestMapping("/IN_progress")
+	@RequestMapping(value={"&_eventId=Star_Progress",  "&_eventId=Code_Review_Failed"})
 	public String IN_progress(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -143,7 +143,7 @@ public class TaskPerDetailController {
 		return "redirect:/taskPer";
 	}
 	
-	@RequestMapping("/Open")
+	@RequestMapping(value={"&_eventId=Stop_Progress",  "&_eventId=Reopen"})
 	public String Open(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -166,7 +166,7 @@ public class TaskPerDetailController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "redirect:/taskPer";
 	}
-	@RequestMapping("/Code_Review")
+	@RequestMapping("&_eventId=Readly_for_review")
 	public String Code_Review(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -190,7 +190,7 @@ public class TaskPerDetailController {
 		return "redirect:/taskPer";
 	}
 	
-	@RequestMapping("/Done")
+	@RequestMapping("&_eventId=Code_Review_Passed")
 	public String Done(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();

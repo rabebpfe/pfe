@@ -63,7 +63,7 @@
 									<div class="x_content">
 
 
-										<a class="btn btn-round btn-warning" href="IN_progress">Start
+										<a class="btn btn-round btn-warning" href="${flowExecutionUrl}&_eventId=Star_Progress">Start
 											progress</a>
 										<h5 class="btn btn-round btn-info" data-toggle="modal"
 											data-target="#AttributNew">
@@ -76,14 +76,6 @@
 
 									</div>
 								</div>
-
-
-
-
-
-
-
-
 
 							</c:if>
 
@@ -103,9 +95,9 @@
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<a class="btn  btn-round btn-danger" href="Open">Stop
+										<a class="btn  btn-round btn-danger"  href="${flowExecutionUrl}&_eventId=Stop_Progress">Stop
 											progress </a> <a class="btn  btn-round  btn-warning"
-											href="Code_Review">Ready for review</a>
+											 href="${flowExecutionUrl}&_eventId=Readly_for_review">Ready for review</a>
 										<h5 class="btn btn-round btn-info" data-toggle="modal"
 											data-target="#AttributNew">
 											<spring:message code="label.Attribuer" />
@@ -137,9 +129,9 @@
 									</div>
 									<div class="x_content">
 
-										<a class="btn btn-round btn-danger" href="IN_progress">Code
-											review failed</a> <a class="btn btn-round btn-warning"
-											href="Done">Code review passed</a>
+										<a class="btn btn-round btn-danger"  href="${flowExecutionUrl}&_eventId=Code_Review_Failed">Code
+										review failed</a> <a class="btn btn-round btn-warning"
+										href="${flowExecutionUrl}&_eventId=Code_Review_Passed" >Code passed</a>
 
 										<h5 class="btn btn-round btn-info" data-toggle="modal"
 											data-target="#AttributNew">
@@ -176,7 +168,7 @@
 									<div class="x_content">
 
 
-										<a class="btn btn-round btn-danger" href="Open">Reopen</a>
+										<a class="btn btn-round btn-danger" href="${flowExecutionUrl}&_eventId=Reopen">Reopen</a>
 										<h5 class="btn btn-round btn-info" data-toggle="modal"
 											data-target="#AttributNew">
 											<spring:message code="label.Attribuer" />

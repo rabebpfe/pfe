@@ -109,8 +109,7 @@
 					</p>
 				</div>
 				
-				 <a href="${pageContext.request.contextPath}/myflow.xml">Let's begin the webflow</a>
-			<a href="${flowExecutionUrl}&_eventId=Star_Progress"> <spring:message code="label.click_here" /></a>
+				
 				<!--/span-->
 			</div>
 			<!--/row-->

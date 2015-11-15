@@ -131,16 +131,19 @@
 
 						<div class="form-group">
 							<form:label path="roles"
-								class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
+								class="control-label col-md-3 col-sm-3 col-xs-12" for="role">
 								<spring:message code="label.Role" />
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<form:radiobutton path="roles" value="Admin" id="rdio1"
+								<form:radiobutton path="roles" value="Admin" id="rdio2"
 									style="margin-left:5px;" checked="checked" />
 								Admin
+
 								<form:radiobutton path="roles" value="Dev" id="rdio2"
 									style="margin-left:5px;" />
 								Dev
+
+
 
 							</div>
 						</div>
