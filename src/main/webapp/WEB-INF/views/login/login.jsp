@@ -90,7 +90,7 @@
 						<div class="btn-group button-login">
 
 							<button type="submit" name="submit" class="btn btn-primary"
-								value="login">
+								value="login" onclick="return valider(this.form);">
 								<spring:message code="label.Login" />
 							</button>
 						</div>
@@ -122,6 +122,25 @@
 	<!--/.fluid-container-->
 
 	<!-- start: JavaScript-->
+	
+	<script type="text/javascript">
+			function valider(form) {
+				if (form.username.value == '') {
+					alert("<spring:message code="label.Thank_you_to_seize_your_username" />");
+					
+					form.username.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+				}
+				if (form.password.value == '') {
+					alert("<spring:message code="label.Thank_you_to_seize_your_password" />");
+			
+					form.password.focus(); //met le curseur dans le champ demandé
+					return false; //enpèche l'envoi du formulaire
+				}
+				
+				return true;
+			}
+		</script>
 
 	<script src="<c:url value="/resources/js/jquery-1.7.2.min.js" />"></script>
 

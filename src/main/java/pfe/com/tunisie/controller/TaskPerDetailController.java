@@ -1,3 +1,5 @@
+
+
 package pfe.com.tunisie.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -119,7 +121,7 @@ public class TaskPerDetailController {
 	}
 	
 	
-	@RequestMapping(value={"&_eventId=Star_Progress",  "&_eventId=Code_Review_Failed"})
+	@RequestMapping("/IN_progress")
 	public String IN_progress(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -143,7 +145,7 @@ public class TaskPerDetailController {
 		return "redirect:/taskPer";
 	}
 	
-	@RequestMapping(value={"&_eventId=Stop_Progress",  "&_eventId=Reopen"})
+	@RequestMapping("/Open")
 	public String Open(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -166,7 +168,7 @@ public class TaskPerDetailController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		return "redirect:/taskPer";
 	}
-	@RequestMapping("&_eventId=Readly_for_review")
+	@RequestMapping("/Code_Review")
 	public String Code_Review(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -190,7 +192,7 @@ public class TaskPerDetailController {
 		return "redirect:/taskPer";
 	}
 	
-	@RequestMapping("&_eventId=Code_Review_Passed")
+	@RequestMapping("/Done")
 	public String Done(Model model, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
