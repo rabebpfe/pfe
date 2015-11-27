@@ -33,7 +33,7 @@ public interface ITaskMetier {
 
 	public void Done(Long idTask);
 
-	public void attribut(Long idTask, String email);
+	public void attribut(Long idTask, String email, Long idUser, java.util.Date date);
 
 	public void saveHours(Long idTask, Long hours);
 

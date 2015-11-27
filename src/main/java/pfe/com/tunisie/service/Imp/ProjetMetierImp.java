@@ -142,9 +142,15 @@ public class ProjetMetierImp implements IProjetMetier {
 				else {
 				
 					s = (long) (l*100)/j ;
+					if(s == 100)
+					{Project.get(i).setStatus("Open");
+					Project.get(i).setReel_dure(hours_reel+" "+"heures");
+					Project.get(i).setContribution((long) 0);}
+					else{
 					Project.get(i).setStatus("Open");
 					Project.get(i).setReel_dure(hours_reel+" "+"heures");
 					Project.get(i).setContribution(s);
+					}
 					IProjetDAO.save(Project);
 				}
 				

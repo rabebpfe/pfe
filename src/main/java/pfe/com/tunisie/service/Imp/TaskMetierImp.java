@@ -118,7 +118,7 @@ public class TaskMetierImp implements ITaskMetier {
 		User user = IUserDAO.findOne(idUser);
 		Notification.setUsers(user);
 		Notification.setDescription("Un administrateur" + "  "
-				+ user.getUsername()
+				+ user.getUsername()+" "
 				+ "vous avez attribuer une tache intitulé  " + nom);
 		int day = date2.getDate();
 		int month = date2.getMonth() + 1;
@@ -179,7 +179,7 @@ public class TaskMetierImp implements ITaskMetier {
 		ActivityProject.setDay(day);
 		ActivityProject.setIdUser(idUser);
 		ActivityProject.setDescription("Un administrateur " + "  "
-				+ user.getUsername()
+				+ user.getUsername()+" "
 				+ "vous avez  attribuer une tache intitulé  " + nom
 				+ " pour votre projet");
 		ActivityProject.setProjet(Project);
@@ -238,21 +238,90 @@ public class TaskMetierImp implements ITaskMetier {
 		ITaskDAO.save(task);
 	}
 
-	@Override
-	public void attribut(Long idTask, String email) {
-		Task task = ITaskDAO.findOne(idTask);
-		User User = IUserDAO.findByemail(email);
-		task.setUser(User.getIdUser());
-		
-		ITaskDAO.save(task);
-		
-	}
+	
 
 	@Override
 	public void saveHours(Long idTask, Long hours) {
 		Task task = ITaskDAO.findOne(idTask);
 		Long hour=task.getHours()+hours;
 		task.setHours(hour);
+		ITaskDAO.save(task);
+		
+	}
+
+	@Override
+	public void attribut(Long idTask, String email, Long idUser,
+			java.util.Date date) {
+		Task task = ITaskDAO.findOne(idTask);
+		User User = IUserDAO.findByemail(email);
+		task.setUser(User.getIdUser());
+		User user = IUserDAO.findOne(idUser);
+		Notification Notification = new Notification();
+		Notification.setUser(User);
+
+		User user1 = IUserDAO.findOne(idUser);
+		Notification.setUsers(user1);
+		
+		Notification.setDescription("Un agent" + "  "
+				+ user.getUsername()+ " "
+				+ "vous avez attribuer une tache intitulé  " + task.getNom());
+		int day = date.getDate();
+		int month = date.getMonth() + 1;
+		long hours = date.getHours();
+		long munite = date.getMinutes();
+		Notification.setHours(hours);
+		Notification.setMunite(munite);
+		if (month == 1) {
+			Notification.setMonth("Janvier");
+			
+		}
+		if (month == 2) {
+			Notification.setMonth("F�vrier");
+			
+		}
+		if (month == 3) {
+			Notification.setMonth("Mars");
+		
+		}
+		if (month == 4) {
+			Notification.setMonth("Avril");
+		
+		}
+		if (month == 5) {
+			Notification.setMonth("Mai");
+		
+		}
+		if (month == 6) {
+			Notification.setMonth("Juin");
+			
+		}
+		if (month == 7) {
+			Notification.setMonth("Juillet");
+			
+		}
+		if (month == 8) {
+			Notification.setMonth("Aout");
+		
+		}
+		if (month == 9) {
+			Notification.setMonth("Septembre");
+		
+		}
+		if (month == 10) {
+			Notification.setMonth("Octobre");
+		
+		}
+		if (month == 11) {
+			Notification.setMonth("Novembre");
+		
+		}
+		if (month == 12) {
+			Notification.setMonth("D�cembre");
+		
+		}
+
+		Notification.setDay(day);
+		INotificationDAO.save(Notification);
 		ITaskDAO.save(task);
 		
 	}

@@ -12,14 +12,13 @@
 	<http pattern="/passWordRecSucc" security="none" />
 	<http pattern="/PassRec" security="none" />
 	<http use-expressions="true" auto-config="true">
-
+        <intercept-url pattern="/users" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/projet" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/projetDetail" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/projetGallery" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/task" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/taskDetail" access="hasAnyRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/users" access="hasAnyRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/activity" access="hasAnyRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/taskPer" access="hasAnyRole('ROLE_DEV')" />
 		<intercept-url pattern="/notification" access="hasAnyRole('ROLE_DEV')" />
 		<intercept-url pattern="/taskPerDetail" access="hasAnyRole('ROLE_DEV')" />

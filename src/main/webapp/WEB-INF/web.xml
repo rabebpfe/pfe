@@ -18,7 +18,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:applicationContext.xml
 	  classpath*:security-context.xml
-	  /WEB-INF/webflow.xml</param-value>
+	 </param-value>
 	</context-param>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->

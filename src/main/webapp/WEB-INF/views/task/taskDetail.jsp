@@ -86,18 +86,21 @@
 												<c:url var="editComment" value="/comment/edit">
 													<c:param name="id" value="${Comments.idCommente}"></c:param>
 												</c:url>
+													<c:if test="${Comments.user.idUser==user.idUser}">
 												<a href="${editComment}" data-remote="false" title="edit"
 													type="button" data-original-title="edit"
 													class="btn  btn-sm tooltips" data-toggle="modal"
 													data-target="#CommentEdit"> <i
 													class="fa fa-edit m-right-xs"></i>
-												</a> <a href="suppComment?idCommente=${Comments.idCommente}"
-												 title="delete" data-original-title="delete"
-														class="btn  btn-sm tooltips"
-														onclick="return confirm('Etes vous sûre de vouloir supprimer ce commentaire ?');">
-														<i class="fa fa-trash-o"></i>
-													
+												</a> 
+												<a href="suppComment?idCommente=${Comments.idCommente}"
+													title="delete" data-original-title="delete"
+													class="btn  btn-sm tooltips"
+													onclick="return confirm('Etes vous sûre de vouloir supprimer ce commentaire ?');">
+													<i class="fa fa-trash-o"></i>
+
 												</a>
+												</c:if>
 											</blockquote>
 
 
