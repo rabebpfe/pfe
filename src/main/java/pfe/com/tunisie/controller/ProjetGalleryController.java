@@ -30,6 +30,8 @@ public class ProjetGalleryController {
 		model.addAttribute("projects", IProjetMetier.findAll());
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		
 		return "projet.projetGallery";
 	}
 }

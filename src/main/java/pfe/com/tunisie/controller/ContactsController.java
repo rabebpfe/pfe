@@ -32,6 +32,9 @@ public class ContactsController {
 				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("users", IUserMetier.findAll());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "contacts.contacts";
 	}
 }

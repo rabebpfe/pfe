@@ -40,6 +40,8 @@ public class MailboxController {
 				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		model.addAttribute("messageRead", IMessageMetier.findReadByIdUser(idUser));
 		
 		return "mailbox.reception";
@@ -59,6 +61,9 @@ public class MailboxController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("message_envoyeAll",
 				IMessageMetier.findAllByCreate_By(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		model.addAttribute("messageRead", IMessageMetier.findReadByCreate_By(idUser));
 		return "mailbox.envoye";
 	}
@@ -77,6 +82,9 @@ public class MailboxController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("msgs", new Message());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		model.addAttribute("users", IUserMetier.findAll());
 
 		return "mailbox.compose";
@@ -99,7 +107,10 @@ public class MailboxController {
 		Date date = calendar.getTime();
 		IMessageMetier.send(MessageModel.getMessage(), MessageModel.getSujet(),
 				MessageModel.getUser(), idUser, date);
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "redirect:/compose";
 	}
 
@@ -119,6 +130,9 @@ public class MailboxController {
 		model.addAttribute("message_envoye",
 				IMessageMetier. findAllByCreate_By(idUser));
 		model.addAttribute("msg", IMessageMetier.findOne(idMail));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 
 		return "mailbox.readenvoye";
 	}
@@ -138,6 +152,8 @@ public class MailboxController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
         model.addAttribute("msg", IMessageMetier.findOne(idMail));
+        model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "mailbox.readreception";
 	}
 
@@ -160,6 +176,9 @@ public class MailboxController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("message_envoye",
 				IMessageMetier. findAllByCreate_By(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 
 		return "redirect:/envoye";
 
@@ -184,7 +203,8 @@ public class MailboxController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		model.addAttribute("messageRead", IMessageMetier.findReadByIdUser(idUser));
-		
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "redirect:/reception";
 
 	}

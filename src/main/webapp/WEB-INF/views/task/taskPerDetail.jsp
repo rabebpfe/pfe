@@ -139,7 +139,7 @@
 
 										<a class="btn btn-round btn-danger" href="IN_progress">Code
 											review failed</a> <a class="btn btn-round btn-warning"
-											href="Done">Code review passed</a>
+											href="Done">Code passed</a>
 
 										<h5 class="btn btn-round btn-info" data-toggle="modal"
 											data-target="#AttributNew">

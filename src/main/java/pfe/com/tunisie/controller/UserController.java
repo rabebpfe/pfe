@@ -30,6 +30,11 @@ public class UserController {
 	private IUserMetier IUserMetier;
 	@Autowired
 	private IMessageMetier IMessageMetier;
+	@Autowired
+	private ISkillsMetier ISkillsMetier;
+	@Autowired
+	private IRoleMetier IRoleMetier;
+	
 
 	@RequestMapping("/users")
 	public String users(Model model, HttpServletRequest request) {
@@ -42,6 +47,8 @@ public class UserController {
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+	
 
 		return "user.user";
 	}
@@ -106,7 +113,12 @@ public class UserController {
 		model.addAttribute("user", IUserMetier.findOne(idUser1));
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("skills", ISkillsMetier.findAll());
+		model.addAttribute("roles", IRoleMetier.findAll());
+		
 		model.addAttribute("useredit", IUserMetier.useredit(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		
 		return "user.userEdit";
 	}
 
@@ -134,7 +146,10 @@ public class UserController {
 		model.addAttribute("usere", new User());
 		model.addAttribute("users", IUserMetier.findAll());
 		model.addAttribute("useredit", IUserMetier.useredit(idUser));
+		model.addAttribute("skills", ISkillsMetier.findAll());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		
 		return "redirect:/users";
 
 	}

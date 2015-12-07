@@ -41,6 +41,10 @@ public class CalenderController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "calender.calender";
 	}
 
@@ -56,6 +60,7 @@ public class CalenderController {
 		model.addAttribute("user", IUserMetier.findOne(idUser));
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		IEventMetier.saveEvent(EventModel.getTitle(),
 				EventModel.getDescription(), EventModel.getStart(),
 				EventModel.getEnd(), idUser);
@@ -74,7 +79,7 @@ public class CalenderController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		model.addAttribute("events", IEventMetier.findAll());
 		model.addAttribute("event", new Event());
 

@@ -39,7 +39,7 @@ public class CommentTaskController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		long idTask = (Long) request.getSession().getAttribute("idTask");
 
 		Calendar calendar = Calendar.getInstance();
@@ -68,7 +68,7 @@ public class CommentTaskController {
 		request.getSession().setAttribute("username", username);
 		Long idUser = IUserMetier.findByusername(username);
 		model.addAttribute("user", IUserMetier.findOne(idUser));
-
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		long idTask = (Long) request.getSession().getAttribute("idTask");
 		String url = (String) request.getSession().getAttribute("url");
 		if (url.equals("/tunisie/taskDetail")) {
@@ -94,6 +94,7 @@ public class CommentTaskController {
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
 		ICommenteMetier.update(idComment, description, date);
+		
 		Long taskId = comment.getTask().getIdTask();
 
 		String url = (String) request.getSession().getAttribute("url");

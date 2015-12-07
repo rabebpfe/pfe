@@ -83,9 +83,7 @@
 										</div>
 										<div class="col-xs-12 col-sm-6 emphasis">
 
-											<a class="btn btn-primary btn-xs" href="contactProfile?idUser=${u.idUser}">
-												<i class="fa fa-user"></i> View Profile
-											</a>
+											
 										</div>
 									</div>
 								</div>

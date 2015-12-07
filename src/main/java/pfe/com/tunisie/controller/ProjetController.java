@@ -38,6 +38,8 @@ public class ProjetController {
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+	
 		return "projet.projet";
 
 	}
@@ -101,6 +103,8 @@ public class ProjetController {
 
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+	
 
 		return "projet.projetEdit";
 	}
@@ -125,6 +129,8 @@ public class ProjetController {
 		model.addAttribute("projet", new Project());
 		model.addAttribute("projets", IProjetMetier.findAll());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+	
 		return "redirect:/projet";
 
 	}

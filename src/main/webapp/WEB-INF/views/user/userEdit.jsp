@@ -20,7 +20,7 @@
 </head>
 
 <div class="">
-	
+
 	<div class="clearfix"></div>
 
 	<div class="row">
@@ -70,13 +70,12 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label  class="control-label col-md-3 col-sm-3 col-xs-12">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">
 								<spring:message code="label.Saisir_nouveau" />
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input  type="password"
-									placeHolder="Repeat Password" class="form-control" id="password1"
-									name="password1" />
+								<input type="password" placeHolder="Repeat Password"
+									class="form-control" id="password1" name="password1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -91,31 +90,35 @@
 									value="${useredite.email}" />
 
 							</div>
-							
+
 						</div>
 						<div class="form-group">
 							<form:label path="phone"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">
 								<spring:message code="label.Phone" />
 								<span class="required">*</span>
-							
+
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<form:input path="phone"  id="phone" name="phone"
-									class="form-control col-md-7 col-xs-12" value="${useredite.phone}"/>
+								<form:input path="phone" id="phone" name="phone"
+									class="form-control col-md-7 col-xs-12"
+									value="${useredite.phone}" />
 
 							</div>
-							</div>
+						</div>
 						<div class="form-group">
 							<form:label path="photo"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
 								<spring:message code="label.File" />
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="file" id="file" name="file"
+								<input type="file" id="file" name="file" 
 									class="form-control col-md-7 col-xs-12">
+
 							</div>
+
 						</div>
+						
 						<div class="form-group">
 							<form:label path="adresse"
 								class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
@@ -136,11 +139,11 @@
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<form:radiobutton path="roles" value="Admin" id="rdio2"
-									style="margin-left:5px;" checked="checked" />
+									style="margin-left:5px;" />
 								Admin
 
 								<form:radiobutton path="roles" value="Dev" id="rdio2"
-									style="margin-left:5px;" />
+									style="margin-left:5px;" checked="checked" />
 								Dev
 
 
@@ -262,22 +265,21 @@
 					form.email.focus();
 					return false;
 				}
-				if (form.phone.value  == '') {
+				if (form.phone.value == '') {
 					alert("<spring:message code="label.Please_include_phone" />");
 					form.phone.focus();
 					return false;
 				}
-				if (isNaN(form.phone.value ) == true) {
+				if (isNaN(form.phone.value) == true) {
 					alert("<spring:message code="label.Please_include_phone_number" />");
 					form.phone.focus();
 					return false;
 				}
-				
-				if (form.phone.value.length !=8)
-				{
-				alert("<spring:message code="label.un_numéro_à_8_chiffres" />");
-				form.phone.focus();
-				return false;
+
+				if (form.phone.value.length != 8) {
+					alert("<spring:message code="label.un_numéro_à_8_chiffres" />");
+					form.phone.focus();
+					return false;
 				}
 				if (form.adresse.value == '') {
 					alert("<spring:message code="label.Thank_you_seize_your_address" />");
@@ -303,7 +305,7 @@
 				}
 
 				</c:forEach>
-				
+
 				return confirm("<spring:message code="label.modifier_cet_utilisateur" />");
 				return true;
 			}

@@ -58,6 +58,9 @@ public class ProfileController {
 		model.addAttribute("useredit", IUserMetier.useredit(idUser));
 		model.addAttribute("usere", new User());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "user.profile";
 	}
 

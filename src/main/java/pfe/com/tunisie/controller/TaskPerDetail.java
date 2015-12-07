@@ -55,6 +55,9 @@ public class TaskPerDetail {
 				model.addAttribute("Task_Done",
 						ITaskMetier.findByStatus("Done", idUser));
 				model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+				model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+				model.addAttribute("notificationAll",
+						INotificationMetier.findAllByIdUser(idUser));
 				return "redirect:/taskPer";
 			}
 			public String IN_progress(Model model, HttpServletRequest request) {
@@ -77,6 +80,9 @@ public class TaskPerDetail {
 				model.addAttribute("Task_Done",
 						ITaskMetier.findByStatus("Done", idUser));
 				model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+				model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+				model.addAttribute("notificationAll",
+						INotificationMetier.findAllByIdUser(idUser));
 				return "redirect:/taskPer";
 			}
 			
@@ -102,6 +108,9 @@ public class TaskPerDetail {
 				model.addAttribute("Task_Done",
 						ITaskMetier.findByStatus("Done", idUser));
 				model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+				model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+				model.addAttribute("notificationAll",
+						INotificationMetier.findAllByIdUser(idUser));
 				return "redirect:/taskPer";
 			}
 			
@@ -126,6 +135,9 @@ public class TaskPerDetail {
 				model.addAttribute("Task_Done",
 						ITaskMetier.findByStatus("Done", idUser));
 				model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+				model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+				model.addAttribute("notificationAll",
+						INotificationMetier.findAllByIdUser(idUser));
 				return "redirect:/taskPer";
 			}
 			

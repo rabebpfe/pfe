@@ -47,6 +47,7 @@ public class DashboardController {
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
 		model.addAttribute("Project", IProjetMetier.findByContribution());
 		model.addAttribute("Task", ITaskMetier.findAll());
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		return "dashboard.dashboard";
 	}
 

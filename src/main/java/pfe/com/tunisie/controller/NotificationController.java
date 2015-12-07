@@ -37,6 +37,7 @@ public class NotificationController {
 		model.addAttribute("notification",
 				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		model.addAttribute("notificationAll",
 				INotificationMetier.findAllByIdUser(idUser));
 		model.addAttribute("notificationRead",
@@ -57,6 +58,7 @@ public class NotificationController {
 		model.addAttribute("notification",
 				INotificationMetier.findByIdUser(idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		model.addAttribute("notificationAll",
 				INotificationMetier.findAllByIdUser(idUser));
 		model.addAttribute("notif", INotificationMetier.findOne(idNotification));
@@ -84,6 +86,7 @@ public class NotificationController {
 
 		model.addAttribute("notificationAll",
 				INotificationMetier.findAllByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
 		model.addAttribute("notificationRead",
 				INotificationMetier.findReadByIdUser(idUser));
 

@@ -53,6 +53,9 @@ public class TaskDetailController {
 		String url = request.getRequestURI();
 		System.out.println("**************End url ***************" + url);
 		request.getSession().setAttribute("url", url);
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "task.taskDetail";
 	}
 

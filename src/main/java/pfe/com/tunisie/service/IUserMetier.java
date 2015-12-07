@@ -36,6 +36,8 @@ public interface IUserMetier {
 
 	public List<User>   useredit(Long idUser);
 
+	public List<User>  find_User_Agent();
+
 
 
 }

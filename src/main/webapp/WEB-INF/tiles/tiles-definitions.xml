@@ -78,10 +78,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/notification/notification.jsp"></put-attribute>
 	</definition>
-	<definition name="contacts.contactProfile" extends="defaultTemplate">
-		<put-attribute name="body"
-			value="/WEB-INF/views/contacts/contactProfile.jsp"></put-attribute>
-	</definition>
+	
 	<definition name="user.userEdit" extends="defaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/user/userEdit.jsp"></put-attribute>
 	</definition>

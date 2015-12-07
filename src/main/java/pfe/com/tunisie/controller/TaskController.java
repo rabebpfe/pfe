@@ -49,8 +49,11 @@ public class TaskController {
 		model.addAttribute("projets", IProjetMetier.findAll());
 		model.addAttribute("notification",
 				INotificationMetier.findByIdUser(idUser));
-		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("users", IUserMetier.find_User_Agent());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 
 		return "task.task";
 	}
@@ -73,7 +76,7 @@ public class TaskController {
 		model.addAttribute("task", new Task());
 		model.addAttribute("tasks", ITaskMetier.findAll());
 		model.addAttribute("projets", IProjetMetier.findAll());
-		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("users", IUserMetier.find_User_Agent());
 
 		return "redirect:/task";
 	}
@@ -115,8 +118,11 @@ public class TaskController {
 		model.addAttribute("task", new Task());
 		model.addAttribute("tasks", ITaskMetier.findAll());
 		model.addAttribute("projets", IProjetMetier.findAll());
-		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("users", IUserMetier.find_User_Agent());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 
 		return "task.taskEdit";
 	}
@@ -141,8 +147,11 @@ public class TaskController {
 		model.addAttribute("task", new Task());
 		model.addAttribute("tasks", ITaskMetier.findAll());
 		model.addAttribute("projets", IProjetMetier.findAll());
-		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("users", IUserMetier.find_User_Agent());
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 
 		return "redirect:/task";
 

@@ -45,6 +45,8 @@ public class ProjetDetailController {
 		model.addAttribute("Activity",
 				IActivityProjectMetier.findByIdProject(idProject));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		
 		return "projet.projetDetail";
 	}
 }

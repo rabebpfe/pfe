@@ -42,6 +42,9 @@ public class TaskPerController {
 		model.addAttribute("Task_Done",
 				ITaskMetier.findByStatus("Done", idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "task.taskPer";
 	}
 }

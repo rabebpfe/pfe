@@ -66,6 +66,9 @@ public class TaskPerDetailController {
 		System.out.println("**************End url ***************" + url);
 		request.getSession().setAttribute("url", url);
 		request.getSession().setAttribute("idTask", idTask);
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "task.taskPerDetail";
 	}
 	
@@ -149,6 +152,9 @@ public class TaskPerDetailController {
 		model.addAttribute("Task_Done",
 				ITaskMetier.findByStatus("Done", idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "redirect:/taskPer";
 	}
 	
@@ -173,6 +179,9 @@ public class TaskPerDetailController {
 		model.addAttribute("Task_Done",
 				ITaskMetier.findByStatus("Done", idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "redirect:/taskPer";
 	}
 	@RequestMapping("/Code_Review")
@@ -196,6 +205,9 @@ public class TaskPerDetailController {
 		model.addAttribute("Task_Done",
 				ITaskMetier.findByStatus("Done", idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "redirect:/taskPer";
 	}
 	
@@ -220,6 +232,9 @@ public class TaskPerDetailController {
 		model.addAttribute("Task_Done",
 				ITaskMetier.findByStatus("Done", idUser));
 		model.addAttribute("message", IMessageMetier.findByIdUser(idUser));
+		model.addAttribute("messageAll", IMessageMetier.findAllByIdUser(idUser));
+		model.addAttribute("notificationAll",
+				INotificationMetier.findAllByIdUser(idUser));
 		return "redirect:/taskPer";
 	}
 	

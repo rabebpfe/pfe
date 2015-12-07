@@ -129,12 +129,20 @@
 								<spring:message code="label.Project" />
 							</form:label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
+
+
+
 								<form:select path="projet" class="select2_multiple form-control">
+
 									<c:forEach var="projets" items="${projets}">
-										<form:option path="projet" value="${projets.nom}" />
+										<option value="${projets.nom}"
+											<c:if test="${Taskedit.projet.idProject  == projets.idProject}">SELECTED</c:if>><c:out
+												value="${projets.nom}" />
+										</option>
 									</c:forEach>
 
 								</form:select>
+
 							</div>
 
 						</div>
@@ -146,7 +154,10 @@
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<form:select path="user" class="select2_multiple form-control">
 									<c:forEach var="users" items="${users}">
-										<form:option path="user" value="${users.email}" />
+										<option value="${users.email}"
+											<c:if test="${Taskedit.user  == users.idUser}">SELECTED</c:if>><c:out
+												value="${users.email}" />
+										</option>
 									</c:forEach>
 
 								</form:select>
@@ -293,7 +304,7 @@
 				return false;
 			}
 			return confirm("<spring:message code="label.modifier_cette_tâche" />");
-			
+
 			return true;
 		}
 	</script>

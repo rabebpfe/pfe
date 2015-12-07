@@ -46,6 +46,44 @@
 						<li><a href="?language=de">Allemand</a></li>
 					</ul></li>
 
+
+
+
+
+
+				<%!int l = 0;%>
+
+				<c:forEach var="messageAll" items="${messageAll}">
+
+
+					<%
+						l = l + 1;
+					%>
+
+
+
+
+				</c:forEach>
+
+
+
+
+
+				<%!int j = 0;%>
+
+				<c:forEach var="notificationAll" items="${notificationAll}">
+
+
+					<%
+						j = j + 1;
+					%>
+
+
+
+
+				</c:forEach>
+
+
 				<ul class="nav navbar-nav navbar-right">
 					<li class=""><a href="javascript:;"
 						class="user-profile dropdown-toggle" data-toggle="dropdown"
@@ -71,23 +109,25 @@
 					<li role="presentation" class="dropdown"><a
 						href="javascript:;" class="dropdown-toggle info-number"
 						data-toggle="dropdown" aria-expanded="false"> <i
-							class="fa fa-envelope-o"></i> <span class="badge bg-green">4</span>
+							class="fa fa-envelope-o"></i> <span class="badge bg-green">
+								<%=l%></span> <%l = 0;%>
 					</a>
 						<ul id="menu1"
 							class="dropdown-menu list-unstyled msg_list animated fadeInDown"
 							role="menu">
-							<c:forEach var="message" items="${message}" >
-						<li><a> <span class="image"> <img src="photoUser?idUser=${message.users.idUser} "/>
-										
-									</span> <span> <span>${message.users.username} </span> <span class="time">
-								${message.day} ${message.month} ${message.hours} :
-									${message.munite}</span>
-								</span> <span class="message"> ${message.message} </span>
-							</a></li>
+							<c:forEach var="message" items="${message}">
+								<li><a> <span class="image"> <img
+											src="photoUser?idUser=${message.users.idUser} " />
+
+									</span> <span> <span>${message.users.username} </span> <span
+											class="time"> ${message.day} ${message.month}
+												${message.hours} : ${message.munite}</span>
+									</span> <span class="message"> ${message.message} </span>
+								</a></li>
 							</c:forEach>
-						
-						
-							
+
+
+
 							<li>
 								<div class="text-center">
 									<a href="reception"> <strong><spring:message
@@ -102,26 +142,30 @@
 						<li role="presentation" class="dropdown"><a
 							href="javascript:;" class="dropdown-toggle info-number"
 							data-toggle="dropdown" aria-expanded="false"> <i
-								class="fa fa-plus-square-o"></i> <span class="badge bg-green">4</span>
+								class="fa fa-plus-square-o"></i> <span class="badge bg-green">
+									<%=j%></span> <%
+ 	j = 0;
+ %>
 						</a>
 							<ul id="menu1"
 								class="dropdown-menu list-unstyled msg_list animated fadeInDown"
 								role="menu">
 								<c:forEach var="notification" items="${notification}">
-										<li><a> <span class="image"> <img src="photoUser?idUser=${notification.users.idUser} "/>
-										
-									</span> <span> <span>${notification.users.username} </span> <span class="time">
-									${notification.day} ${notification.month} ${notification.hours} :
-									${notification.munite}
-											</span>
-									</span> <span class="message"> ${notification.description} </span>
-								</a></li>
-							  </c:forEach>
-								
-								
-								
-								
-								
+									<li><a> <span class="image"> <img
+												src="photoUser?idUser=${notification.users.idUser} " />
+
+										</span> <span> <span>${notification.users.username} </span> <span
+												class="time"> ${notification.day}
+													${notification.month} ${notification.hours} :
+													${notification.munite} </span>
+										</span> <span class="message"> ${notification.description} </span>
+									</a></li>
+								</c:forEach>
+
+
+
+
+
 								<li>
 									<div class="text-center">
 										<a href="notification"> <strong><spring:message
