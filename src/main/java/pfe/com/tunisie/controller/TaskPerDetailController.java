@@ -55,7 +55,7 @@ public class TaskPerDetailController {
 		Task Task = ITaskMetier.findOne(idTask);
 		request.getSession().setAttribute("idTask", idTask);
 		model.addAttribute("Task", Task);
-		model.addAttribute("users", IUserMetier.findAll());
+		model.addAttribute("users", IUserMetier.find_User_Agent());
 		model.addAttribute("Files", IFileTaskMetier.findFileByTask(idTask));
 		model.addAttribute("Comments", ICommenteMetier.findByIdTask(idTask));
 		model.addAttribute("notification",
