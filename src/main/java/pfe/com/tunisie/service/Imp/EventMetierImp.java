@@ -64,9 +64,12 @@ public class EventMetierImp implements IEventMetier {
 		System.out.println(start);
 		System.out.println(end);
 
-		String format = "yyyy-MM-dd ";
+		String format = "yyyy-MM-dd HH:mm:ss";
+		
+		
 
 		SimpleDateFormat formater = new SimpleDateFormat(format);
+		
 
 		Event Event = new Event();
 		Event.setStart(formater.format(start));

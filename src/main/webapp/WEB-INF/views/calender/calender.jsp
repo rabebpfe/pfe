@@ -487,7 +487,7 @@
 
 						$('#fc_edit').click();
 						$('#title2').val(calEvent.title);
-						$('#descr2').val(calEvent.descr);
+						$('#descr2').val(calEvent.title);
 						$('#id2').val(calEvent.id);
 						
 						categoryClass = $("#event_type").val();
