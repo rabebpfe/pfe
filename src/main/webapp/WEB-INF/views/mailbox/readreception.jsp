@@ -99,11 +99,14 @@
 										<h4>${msg.sujet }</h4>
 									</div>
 								</div>
+							
+								
+								
 								<div class="sender-info">
 									<div class="row">
 										<div class="col-md-12">
-											<strong>me</strong>
-											<strong>to</strong> ${msg.users.username} <span>(${msg.users.email} )</span>  <a class="sender-dropdown"><i
+											<strong></strong>${msg.users.username} <span>(${msg.users.email} )</span> to
+											<strong>me</strong> <a class="sender-dropdown"><i
 												class="fa fa-chevron-down"></i></a>
 										</div>
 									</div>

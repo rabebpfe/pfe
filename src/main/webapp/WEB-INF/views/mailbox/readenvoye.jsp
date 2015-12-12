@@ -21,7 +21,7 @@
 </head>
 <div class="">
 
-	
+
 	<div class="clearfix"></div>
 
 	<div class="row">
@@ -48,25 +48,25 @@
 
 						<div class="col-sm-3 mail_list_column">
 
-									
-						<c:forEach var="message_envoye" items="${message_envoye}">
-							<div class="mail_list">
-								<div class="left">
-									<i class="fa fa-star"></i>
+
+							<c:forEach var="message_envoye" items="${message_envoye}">
+								<div class="mail_list">
+									<div class="left">
+										<i class="fa fa-star"></i>
+									</div>
+									<div class="right">
+										<h3>
+											<a href="readenvoye?idMail=${message_envoye.idMail}">${message_envoye.user.username}
+											</a><small> ${message_envoye.hours} :
+												${message_envoye.munite} PM</small>
+										</h3>
+										<p>${message_envoye.message}</p>
+
+									</div>
 								</div>
-								<div class="right">
-									<h3>
-									<a href="readenvoye?idMail=${message_envoye.idMail}">${message_envoye.user.username} </a><small>
-									${message_envoye.hours} :
-									${message_envoye.munite} PM</small>
-									</h3>
-									<p>${message_envoye.message}</p>
-									
-								</div>
-							</div>
 							</c:forEach>
-							
-						
+
+
 
 
 
@@ -80,31 +80,35 @@
 								<div class="mail_heading row">
 									<div class="col-md-8">
 										<div class="compose-btn">
-											<a class="btn btn-sm btn-primary" href="supprMail?idMail=${msg.idMail}"><i
+											<a class="btn btn-sm btn-primary"
+												href="supprMail?idMail=${msg.idMail}"><i
 												class="fa fa-trash-o"
-												onclick="return confirm('Etes vous sûre de vouloir supprimer cette message ?');"></i> <spring:message
-													code="label.delete" /></a>
-												<a class="btn btn-sm btn-primary" href="compose"><i
+												onclick="return confirm('Etes vous sûre de vouloir supprimer cette message ?');"></i>
+												<spring:message code="label.delete" /></a> <a
+												class="btn btn-sm btn-primary" href="compose"><i
 												class="fa fa-reply"></i> <spring:message
 													code="label.Compose" /></a>
-											
-											
+
+
 										</div>
 
 									</div>
 									<div class="col-md-4 text-right">
-										<p class="date">${msg.hours}:
-									${msg.munite} PM ${msg.day} ${msg.month}</p>
+										<p class="date">${msg.hours}:${msg.munite} PM ${msg.day}
+											${msg.month}</p>
 									</div>
 									<div class="col-md-12">
 										<h4>${msg.sujet }</h4>
 									</div>
 								</div>
+
+
+
 								<div class="sender-info">
 									<div class="row">
 										<div class="col-md-12">
-											<strong></strong>${msg.user.username} <span>(${msg.user.email} )</span> to
-											<strong>me</strong> <a class="sender-dropdown"><i
+											<strong>me</strong> to <strong></strong>${msg.user.username}
+											<span>(${msg.user.email} )</span> <a class="sender-dropdown"><i
 												class="fa fa-chevron-down"></i></a>
 										</div>
 									</div>
@@ -112,8 +116,8 @@
 								<div class="view-mail">
 									<p>${msg.message }</p>
 								</div>
-								
-								
+
+
 							</div>
 
 						</div>

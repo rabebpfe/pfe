@@ -22,117 +22,124 @@
 
 	<div class="page-title">
 
-	<div class="clearfix"></div>
+		<div class="clearfix"></div>
 
-	<div class="row">
+		<div class="row">
 
-		<div class="col-md-12">
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>
-						<spring:message code="label.Envoye" />
-						<small>User Mail</small>
-					</h2>
-					<ul class="nav navbar-right panel_toolbox">
-						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-						</li>
+			<div class="col-md-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>
+							<spring:message code="label.Envoye" />
+							<small>User Mail</small>
+						</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
 
-						<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
+							<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
 
 
-					<div class="row">
+						<div class="row">
 
-						<div class="col-sm-3 mail_list_column">
+							<div class="col-sm-3 mail_list_column">
 
-									
-						<c:forEach var="message_envoyeAll" items="${message_envoyeAll}">
-							<div class="mail_list">
-								<div class="left">
-									<i class="fa fa-star"></i>
-								</div>
-								<div class="right">
-									<h3>
-										<a href="readenvoye?idMail=${message_envoyeAll.idMail}">${message_envoyeAll.user.username} </a><small>${message_envoyeAll.hours} :
-									${message_envoyeAll.munite} PM</small>
-									</h3>
-									<p>${message_envoyeAll.message}</p>
-									
-								</div>
+
+								<c:forEach var="message_envoyeAll" items="${message_envoyeAll}">
+									<div class="mail_list">
+										<div class="left">
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="right">
+											<h3>
+												<a href="readenvoye?idMail=${message_envoyeAll.idMail}">${message_envoyeAll.user.username}
+												</a><small>${message_envoyeAll.hours} :
+													${message_envoyeAll.munite} PM</small>
+											</h3>
+											<p>${message_envoyeAll.message}</p>
+
+										</div>
+									</div>
+								</c:forEach>
+
+
+
+
 							</div>
-							</c:forEach>
-							
-					
+							<!-- /MAIL LIST -->
 
 
-						</div>
-						<!-- /MAIL LIST -->
+							<!-- CONTENT MAIL -->
+							<div class="col-sm-9 mail_view">
+								<div class="inbox-body">
+									<div class="mail_heading row">
+										<div class="col-md-8">
+											<div class="compose-btn">
 
-
-						<!-- CONTENT MAIL -->
-						<div class="col-sm-9 mail_view">
-							<div class="inbox-body">
-								<div class="mail_heading row">
-									<div class="col-md-8">
-										<div class="compose-btn">
-											
 												<a class="btn btn-sm btn-primary" href="compose"><i
-												class="fa fa-reply"></i> <spring:message
-													code="label.Compose" /></a>
-											
-											
-										</div>
+													class="fa fa-reply"></i> <spring:message
+														code="label.Compose" /></a>
 
-									</div>
-									<div class="col-md-4 text-right">
-										<p class="date">${messageRead.hours}:
-									${messageRead.munite} PM ${messageRead.day} ${messageRead.month}</p>
-									</div>
-									<div class="col-md-12">
-										<h4>${messageRead.sujet }</h4>
-									</div>
-								</div>
-								<div class="sender-info">
-									<div class="row">
+
+											</div>
+
+										</div>
+										<div class="col-md-4 text-right">
+											<p class="date">${messageRead.hours}:
+												${messageRead.munite} PM ${messageRead.day}
+												${messageRead.month}</p>
+										</div>
 										<div class="col-md-12">
-											<strong></strong>${messageRead.user.username} <span>(${messageRead.user.email} )</span> to
-											<strong>me</strong> <a class="sender-dropdown"><i
-												class="fa fa-chevron-down"></i></a>
+											<h4>${messageRead.sujet }</h4>
 										</div>
 									</div>
-								</div>
-								<div  class="view-mail" >
-									<p >${messageRead.message }</p>
-								</div>
-								
-								
-							</div>
 
+
+
+									<div class="sender-info">
+										<div class="row">
+											<div class="col-md-12">
+												<strong>me</strong> to <strong></strong>${messageRead.user.username}
+												<span>(${messageRead.user.email} )</span> <a
+													class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="view-mail">
+										<p>${messageRead.message }</p>
+									</div>
+
+
+								</div>
+
+							</div>
+							<!-- /CONTENT MAIL -->
 						</div>
-						<!-- /CONTENT MAIL -->
 					</div>
 				</div>
 			</div>
-		</div>
 
 
 
-		<script
-			src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
+			<script
+				src="<c:url value="/resources/production/js/bootstrap.min.js" />"></script>
 
-		<!-- chart js -->
-		<script
-			src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
-		<!-- bootstrap progress js -->
-		<script
-			src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
-		<script
-			src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
-		<!-- icheck -->
-		<script
-			src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
+			<!-- chart js -->
+			<script
+				src="<c:url value="/resources/production/js/chartjs/chart.min.js" />"></script>
+			<!-- bootstrap progress js -->
+			<script
+				src="<c:url value="/resources/production/js/progressbar/bootstrap-progressbar.min.js" />"></script>
+			<script
+				src="<c:url value="/resources/production/js/nicescroll/jquery.nicescroll.min.js" />"></script>
+			<!-- icheck -->
+			<script
+				src="<c:url value="/resources/production/js/icheck/icheck.min.js" />"></script>
 
-		<script src="<c:url value="/resources/production/js/custom.js" />"></script>
+			<script src="<c:url value="/resources/production/js/custom.js" />"></script>
