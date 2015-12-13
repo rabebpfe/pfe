@@ -66,8 +66,8 @@ public class SampleSMS implements Job {
 						"Body",
 						"Bonjour  "
 								+ user.getUsername()
-								+ ", il fout rendre le travail de votre tache intitulé "
-								+ Tasks.get(i).getNom() + "avant le "
+								+ ", il fout rendre le travail de votre tâche intitulé "
+								+ Tasks.get(i).getNom() +" "+ "avant le "
 								+ Tasks.get(i).getDate()));
 				Message sms;
 				System.out.println("Msg envoyé pour le numéro  "

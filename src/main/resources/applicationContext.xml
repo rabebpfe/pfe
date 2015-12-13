@@ -32,7 +32,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitManager" ref="persistenceUnitManager"></property>
-		<property name="persistenceUnitName" value="UP_EBOUTIQUE"></property>
+		<property name="persistenceUnitName" value="GESTION_PROJET"></property>
 	</bean>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>

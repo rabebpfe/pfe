@@ -59,7 +59,7 @@ public class QuartzServlet {
 	public CronTriggerFactoryBean procesoMQTrigger() {
 		CronTriggerFactoryBean cronTriggerFactoryBean = new CronTriggerFactoryBean();
 		cronTriggerFactoryBean.setJobDetail(procesoMQJob().getObject());
-		cronTriggerFactoryBean.setCronExpression("0 01 09 * * ?");
+		cronTriggerFactoryBean.setCronExpression("0 30 12 * * ?");
 		cronTriggerFactoryBean.setGroup("spring3-quartz");
 		return cronTriggerFactoryBean;
 	}
